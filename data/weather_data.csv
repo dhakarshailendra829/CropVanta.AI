@@ -1,0 +1,451 @@
+date,state,district,temperature,humidity,rainfall,wind_speed,condition
+2025-01-01,Uttar Pradesh,DistrictA,34.11,38.23,29.03,10.11,Cloudy
+2025-01-01,Uttar Pradesh,DistrictB,19.35,30.19,8.71,17.51,Sunny
+2025-01-01,Uttar Pradesh,DistrictC,23.79,48.39,41.12,1.14,Storm
+2025-01-01,Maharashtra,DistrictA,20.91,41.44,17.35,10.94,Storm
+2025-01-01,Maharashtra,DistrictB,33.31,81.73,15.69,10.76,Rainy
+2025-01-01,Maharashtra,DistrictC,26.88,75.91,47.02,0.32,Sunny
+2025-01-01,Bihar,DistrictA,24.68,74.5,24.63,9.66,Rainy
+2025-01-01,Bihar,DistrictB,29.74,37.02,39.99,2.46,Rainy
+2025-01-01,Bihar,DistrictC,23.62,75.75,6.3,3.93,Sunny
+2025-01-01,West Bengal,DistrictA,34.54,60.61,36.81,10.26,Cloudy
+2025-01-01,West Bengal,DistrictB,29.34,43.79,27.63,7.44,Storm
+2025-01-01,West Bengal,DistrictC,18.38,37.9,42.74,3.31,Rainy
+2025-01-01,Madhya Pradesh,DistrictA,16.56,40.97,41.29,5.71,Sunny
+2025-01-01,Madhya Pradesh,DistrictB,27.3,63.53,18.56,15.71,Storm
+2025-01-01,Madhya Pradesh,DistrictC,33.93,52.04,4.35,11.14,Rainy
+2025-01-02,Uttar Pradesh,DistrictA,27.2,50.26,49.43,0.5,Rainy
+2025-01-02,Uttar Pradesh,DistrictB,16.55,82.44,12.48,5.26,Sunny
+2025-01-02,Uttar Pradesh,DistrictC,28.7,66.02,2.68,7.53,Sunny
+2025-01-02,Maharashtra,DistrictA,14.56,57.5,17.56,1.88,Cloudy
+2025-01-02,Maharashtra,DistrictB,17.11,86.91,47.23,12.2,Rainy
+2025-01-02,Maharashtra,DistrictC,17.14,84.51,23.4,9.33,Sunny
+2025-01-02,Bihar,DistrictA,31.07,66.92,38.02,10.26,Cloudy
+2025-01-02,Bihar,DistrictB,39.99,76.17,19.89,16.55,Sunny
+2025-01-02,Bihar,DistrictC,30.23,75.77,2.27,12.93,Rainy
+2025-01-02,West Bengal,DistrictA,28.45,84.64,25.49,10.03,Rainy
+2025-01-02,West Bengal,DistrictB,28.79,46.71,42.65,18.57,Rainy
+2025-01-02,West Bengal,DistrictC,14.82,31.5,22.45,4.75,Rainy
+2025-01-02,Madhya Pradesh,DistrictA,23.97,76.4,45.75,3.78,Rainy
+2025-01-02,Madhya Pradesh,DistrictB,15.2,52.79,40.07,7.84,Rainy
+2025-01-02,Madhya Pradesh,DistrictC,27.05,69.09,10.54,11.13,Sunny
+2025-01-03,Uttar Pradesh,DistrictA,26.97,85.75,19.37,1.32,Sunny
+2025-01-03,Uttar Pradesh,DistrictB,32.48,55.87,4.38,5.66,Rainy
+2025-01-03,Uttar Pradesh,DistrictC,20.35,31.81,48.07,13.36,Rainy
+2025-01-03,Maharashtra,DistrictA,29.11,65.84,32.67,3.85,Storm
+2025-01-03,Maharashtra,DistrictB,35.44,86.83,44.24,14.78,Cloudy
+2025-01-03,Maharashtra,DistrictC,37.39,50.39,22.78,13.56,Sunny
+2025-01-03,Bihar,DistrictA,31.19,67.36,49.51,6.24,Rainy
+2025-01-03,Bihar,DistrictB,14.27,48.79,42.48,1.78,Storm
+2025-01-03,Bihar,DistrictC,35.04,86.13,9.29,7.45,Storm
+2025-01-03,West Bengal,DistrictA,15.95,39.89,12.0,14.2,Rainy
+2025-01-03,West Bengal,DistrictB,14.51,88.08,22.34,10.03,Cloudy
+2025-01-03,West Bengal,DistrictC,10.15,33.61,45.24,12.95,Storm
+2025-01-03,Madhya Pradesh,DistrictA,27.34,84.26,40.87,15.14,Storm
+2025-01-03,Madhya Pradesh,DistrictB,33.53,57.74,43.25,4.99,Rainy
+2025-01-03,Madhya Pradesh,DistrictC,22.07,83.08,44.78,18.18,Rainy
+2025-01-04,Uttar Pradesh,DistrictA,18.97,36.42,22.0,14.59,Rainy
+2025-01-04,Uttar Pradesh,DistrictB,20.26,55.8,41.55,2.4,Cloudy
+2025-01-04,Uttar Pradesh,DistrictC,24.57,37.02,34.11,19.0,Cloudy
+2025-01-04,Maharashtra,DistrictA,27.88,56.03,8.22,2.33,Sunny
+2025-01-04,Maharashtra,DistrictB,20.65,32.71,10.9,0.3,Rainy
+2025-01-04,Maharashtra,DistrictC,37.95,79.26,28.33,13.14,Rainy
+2025-01-04,Bihar,DistrictA,22.33,63.63,47.13,1.65,Rainy
+2025-01-04,Bihar,DistrictB,34.03,36.27,28.84,9.28,Storm
+2025-01-04,Bihar,DistrictC,12.77,65.1,11.31,17.91,Cloudy
+2025-01-04,West Bengal,DistrictA,32.17,31.95,32.94,10.65,Storm
+2025-01-04,West Bengal,DistrictB,36.19,77.37,37.41,11.23,Sunny
+2025-01-04,West Bengal,DistrictC,34.56,89.01,12.98,19.39,Sunny
+2025-01-04,Madhya Pradesh,DistrictA,17.2,38.66,5.79,0.55,Sunny
+2025-01-04,Madhya Pradesh,DistrictB,23.74,43.59,30.7,5.06,Rainy
+2025-01-04,Madhya Pradesh,DistrictC,30.66,83.86,37.26,1.53,Rainy
+2025-01-05,Uttar Pradesh,DistrictA,20.52,51.75,40.29,6.56,Cloudy
+2025-01-05,Uttar Pradesh,DistrictB,14.68,80.08,17.92,18.26,Rainy
+2025-01-05,Uttar Pradesh,DistrictC,16.64,52.86,40.42,16.47,Rainy
+2025-01-05,Maharashtra,DistrictA,33.45,46.55,10.21,0.34,Sunny
+2025-01-05,Maharashtra,DistrictB,38.01,71.03,26.58,0.65,Sunny
+2025-01-05,Maharashtra,DistrictC,19.35,44.99,32.71,12.38,Storm
+2025-01-05,Bihar,DistrictA,26.87,72.89,3.42,8.35,Rainy
+2025-01-05,Bihar,DistrictB,25.37,76.41,2.2,13.87,Rainy
+2025-01-05,Bihar,DistrictC,20.64,63.04,20.16,16.67,Storm
+2025-01-05,West Bengal,DistrictA,19.59,56.29,44.96,19.25,Rainy
+2025-01-05,West Bengal,DistrictB,20.65,54.79,33.79,13.16,Storm
+2025-01-05,West Bengal,DistrictC,16.51,47.28,27.82,0.58,Storm
+2025-01-05,Madhya Pradesh,DistrictA,11.26,55.15,8.41,17.59,Rainy
+2025-01-05,Madhya Pradesh,DistrictB,12.87,49.06,48.43,5.25,Rainy
+2025-01-05,Madhya Pradesh,DistrictC,16.61,83.17,46.72,18.33,Cloudy
+2025-01-06,Uttar Pradesh,DistrictA,19.5,47.14,4.57,6.3,Cloudy
+2025-01-06,Uttar Pradesh,DistrictB,30.32,55.71,36.57,16.49,Sunny
+2025-01-06,Uttar Pradesh,DistrictC,29.74,30.48,47.16,4.74,Storm
+2025-01-06,Maharashtra,DistrictA,21.37,84.9,12.56,16.88,Storm
+2025-01-06,Maharashtra,DistrictB,26.42,46.46,45.08,4.3,Storm
+2025-01-06,Maharashtra,DistrictC,11.18,46.32,0.32,19.57,Storm
+2025-01-06,Bihar,DistrictA,19.73,44.03,10.54,17.14,Storm
+2025-01-06,Bihar,DistrictB,34.16,86.81,20.01,15.67,Rainy
+2025-01-06,Bihar,DistrictC,23.63,76.81,49.88,3.82,Cloudy
+2025-01-06,West Bengal,DistrictA,30.64,37.22,46.93,3.62,Rainy
+2025-01-06,West Bengal,DistrictB,36.61,55.19,24.84,18.34,Sunny
+2025-01-06,West Bengal,DistrictC,14.81,40.26,20.91,15.15,Cloudy
+2025-01-06,Madhya Pradesh,DistrictA,31.73,71.42,17.03,16.1,Sunny
+2025-01-06,Madhya Pradesh,DistrictB,29.85,66.15,8.15,4.68,Rainy
+2025-01-06,Madhya Pradesh,DistrictC,34.9,86.9,15.23,5.29,Cloudy
+2025-01-07,Uttar Pradesh,DistrictA,36.05,85.59,20.98,1.01,Rainy
+2025-01-07,Uttar Pradesh,DistrictB,22.6,30.58,42.9,14.62,Storm
+2025-01-07,Uttar Pradesh,DistrictC,10.34,77.24,15.32,0.81,Storm
+2025-01-07,Maharashtra,DistrictA,20.92,63.97,0.31,1.24,Rainy
+2025-01-07,Maharashtra,DistrictB,31.28,46.29,45.21,7.49,Cloudy
+2025-01-07,Maharashtra,DistrictC,15.83,35.59,20.52,3.27,Rainy
+2025-01-07,Bihar,DistrictA,16.73,43.56,40.87,18.61,Storm
+2025-01-07,Bihar,DistrictB,15.8,33.03,31.32,5.75,Rainy
+2025-01-07,Bihar,DistrictC,16.33,75.15,2.56,9.85,Sunny
+2025-01-07,West Bengal,DistrictA,31.83,59.06,34.69,11.06,Sunny
+2025-01-07,West Bengal,DistrictB,27.16,78.33,38.01,3.08,Storm
+2025-01-07,West Bengal,DistrictC,32.02,50.79,20.39,2.51,Cloudy
+2025-01-07,Madhya Pradesh,DistrictA,11.7,32.08,19.6,13.94,Sunny
+2025-01-07,Madhya Pradesh,DistrictB,17.4,88.56,17.24,6.75,Rainy
+2025-01-07,Madhya Pradesh,DistrictC,18.92,43.8,20.57,4.81,Rainy
+2025-01-08,Uttar Pradesh,DistrictA,33.72,38.47,27.28,2.11,Sunny
+2025-01-08,Uttar Pradesh,DistrictB,14.69,74.28,18.02,13.43,Sunny
+2025-01-08,Uttar Pradesh,DistrictC,39.69,31.8,22.23,10.09,Storm
+2025-01-08,Maharashtra,DistrictA,39.32,77.63,32.97,11.56,Sunny
+2025-01-08,Maharashtra,DistrictB,29.14,89.11,38.4,8.69,Cloudy
+2025-01-08,Maharashtra,DistrictC,22.82,49.82,28.21,17.01,Cloudy
+2025-01-08,Bihar,DistrictA,10.71,55.78,13.95,2.58,Sunny
+2025-01-08,Bihar,DistrictB,33.39,30.97,40.92,0.8,Sunny
+2025-01-08,Bihar,DistrictC,24.77,41.7,32.6,15.62,Rainy
+2025-01-08,West Bengal,DistrictA,17.59,81.93,5.14,2.52,Storm
+2025-01-08,West Bengal,DistrictB,12.8,87.83,6.75,3.04,Rainy
+2025-01-08,West Bengal,DistrictC,27.83,66.19,34.13,11.51,Cloudy
+2025-01-08,Madhya Pradesh,DistrictA,21.34,38.6,0.92,9.28,Cloudy
+2025-01-08,Madhya Pradesh,DistrictB,17.0,67.52,37.35,4.37,Sunny
+2025-01-08,Madhya Pradesh,DistrictC,29.51,42.74,6.1,14.03,Rainy
+2025-01-09,Uttar Pradesh,DistrictA,32.02,50.48,23.93,18.58,Storm
+2025-01-09,Uttar Pradesh,DistrictB,13.79,31.67,31.14,16.14,Storm
+2025-01-09,Uttar Pradesh,DistrictC,10.84,67.88,21.32,10.96,Storm
+2025-01-09,Maharashtra,DistrictA,24.78,68.0,40.28,7.96,Rainy
+2025-01-09,Maharashtra,DistrictB,36.71,64.61,28.2,10.01,Cloudy
+2025-01-09,Maharashtra,DistrictC,26.4,80.39,6.37,16.0,Cloudy
+2025-01-09,Bihar,DistrictA,22.2,38.6,35.74,5.87,Cloudy
+2025-01-09,Bihar,DistrictB,33.54,89.66,30.27,6.16,Sunny
+2025-01-09,Bihar,DistrictC,30.39,86.76,14.79,0.02,Rainy
+2025-01-09,West Bengal,DistrictA,12.45,85.46,16.29,2.56,Rainy
+2025-01-09,West Bengal,DistrictB,10.49,73.73,16.18,13.3,Cloudy
+2025-01-09,West Bengal,DistrictC,13.82,37.58,40.67,18.49,Cloudy
+2025-01-09,Madhya Pradesh,DistrictA,37.55,68.99,5.17,8.04,Storm
+2025-01-09,Madhya Pradesh,DistrictB,18.65,47.93,44.56,0.27,Rainy
+2025-01-09,Madhya Pradesh,DistrictC,20.7,45.27,0.64,10.81,Storm
+2025-01-10,Uttar Pradesh,DistrictA,36.83,79.42,44.94,11.06,Rainy
+2025-01-10,Uttar Pradesh,DistrictB,26.47,52.8,30.36,7.77,Sunny
+2025-01-10,Uttar Pradesh,DistrictC,21.7,58.8,6.9,1.62,Rainy
+2025-01-10,Maharashtra,DistrictA,39.62,56.65,26.59,17.47,Rainy
+2025-01-10,Maharashtra,DistrictB,36.74,57.83,16.0,9.53,Sunny
+2025-01-10,Maharashtra,DistrictC,22.08,70.35,34.11,6.3,Rainy
+2025-01-10,Bihar,DistrictA,20.94,74.31,33.33,2.39,Storm
+2025-01-10,Bihar,DistrictB,31.02,75.21,43.64,10.0,Cloudy
+2025-01-10,Bihar,DistrictC,12.78,76.82,33.69,15.35,Storm
+2025-01-10,West Bengal,DistrictA,23.29,67.03,42.5,3.92,Storm
+2025-01-10,West Bengal,DistrictB,26.53,61.41,14.11,5.96,Sunny
+2025-01-10,West Bengal,DistrictC,26.24,35.16,2.85,2.11,Storm
+2025-01-10,Madhya Pradesh,DistrictA,24.22,34.0,2.4,5.91,Rainy
+2025-01-10,Madhya Pradesh,DistrictB,11.25,59.89,34.47,5.05,Cloudy
+2025-01-10,Madhya Pradesh,DistrictC,29.59,39.24,48.85,10.9,Storm
+2025-01-11,Uttar Pradesh,DistrictA,31.91,51.89,32.05,9.32,Sunny
+2025-01-11,Uttar Pradesh,DistrictB,31.01,76.23,16.87,18.83,Sunny
+2025-01-11,Uttar Pradesh,DistrictC,10.63,48.95,2.84,15.33,Cloudy
+2025-01-11,Maharashtra,DistrictA,19.09,87.99,31.41,18.61,Rainy
+2025-01-11,Maharashtra,DistrictB,23.63,54.74,46.74,5.02,Rainy
+2025-01-11,Maharashtra,DistrictC,19.54,64.78,17.28,16.32,Sunny
+2025-01-11,Bihar,DistrictA,20.18,60.36,8.1,13.16,Sunny
+2025-01-11,Bihar,DistrictB,13.19,36.85,47.05,17.45,Cloudy
+2025-01-11,Bihar,DistrictC,36.5,54.89,19.36,13.19,Storm
+2025-01-11,West Bengal,DistrictA,23.72,53.82,22.77,8.3,Rainy
+2025-01-11,West Bengal,DistrictB,29.46,87.27,7.57,9.55,Rainy
+2025-01-11,West Bengal,DistrictC,25.76,36.67,43.41,5.95,Storm
+2025-01-11,Madhya Pradesh,DistrictA,21.75,39.76,36.72,4.18,Cloudy
+2025-01-11,Madhya Pradesh,DistrictB,16.45,32.52,18.18,1.97,Storm
+2025-01-11,Madhya Pradesh,DistrictC,20.36,78.18,27.01,1.59,Rainy
+2025-01-12,Uttar Pradesh,DistrictA,27.78,38.9,8.6,17.58,Rainy
+2025-01-12,Uttar Pradesh,DistrictB,14.54,55.97,29.78,1.61,Storm
+2025-01-12,Uttar Pradesh,DistrictC,19.57,58.19,25.12,4.02,Cloudy
+2025-01-12,Maharashtra,DistrictA,24.31,67.81,41.43,15.67,Sunny
+2025-01-12,Maharashtra,DistrictB,15.86,70.71,16.15,19.75,Cloudy
+2025-01-12,Maharashtra,DistrictC,15.31,73.32,2.01,8.11,Sunny
+2025-01-12,Bihar,DistrictA,22.68,89.74,0.52,17.9,Cloudy
+2025-01-12,Bihar,DistrictB,34.29,87.03,1.1,19.65,Sunny
+2025-01-12,Bihar,DistrictC,10.39,43.6,28.34,7.03,Cloudy
+2025-01-12,West Bengal,DistrictA,29.32,52.86,2.73,11.99,Rainy
+2025-01-12,West Bengal,DistrictB,23.78,75.13,45.28,16.71,Rainy
+2025-01-12,West Bengal,DistrictC,34.61,79.58,29.4,7.06,Sunny
+2025-01-12,Madhya Pradesh,DistrictA,12.04,43.09,46.77,9.32,Rainy
+2025-01-12,Madhya Pradesh,DistrictB,27.96,54.85,47.9,10.82,Storm
+2025-01-12,Madhya Pradesh,DistrictC,22.45,30.86,23.92,0.42,Cloudy
+2025-01-13,Uttar Pradesh,DistrictA,11.79,66.26,38.18,10.47,Cloudy
+2025-01-13,Uttar Pradesh,DistrictB,26.29,52.43,31.27,0.25,Rainy
+2025-01-13,Uttar Pradesh,DistrictC,15.53,42.14,19.34,1.02,Rainy
+2025-01-13,Maharashtra,DistrictA,35.64,87.14,44.18,5.41,Cloudy
+2025-01-13,Maharashtra,DistrictB,14.36,60.34,3.1,1.42,Rainy
+2025-01-13,Maharashtra,DistrictC,25.61,89.67,10.09,5.16,Sunny
+2025-01-13,Bihar,DistrictA,11.46,35.88,2.2,3.71,Storm
+2025-01-13,Bihar,DistrictB,25.75,57.07,16.52,11.78,Storm
+2025-01-13,Bihar,DistrictC,18.9,34.63,8.49,2.54,Cloudy
+2025-01-13,West Bengal,DistrictA,32.7,70.83,8.3,1.18,Cloudy
+2025-01-13,West Bengal,DistrictB,30.53,86.94,7.13,7.64,Cloudy
+2025-01-13,West Bengal,DistrictC,18.58,70.34,8.49,1.11,Storm
+2025-01-13,Madhya Pradesh,DistrictA,22.32,59.38,20.77,0.48,Sunny
+2025-01-13,Madhya Pradesh,DistrictB,10.67,89.31,2.07,19.36,Cloudy
+2025-01-13,Madhya Pradesh,DistrictC,31.86,48.92,19.66,4.74,Sunny
+2025-01-14,Uttar Pradesh,DistrictA,11.53,67.05,10.39,11.75,Sunny
+2025-01-14,Uttar Pradesh,DistrictB,24.25,85.35,3.64,5.61,Sunny
+2025-01-14,Uttar Pradesh,DistrictC,29.42,80.63,16.25,13.75,Cloudy
+2025-01-14,Maharashtra,DistrictA,34.92,43.48,19.97,8.19,Rainy
+2025-01-14,Maharashtra,DistrictB,28.37,31.0,9.74,16.21,Storm
+2025-01-14,Maharashtra,DistrictC,22.6,64.7,41.63,16.08,Sunny
+2025-01-14,Bihar,DistrictA,15.44,87.43,44.51,13.05,Storm
+2025-01-14,Bihar,DistrictB,26.46,54.16,25.98,19.93,Storm
+2025-01-14,Bihar,DistrictC,28.98,76.14,49.7,0.22,Rainy
+2025-01-14,West Bengal,DistrictA,38.48,82.78,45.35,19.83,Sunny
+2025-01-14,West Bengal,DistrictB,20.63,48.17,36.54,14.01,Storm
+2025-01-14,West Bengal,DistrictC,20.73,65.63,28.78,3.23,Sunny
+2025-01-14,Madhya Pradesh,DistrictA,15.96,48.9,11.23,1.38,Rainy
+2025-01-14,Madhya Pradesh,DistrictB,10.76,51.29,39.01,11.28,Cloudy
+2025-01-14,Madhya Pradesh,DistrictC,19.92,74.68,20.62,3.92,Storm
+2025-01-15,Uttar Pradesh,DistrictA,28.3,59.29,6.66,5.23,Sunny
+2025-01-15,Uttar Pradesh,DistrictB,11.83,71.64,9.14,6.38,Sunny
+2025-01-15,Uttar Pradesh,DistrictC,24.89,47.14,36.73,0.48,Cloudy
+2025-01-15,Maharashtra,DistrictA,13.14,37.72,28.69,1.22,Rainy
+2025-01-15,Maharashtra,DistrictB,28.77,63.03,20.37,10.43,Cloudy
+2025-01-15,Maharashtra,DistrictC,29.26,46.53,24.73,2.43,Cloudy
+2025-01-15,Bihar,DistrictA,36.72,65.82,40.51,8.59,Storm
+2025-01-15,Bihar,DistrictB,18.87,45.34,16.37,3.29,Storm
+2025-01-15,Bihar,DistrictC,15.96,44.81,15.32,11.1,Cloudy
+2025-01-15,West Bengal,DistrictA,27.69,34.04,41.58,3.55,Rainy
+2025-01-15,West Bengal,DistrictB,15.15,61.08,10.7,5.67,Storm
+2025-01-15,West Bengal,DistrictC,20.81,66.29,19.37,17.27,Sunny
+2025-01-15,Madhya Pradesh,DistrictA,33.96,85.97,1.01,3.08,Storm
+2025-01-15,Madhya Pradesh,DistrictB,31.21,69.75,40.39,17.72,Sunny
+2025-01-15,Madhya Pradesh,DistrictC,37.95,89.82,36.01,5.74,Storm
+2025-01-16,Uttar Pradesh,DistrictA,29.15,49.18,2.86,2.75,Rainy
+2025-01-16,Uttar Pradesh,DistrictB,16.62,38.29,42.96,10.0,Storm
+2025-01-16,Uttar Pradesh,DistrictC,20.7,84.7,2.01,10.24,Cloudy
+2025-01-16,Maharashtra,DistrictA,22.32,42.58,48.83,12.91,Rainy
+2025-01-16,Maharashtra,DistrictB,21.58,52.44,44.31,3.03,Rainy
+2025-01-16,Maharashtra,DistrictC,38.97,53.61,6.54,13.43,Sunny
+2025-01-16,Bihar,DistrictA,22.85,67.92,36.31,7.34,Rainy
+2025-01-16,Bihar,DistrictB,22.82,68.71,37.26,4.64,Rainy
+2025-01-16,Bihar,DistrictC,10.2,61.4,46.08,16.24,Sunny
+2025-01-16,West Bengal,DistrictA,21.11,75.08,44.85,16.92,Sunny
+2025-01-16,West Bengal,DistrictB,29.73,68.49,1.28,15.76,Storm
+2025-01-16,West Bengal,DistrictC,24.59,36.54,12.43,6.34,Storm
+2025-01-16,Madhya Pradesh,DistrictA,24.57,62.76,46.31,17.43,Cloudy
+2025-01-16,Madhya Pradesh,DistrictB,32.94,38.8,34.52,18.9,Sunny
+2025-01-16,Madhya Pradesh,DistrictC,19.84,33.23,33.47,4.63,Rainy
+2025-01-17,Uttar Pradesh,DistrictA,13.6,48.72,40.12,17.23,Cloudy
+2025-01-17,Uttar Pradesh,DistrictB,23.36,35.06,34.13,4.71,Rainy
+2025-01-17,Uttar Pradesh,DistrictC,34.36,86.74,15.65,17.17,Sunny
+2025-01-17,Maharashtra,DistrictA,39.6,65.87,4.1,12.94,Rainy
+2025-01-17,Maharashtra,DistrictB,36.19,40.13,2.68,14.35,Rainy
+2025-01-17,Maharashtra,DistrictC,16.53,35.29,9.73,16.41,Cloudy
+2025-01-17,Bihar,DistrictA,26.47,41.35,36.02,10.22,Rainy
+2025-01-17,Bihar,DistrictB,24.32,77.58,49.06,18.65,Rainy
+2025-01-17,Bihar,DistrictC,13.16,80.33,33.55,13.94,Rainy
+2025-01-17,West Bengal,DistrictA,14.26,48.25,6.96,12.24,Cloudy
+2025-01-17,West Bengal,DistrictB,36.59,32.83,48.07,13.58,Storm
+2025-01-17,West Bengal,DistrictC,16.99,71.71,31.48,17.27,Cloudy
+2025-01-17,Madhya Pradesh,DistrictA,33.27,53.59,6.96,0.21,Sunny
+2025-01-17,Madhya Pradesh,DistrictB,16.65,33.37,12.78,10.55,Sunny
+2025-01-17,Madhya Pradesh,DistrictC,25.62,56.44,44.0,10.11,Sunny
+2025-01-18,Uttar Pradesh,DistrictA,22.48,33.79,19.84,9.48,Sunny
+2025-01-18,Uttar Pradesh,DistrictB,29.89,65.72,20.76,8.44,Sunny
+2025-01-18,Uttar Pradesh,DistrictC,34.53,83.7,42.66,13.47,Rainy
+2025-01-18,Maharashtra,DistrictA,23.74,45.4,37.61,10.26,Cloudy
+2025-01-18,Maharashtra,DistrictB,32.39,48.69,42.28,5.19,Storm
+2025-01-18,Maharashtra,DistrictC,20.35,33.28,10.21,8.37,Sunny
+2025-01-18,Bihar,DistrictA,13.16,63.23,25.65,5.63,Cloudy
+2025-01-18,Bihar,DistrictB,15.03,37.22,3.38,14.48,Sunny
+2025-01-18,Bihar,DistrictC,16.96,72.33,15.39,4.84,Rainy
+2025-01-18,West Bengal,DistrictA,21.24,67.28,35.94,2.21,Storm
+2025-01-18,West Bengal,DistrictB,37.54,36.48,11.63,15.01,Storm
+2025-01-18,West Bengal,DistrictC,11.17,53.51,40.12,6.82,Sunny
+2025-01-18,Madhya Pradesh,DistrictA,30.6,78.9,43.87,15.46,Cloudy
+2025-01-18,Madhya Pradesh,DistrictB,10.3,76.68,23.04,19.78,Storm
+2025-01-18,Madhya Pradesh,DistrictC,19.62,63.75,13.97,15.65,Storm
+2025-01-19,Uttar Pradesh,DistrictA,39.76,81.45,4.87,14.13,Cloudy
+2025-01-19,Uttar Pradesh,DistrictB,35.76,49.55,47.7,2.44,Cloudy
+2025-01-19,Uttar Pradesh,DistrictC,20.12,79.65,0.03,6.16,Sunny
+2025-01-19,Maharashtra,DistrictA,14.11,62.26,9.25,8.56,Sunny
+2025-01-19,Maharashtra,DistrictB,18.74,55.04,18.84,17.52,Storm
+2025-01-19,Maharashtra,DistrictC,34.24,74.24,26.85,16.8,Cloudy
+2025-01-19,Bihar,DistrictA,11.81,47.86,14.9,6.41,Sunny
+2025-01-19,Bihar,DistrictB,35.33,84.95,35.9,5.67,Sunny
+2025-01-19,Bihar,DistrictC,12.12,84.57,9.51,16.43,Sunny
+2025-01-19,West Bengal,DistrictA,13.56,40.31,23.83,14.76,Storm
+2025-01-19,West Bengal,DistrictB,15.06,81.24,0.66,10.24,Sunny
+2025-01-19,West Bengal,DistrictC,35.09,60.15,0.72,16.06,Rainy
+2025-01-19,Madhya Pradesh,DistrictA,15.98,47.05,14.45,7.54,Storm
+2025-01-19,Madhya Pradesh,DistrictB,32.64,56.73,29.61,14.02,Cloudy
+2025-01-19,Madhya Pradesh,DistrictC,19.31,60.2,39.82,14.79,Storm
+2025-01-20,Uttar Pradesh,DistrictA,29.9,37.09,20.07,15.86,Cloudy
+2025-01-20,Uttar Pradesh,DistrictB,22.41,32.39,13.7,19.11,Storm
+2025-01-20,Uttar Pradesh,DistrictC,39.09,74.08,34.98,17.06,Rainy
+2025-01-20,Maharashtra,DistrictA,38.43,38.47,38.18,2.17,Rainy
+2025-01-20,Maharashtra,DistrictB,28.61,58.66,23.91,15.36,Rainy
+2025-01-20,Maharashtra,DistrictC,15.76,38.76,46.9,18.35,Rainy
+2025-01-20,Bihar,DistrictA,34.78,71.79,46.2,16.41,Sunny
+2025-01-20,Bihar,DistrictB,19.41,68.14,17.8,2.97,Cloudy
+2025-01-20,Bihar,DistrictC,30.66,63.12,12.09,8.52,Rainy
+2025-01-20,West Bengal,DistrictA,17.12,47.99,32.14,12.02,Sunny
+2025-01-20,West Bengal,DistrictB,25.78,75.56,35.63,3.86,Rainy
+2025-01-20,West Bengal,DistrictC,34.03,40.81,5.49,17.67,Rainy
+2025-01-20,Madhya Pradesh,DistrictA,15.98,54.74,3.61,11.52,Rainy
+2025-01-20,Madhya Pradesh,DistrictB,11.67,66.59,12.04,7.74,Sunny
+2025-01-20,Madhya Pradesh,DistrictC,26.36,42.42,27.2,4.63,Sunny
+2025-01-21,Uttar Pradesh,DistrictA,10.18,59.03,6.16,6.15,Sunny
+2025-01-21,Uttar Pradesh,DistrictB,13.34,64.22,29.08,14.29,Sunny
+2025-01-21,Uttar Pradesh,DistrictC,26.4,83.07,27.7,10.69,Cloudy
+2025-01-21,Maharashtra,DistrictA,31.87,48.09,29.97,4.03,Cloudy
+2025-01-21,Maharashtra,DistrictB,32.79,50.33,47.6,14.76,Storm
+2025-01-21,Maharashtra,DistrictC,27.37,33.27,15.7,9.98,Storm
+2025-01-21,Bihar,DistrictA,16.81,74.63,45.96,8.48,Cloudy
+2025-01-21,Bihar,DistrictB,17.85,67.45,41.47,3.81,Sunny
+2025-01-21,Bihar,DistrictC,37.29,64.14,38.11,16.24,Rainy
+2025-01-21,West Bengal,DistrictA,31.75,77.78,41.65,19.72,Storm
+2025-01-21,West Bengal,DistrictB,38.23,67.39,37.08,16.1,Sunny
+2025-01-21,West Bengal,DistrictC,32.34,56.76,1.0,1.25,Storm
+2025-01-21,Madhya Pradesh,DistrictA,23.51,74.94,17.85,12.69,Storm
+2025-01-21,Madhya Pradesh,DistrictB,29.85,43.15,5.64,11.93,Sunny
+2025-01-21,Madhya Pradesh,DistrictC,32.46,58.96,10.8,19.35,Sunny
+2025-01-22,Uttar Pradesh,DistrictA,21.87,66.79,40.28,5.99,Cloudy
+2025-01-22,Uttar Pradesh,DistrictB,25.75,72.44,12.61,8.93,Cloudy
+2025-01-22,Uttar Pradesh,DistrictC,25.33,55.73,2.69,0.44,Rainy
+2025-01-22,Maharashtra,DistrictA,17.27,69.8,41.95,11.01,Storm
+2025-01-22,Maharashtra,DistrictB,35.71,86.32,24.62,14.02,Storm
+2025-01-22,Maharashtra,DistrictC,39.26,64.41,17.08,12.97,Cloudy
+2025-01-22,Bihar,DistrictA,24.92,40.7,5.41,16.84,Cloudy
+2025-01-22,Bihar,DistrictB,27.92,53.62,23.67,17.09,Cloudy
+2025-01-22,Bihar,DistrictC,16.21,81.08,4.21,7.12,Sunny
+2025-01-22,West Bengal,DistrictA,15.45,55.82,8.27,14.13,Sunny
+2025-01-22,West Bengal,DistrictB,13.57,38.43,14.32,10.36,Storm
+2025-01-22,West Bengal,DistrictC,19.66,63.58,42.9,13.34,Rainy
+2025-01-22,Madhya Pradesh,DistrictA,19.19,45.9,34.81,3.86,Rainy
+2025-01-22,Madhya Pradesh,DistrictB,17.77,33.17,36.3,2.43,Cloudy
+2025-01-22,Madhya Pradesh,DistrictC,34.35,58.94,2.87,3.49,Cloudy
+2025-01-23,Uttar Pradesh,DistrictA,21.39,67.03,48.49,14.55,Cloudy
+2025-01-23,Uttar Pradesh,DistrictB,13.64,73.27,9.19,6.57,Rainy
+2025-01-23,Uttar Pradesh,DistrictC,28.7,66.15,24.49,10.57,Rainy
+2025-01-23,Maharashtra,DistrictA,14.09,73.68,40.66,5.15,Storm
+2025-01-23,Maharashtra,DistrictB,12.55,56.17,32.92,8.75,Sunny
+2025-01-23,Maharashtra,DistrictC,34.15,38.21,3.49,17.87,Rainy
+2025-01-23,Bihar,DistrictA,25.07,49.67,36.86,0.73,Storm
+2025-01-23,Bihar,DistrictB,19.48,81.13,2.05,0.99,Rainy
+2025-01-23,Bihar,DistrictC,32.22,59.1,4.27,19.45,Storm
+2025-01-23,West Bengal,DistrictA,15.39,46.88,22.88,9.51,Cloudy
+2025-01-23,West Bengal,DistrictB,12.25,36.37,41.87,4.8,Rainy
+2025-01-23,West Bengal,DistrictC,17.66,79.68,18.9,19.62,Sunny
+2025-01-23,Madhya Pradesh,DistrictA,13.58,32.19,2.64,16.68,Sunny
+2025-01-23,Madhya Pradesh,DistrictB,31.57,62.85,47.19,5.02,Rainy
+2025-01-23,Madhya Pradesh,DistrictC,22.65,32.4,22.45,11.55,Cloudy
+2025-01-24,Uttar Pradesh,DistrictA,29.61,51.01,30.86,17.7,Sunny
+2025-01-24,Uttar Pradesh,DistrictB,12.98,76.0,48.31,19.4,Storm
+2025-01-24,Uttar Pradesh,DistrictC,25.5,47.08,25.86,16.96,Cloudy
+2025-01-24,Maharashtra,DistrictA,23.67,58.92,37.89,5.64,Sunny
+2025-01-24,Maharashtra,DistrictB,12.87,55.15,5.66,3.44,Storm
+2025-01-24,Maharashtra,DistrictC,28.31,62.78,12.49,6.87,Cloudy
+2025-01-24,Bihar,DistrictA,25.46,36.14,37.59,18.12,Storm
+2025-01-24,Bihar,DistrictB,38.91,52.62,30.16,1.59,Sunny
+2025-01-24,Bihar,DistrictC,21.82,81.06,17.29,0.7,Cloudy
+2025-01-24,West Bengal,DistrictA,32.99,54.38,43.99,12.97,Cloudy
+2025-01-24,West Bengal,DistrictB,31.58,46.29,15.81,16.9,Storm
+2025-01-24,West Bengal,DistrictC,37.26,75.62,33.82,6.02,Storm
+2025-01-24,Madhya Pradesh,DistrictA,14.65,52.38,10.45,13.92,Sunny
+2025-01-24,Madhya Pradesh,DistrictB,11.21,49.57,23.43,2.96,Rainy
+2025-01-24,Madhya Pradesh,DistrictC,35.42,42.36,47.6,6.84,Rainy
+2025-01-25,Uttar Pradesh,DistrictA,22.77,63.92,1.05,0.69,Storm
+2025-01-25,Uttar Pradesh,DistrictB,21.46,48.11,1.87,10.11,Sunny
+2025-01-25,Uttar Pradesh,DistrictC,37.4,53.28,41.48,2.67,Cloudy
+2025-01-25,Maharashtra,DistrictA,15.61,56.72,24.41,16.26,Rainy
+2025-01-25,Maharashtra,DistrictB,38.15,46.53,16.61,14.02,Storm
+2025-01-25,Maharashtra,DistrictC,37.71,89.85,1.62,4.71,Rainy
+2025-01-25,Bihar,DistrictA,11.91,53.23,14.14,6.09,Storm
+2025-01-25,Bihar,DistrictB,37.56,32.82,16.94,8.1,Cloudy
+2025-01-25,Bihar,DistrictC,34.06,56.07,43.48,3.61,Rainy
+2025-01-25,West Bengal,DistrictA,26.28,69.22,13.7,11.86,Sunny
+2025-01-25,West Bengal,DistrictB,28.25,56.67,37.12,4.57,Storm
+2025-01-25,West Bengal,DistrictC,16.91,47.35,18.47,13.27,Sunny
+2025-01-25,Madhya Pradesh,DistrictA,22.0,33.44,29.17,17.69,Rainy
+2025-01-25,Madhya Pradesh,DistrictB,10.5,50.34,39.78,1.55,Rainy
+2025-01-25,Madhya Pradesh,DistrictC,22.32,60.28,0.37,13.83,Rainy
+2025-01-26,Uttar Pradesh,DistrictA,33.92,60.48,37.52,6.21,Rainy
+2025-01-26,Uttar Pradesh,DistrictB,25.06,84.6,35.86,11.64,Rainy
+2025-01-26,Uttar Pradesh,DistrictC,31.52,56.61,46.94,5.9,Cloudy
+2025-01-26,Maharashtra,DistrictA,39.0,71.83,4.16,17.26,Rainy
+2025-01-26,Maharashtra,DistrictB,22.81,36.67,1.52,14.54,Storm
+2025-01-26,Maharashtra,DistrictC,16.12,79.59,27.88,1.09,Storm
+2025-01-26,Bihar,DistrictA,19.34,54.1,25.14,16.79,Rainy
+2025-01-26,Bihar,DistrictB,19.15,41.56,6.45,5.96,Storm
+2025-01-26,Bihar,DistrictC,39.2,42.08,0.48,1.51,Rainy
+2025-01-26,West Bengal,DistrictA,38.2,50.58,49.41,9.7,Sunny
+2025-01-26,West Bengal,DistrictB,11.57,57.01,12.74,7.04,Storm
+2025-01-26,West Bengal,DistrictC,11.51,35.8,36.02,5.64,Sunny
+2025-01-26,Madhya Pradesh,DistrictA,32.98,34.75,2.35,0.39,Cloudy
+2025-01-26,Madhya Pradesh,DistrictB,24.03,66.35,21.42,0.54,Storm
+2025-01-26,Madhya Pradesh,DistrictC,26.86,36.72,30.48,11.37,Rainy
+2025-01-27,Uttar Pradesh,DistrictA,26.07,58.62,19.46,17.75,Sunny
+2025-01-27,Uttar Pradesh,DistrictB,33.56,59.24,47.27,1.14,Cloudy
+2025-01-27,Uttar Pradesh,DistrictC,25.27,57.17,13.93,19.18,Storm
+2025-01-27,Maharashtra,DistrictA,24.17,49.46,47.61,16.47,Sunny
+2025-01-27,Maharashtra,DistrictB,39.96,33.3,28.93,1.65,Rainy
+2025-01-27,Maharashtra,DistrictC,31.9,51.47,3.2,1.49,Storm
+2025-01-27,Bihar,DistrictA,12.61,48.19,48.33,18.89,Rainy
+2025-01-27,Bihar,DistrictB,17.76,50.83,39.71,12.5,Rainy
+2025-01-27,Bihar,DistrictC,38.45,35.48,8.07,19.21,Storm
+2025-01-27,West Bengal,DistrictA,33.65,31.44,26.71,13.77,Rainy
+2025-01-27,West Bengal,DistrictB,31.99,89.73,14.38,10.76,Sunny
+2025-01-27,West Bengal,DistrictC,36.48,35.82,2.79,2.58,Cloudy
+2025-01-27,Madhya Pradesh,DistrictA,24.95,66.19,11.36,10.88,Cloudy
+2025-01-27,Madhya Pradesh,DistrictB,18.86,35.43,33.4,2.67,Cloudy
+2025-01-27,Madhya Pradesh,DistrictC,33.16,40.23,19.23,6.94,Storm
+2025-01-28,Uttar Pradesh,DistrictA,17.19,31.94,16.79,10.28,Rainy
+2025-01-28,Uttar Pradesh,DistrictB,20.26,78.6,11.91,4.49,Sunny
+2025-01-28,Uttar Pradesh,DistrictC,17.08,38.61,9.27,3.64,Cloudy
+2025-01-28,Maharashtra,DistrictA,23.37,88.02,28.56,17.27,Rainy
+2025-01-28,Maharashtra,DistrictB,36.18,44.65,22.51,18.52,Cloudy
+2025-01-28,Maharashtra,DistrictC,21.16,35.55,22.9,7.89,Rainy
+2025-01-28,Bihar,DistrictA,31.55,37.47,29.98,11.01,Cloudy
+2025-01-28,Bihar,DistrictB,20.44,83.73,48.33,8.87,Storm
+2025-01-28,Bihar,DistrictC,14.82,40.38,13.34,2.39,Sunny
+2025-01-28,West Bengal,DistrictA,11.55,32.96,19.31,7.07,Sunny
+2025-01-28,West Bengal,DistrictB,11.44,86.91,35.56,0.14,Storm
+2025-01-28,West Bengal,DistrictC,39.25,54.67,22.24,11.53,Cloudy
+2025-01-28,Madhya Pradesh,DistrictA,33.59,54.31,0.14,17.0,Rainy
+2025-01-28,Madhya Pradesh,DistrictB,12.66,70.61,3.2,11.92,Cloudy
+2025-01-28,Madhya Pradesh,DistrictC,18.35,53.73,34.36,16.3,Sunny
+2025-01-29,Uttar Pradesh,DistrictA,23.81,43.06,6.69,19.07,Rainy
+2025-01-29,Uttar Pradesh,DistrictB,12.07,59.01,11.0,5.08,Cloudy
+2025-01-29,Uttar Pradesh,DistrictC,13.77,47.38,11.94,4.27,Sunny
+2025-01-29,Maharashtra,DistrictA,31.67,30.44,25.46,2.79,Cloudy
+2025-01-29,Maharashtra,DistrictB,39.29,87.28,40.01,4.83,Storm
+2025-01-29,Maharashtra,DistrictC,31.5,51.52,13.39,8.64,Sunny
+2025-01-29,Bihar,DistrictA,35.75,80.69,17.98,13.74,Storm
+2025-01-29,Bihar,DistrictB,16.97,68.14,49.65,15.55,Cloudy
+2025-01-29,Bihar,DistrictC,19.88,71.6,38.31,6.08,Rainy
+2025-01-29,West Bengal,DistrictA,35.87,78.97,49.2,18.19,Rainy
+2025-01-29,West Bengal,DistrictB,39.62,43.51,33.12,12.19,Storm
+2025-01-29,West Bengal,DistrictC,23.74,53.81,21.56,11.39,Rainy
+2025-01-29,Madhya Pradesh,DistrictA,24.23,50.03,28.97,17.78,Storm
+2025-01-29,Madhya Pradesh,DistrictB,26.41,72.87,22.23,0.54,Sunny
+2025-01-29,Madhya Pradesh,DistrictC,24.76,48.61,9.09,10.08,Sunny
+2025-01-30,Uttar Pradesh,DistrictA,11.58,56.77,27.7,5.96,Sunny
+2025-01-30,Uttar Pradesh,DistrictB,36.03,72.46,5.31,15.52,Cloudy
+2025-01-30,Uttar Pradesh,DistrictC,36.99,67.7,21.93,0.78,Storm
+2025-01-30,Maharashtra,DistrictA,27.32,68.78,22.92,10.57,Rainy
+2025-01-30,Maharashtra,DistrictB,34.71,35.12,43.31,9.98,Storm
+2025-01-30,Maharashtra,DistrictC,26.36,38.0,34.58,15.9,Sunny
+2025-01-30,Bihar,DistrictA,13.1,65.1,24.43,10.48,Sunny
+2025-01-30,Bihar,DistrictB,24.02,36.4,32.48,17.36,Sunny
+2025-01-30,Bihar,DistrictC,32.27,68.59,15.79,12.43,Cloudy
+2025-01-30,West Bengal,DistrictA,17.72,38.14,13.0,7.7,Rainy
+2025-01-30,West Bengal,DistrictB,34.63,88.17,22.7,10.14,Rainy
+2025-01-30,West Bengal,DistrictC,32.08,46.51,31.96,6.82,Storm
+2025-01-30,Madhya Pradesh,DistrictA,23.92,77.35,30.14,13.08,Cloudy
+2025-01-30,Madhya Pradesh,DistrictB,30.9,73.52,41.82,19.49,Cloudy
+2025-01-30,Madhya Pradesh,DistrictC,10.65,35.51,34.05,17.59,Rainy
