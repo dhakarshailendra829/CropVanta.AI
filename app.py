@@ -9,6 +9,8 @@ from modules.weather_advisor import get_weather_forecast
 from modules.market_advisor import get_market_price
 from modules.crop_mapping import get_crop_info  
 from PIL import Image
+import modules.calandar_advisor as calandar_advisor
+import modules.news_fetcher as news_fetcher
 
 st.set_page_config(
     page_title="🌾 AI Crop & Market Advisor",
@@ -42,13 +44,15 @@ Empowering Farmers with AI • Weather • Market • Community
 </p>
 """, unsafe_allow_html=True)
 
-tab_home, tab1, tab2, tab3, tab4, tab_about = st.tabs([
+tab_home, tab1, tab2, tab3, tab4, tab_about, tab5, tab6 = st.tabs([
     "🏠 Home / Dashboard",
     "🌱 Crop Recommendation",
     "🌤 Weather & Forecast",
     "💰 Market Price Insights",
     "👨‍🌾 Community Posts",
-    "📝 About / Contact / Help"
+    "📝 About / Contact / Help",
+    "🗓 Crop Calendar & Alerts",
+    "📰 Agri News & Research"
 ])
 
 with tab_home:
@@ -267,3 +271,8 @@ with tab_about:
     if not contact_df.empty:
         st.markdown("### 📋 Recent Contact Messages")
         st.dataframe(contact_df[::-1])
+with tab5:
+    calandar_advisor.show_calendar_and_alert()
+
+with tab6:
+    news_fetcher.show_news_and_research()

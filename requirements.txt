@@ -6,3 +6,5 @@ Pillow
 geopy
 requests
 scikit-learn
+beautifulsoup4
+lxml
