@@ -101,10 +101,7 @@ plt.savefig("confusion_matrix.png")
 plt.close()
 
 def predict_crop(input_dict):
-    """
-    input_dict keys: N,P,K,temperature,humidity,ph,rainfall
-    returns: recommended crop + description + top3
-    """
+    
     x = np.array([input_dict[f] for f in expected_features]).reshape(1, -1)
     x_scaled = scaler.transform(x)
     pred_idx = best_rf.predict(x_scaled)[0]
