@@ -1,13 +1,17 @@
-# 🌱 AI Crop & Market Advisor
 <p align="center">
-  <img src="images/crop_advisor_logo.png" width="120" alt="AI Crop Advisor Logo" />
-</p>
-
-<p align="center">
+  <b>🌱 AI Crop & Market Advisor</b><br/>
+  <img src="images/Crop.png" width="120" alt="AI Crop Advisor Logo" /><br/>
   <b>AI‑Driven Crop Recommendation, Market Intelligence & Decision‑Support Platform</b><br/>
-  <i>Machine Learning • Smart Agriculture • Data‑Driven Farming Decisions</i>
 </p>
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Artificial%20Intelligence-AI-green" />
+  <img src="https://img.shields.io/badge/Machine%20Learning-Models-brightgreen" />
+  <img src="https://img.shields.io/badge/Deep%20Learning-Neural%20Networks-blueviolet" />
+  <img src="https://img.shields.io/badge/Smart-Agriculture-yellowgreen" />
+  <img src="https://img.shields.io/badge/Precision-Farming-success" />
+  <img src="https://img.shields.io/badge/Predictive-Analytics-orange" />
+  <img src="https://img.shields.io/badge/Data--Driven-Decisions-blue" />
+</p>
 <p align="center">
   <a href="#-project-vision">Vision</a> •
   <a href="#-problem-context">Problem</a> •
@@ -16,7 +20,6 @@
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-installation--usage">Usage</a>
 </p>
----
 
 ## Project Vision
 
@@ -29,8 +32,6 @@ The vision of this project is to create a **single intelligent dashboard** that 
 > *Which crop should I grow, when should I grow it, and how can I maximize its market value?*
 
 This system transforms raw agricultural data into **clear, explainable, and actionable recommendations** that can be used by farmers, agri‑consultants, students, and agri‑tech platforms.
-
----
 
 ## 🌾 Problem Context
 Agricultural decision‑making suffers from multiple systemic challenges:
@@ -231,7 +232,6 @@ This makes it suitable as a prototype or foundation for scalable agri-AI solutio
 ### Students, Researchers & Practitioners
 
 This project can be used as a learning reference for:
-
 * Applied machine learning in agriculture
 * End-to-end ML system design (data → model → UI)
 * Translating predictions into actionable insights
@@ -264,7 +264,7 @@ This project can be used as a learning reference for:
 * Real‑time commodity exchange feeds
 
 
-## Author
+## 👤Author
 
 **Shailendra Dhakad**
 AI • Machine Learning • Data‑Driven Systems
