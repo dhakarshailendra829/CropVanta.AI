@@ -1,0 +1,16 @@
+2026-01-26 16:20:44,264 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-01-26 16:20:44,404 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-01-26 16:34:55,848 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-01-26 16:34:56,872 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-01-26 16:37:00,987 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-01-26 16:37:00,989 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-26 18:47:02,291 - modules.crop_mapping - WARNING - Label 5 not found in knowledge base.
+2026-01-26 18:47:02,439 - modules.crop_advisor - INFO - Prediction successful: Unknown Variety (5) with 0.1002360268514893 confidence
+2026-01-26 18:47:19,340 - modules.crop_mapping - WARNING - Label 5 not found in knowledge base.
+2026-01-26 18:47:19,473 - modules.crop_advisor - INFO - Prediction successful: Unknown Variety (5) with 0.09399822664883584 confidence
+2026-01-26 18:47:22,086 - modules.crop_mapping - WARNING - Label 5 not found in knowledge base.
+2026-01-26 18:47:22,287 - modules.crop_advisor - INFO - Prediction successful: Unknown Variety (5) with 0.09399822664883585 confidence
+2026-01-26 18:47:29,914 - modules.crop_mapping - WARNING - Label 5 not found in knowledge base.
+2026-01-26 18:47:30,052 - modules.crop_advisor - INFO - Prediction successful: Unknown Variety (5) with 0.0849025224469092 confidence
+2026-01-26 18:50:21,580 - modules.crop_mapping - WARNING - Label 5 not found in knowledge base.
+2026-01-26 18:50:21,774 - modules.crop_advisor - INFO - Prediction successful: Unknown Variety (5) with 0.1002360268514893 confidence

@@ -1,44 +1,62 @@
 import pandas as pd
 import requests
 from datetime import datetime
-import streamlit as st
+from typing import Dict, List, Optional
+from modules.core.logger import get_logger
+from modules.core.config import settings
 
-def load_crop_calendar():
-    data = [
-        {"Crop": "Wheat", "Region": "North India", "Sowing Period": "Nov - Dec", "Harvest Period": "Mar - Apr"},
-        {"Crop": "Rice", "Region": "East India", "Sowing Period": "Jun - Jul", "Harvest Period": "Oct - Nov"},
-        {"Crop": "Maize", "Region": "Pan India", "Sowing Period": "Jun - Jul", "Harvest Period": "Oct - Nov"},
-        {"Crop": "Millet", "Region": "Central India", "Sowing Period": "Jun - Jul", "Harvest Period": "Oct - Nov"},
-        {"Crop": "Sugarcane", "Region": "Pan India", "Sowing Period": "Feb - Apr", "Harvest Period": "Nov - Mar"},
-    ]
-    return pd.DataFrame(data)
+logger = get_logger(__name__)
 
-def get_weather_forecast(lat, lon):
-    url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=precipitation_sum&timezone=auto"
-    response = requests.get(url)
-    response.raise_for_status()
-    data = response.json()
+class CalendarAdvisor:
+    def __init__(self):
+        # Professional practice: Store static data in a structured format
+        self.calendar_data = [
+            {"Crop": "Wheat", "Region": "North India", "Sowing Start": 11, "Sowing End": 12, "Harvest Start": 3, "Harvest End": 4, "Sowing Period": "Nov - Dec", "Harvest Period": "Mar - Apr"},
+            {"Crop": "Rice", "Region": "East India", "Sowing Start": 6, "Sowing End": 7, "Harvest Start": 10, "Harvest End": 11, "Sowing Period": "Jun - Jul", "Harvest Period": "Oct - Nov"},
+            {"Crop": "Maize", "Region": "Pan India", "Sowing Start": 6, "Sowing End": 7, "Harvest Start": 10, "Harvest End": 11, "Sowing Period": "Jun - Jul", "Harvest Period": "Oct - Nov"},
+            {"Crop": "Sugarcane", "Region": "Pan India", "Sowing Start": 2, "Sowing End": 4, "Harvest Start": 11, "Harvest End": 3, "Sowing Period": "Feb - Apr", "Harvest Period": "Nov - Mar"},
+        ]
 
-    rain = data['daily']['precipitation_sum'][0]
-    return rain
+    def get_calendar_df(self) -> pd.DataFrame:
+        """Returns the calendar as a DataFrame for UI display."""
+        return pd.DataFrame(self.calendar_data)
 
-def show_calendar_and_alert():
-    st.subheader("🗓 Crop Calendar & Alerts")
+    def get_current_recommendations(self) -> List[str]:
+        """Returns crops that should be sown in the current month."""
+        current_month = datetime.now().month
+        recommended = [
+            item["Crop"] for item in self.calendar_data 
+            if item["Sowing Start"] <= current_month <= item["Sowing End"]
+        ]
+        return recommended
 
-    df = load_crop_calendar()
-    st.dataframe(df, use_container_width=True)
-
-    st.markdown("### 🌧 Real-time Rain Alert")
-
-    lat = st.number_input("Enter Latitude", value=28.6139)
-    lon = st.number_input("Enter Longitude", value=77.2090)
-
-    if st.button("Check Rain Alert"):
+    def fetch_rain_forecast(self, lat: float, lon: float) -> Dict:
+        """
+        Fetches weather data using professional error handling.
+        """
         try:
-            rain_mm = get_weather_forecast(lat, lon)
-            if rain_mm > 0:
-                st.warning(f"🌧 Rain expected today: {rain_mm} mm — Take preventive measures!")
-            else:
-                st.success("☀️ No rain expected today. Good to proceed with scheduled activities.")
+            # Using Open-Meteo (Free for non-commercial use)
+            url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=precipitation_sum&timezone=auto"
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            
+            rain_mm = data['daily']['precipitation_sum'][0]
+            
+            return {
+                "status": "success",
+                "rain_mm": rain_mm,
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
+            }
         except Exception as e:
-            st.error(f"Failed to fetch weather data: {e}")
+            logger.error(f"Weather API Error: {e}")
+            return {"status": "error", "message": str(e)}
+
+    def get_actionable_advice(self, rain_mm: float) -> str:
+        """Returns professional agricultural advice based on rain levels."""
+        if rain_mm > 10:
+            return "⚠️ Heavy rain expected. Avoid fertilizer application and ensure proper drainage."
+        elif 0 < rain_mm <= 10:
+            return "🌦 Light rain expected. You may skip today's irrigation cycle."
+        else:
+            return "☀️ Dry weather. Proceed with standard irrigation and weeding."

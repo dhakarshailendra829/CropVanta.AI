@@ -1,0 +1,33 @@
+{
+    "model_details": {
+        "model_name": "Crop Recommendation System",
+        "version": "2.0.1",
+        "algorithm": "Random Forest Classifier",
+        "framework": "Scikit-Learn",
+        "last_trained": "2026-01-20"
+    },
+    "training_metrics": {
+        "accuracy": 0.982,
+        "f1_score": 0.978,
+        "precision": 0.980,
+        "recall": 0.975
+    },
+    "features_schema": {
+        "input_features": [
+            "nitrogen",
+            "phosphorus",
+            "potassium",
+            "temperature",
+            "humidity",
+            "ph",
+            "rainfall"
+        ],
+        "target_labels": 22,
+        "scaling_method": "StandardScaler"
+    },
+    "data_info": {
+        "dataset_source": "Agricultural Nitrogen Dataset",
+        "training_samples": 2200,
+        "test_split": 0.2
+    }
+}

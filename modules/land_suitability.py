@@ -1,42 +1,77 @@
 import streamlit as st
+import requests
+import numpy as np
 from streamlit_folium import st_folium
 import folium
-import requests
+from typing import Dict, List, Any
+from modules.core.logger import get_logger
 
+logger = get_logger(__name__)
+
+# --- Logic Class (Backend) ---
+class LandSuitabilityAnalyzer:
+    def __init__(self):
+        self.crop_requirements = {
+            "Wheat": {"temp": [10, 25], "rain": 50},
+            "Rice": {"temp": [20, 35], "rain": 150},
+            "Maize": {"temp": [18, 30], "rain": 60},
+            "Cotton": {"temp": [22, 32], "rain": 70},
+        }
+
+    def fetch_geo_data(self, lat: float, lon: float) -> Dict[str, Any]:
+        try:
+            url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=temperature_2m_max,precipitation_sum&timezone=auto"
+            response = requests.get(url, timeout=10)
+            data = response.json()
+            avg_temp = np.mean(data["daily"]["temperature_2m_max"])
+            total_rain = np.sum(data["daily"]["precipitation_sum"])
+            return {"temp": avg_temp, "rain": total_rain, "success": True}
+        except Exception as e:
+            logger.error(f"GeoData Error: {e}")
+            return {"success": False}
+
+    def calculate_suitability(self, temp: float, rain: float) -> List[Dict]:
+        results = []
+        for crop, req in self.crop_requirements.items():
+            score = 0
+            if req["temp"][0] <= temp <= req["temp"][1]: score += 40
+            if rain >= req["rain"]: score += 60
+            results.append({
+                "crop": crop, 
+                "score": score, 
+                "label": "High" if score > 70 else "Medium" if score > 40 else "Low"
+            })
+        return sorted(results, key=lambda x: x["score"], reverse=True)
+
+# --- UI Function (Frontend) ---
+# app.py isi function ko call karega
 def run():
-    st.title("🌍 Land Suitability Analyzer")
-    st.write("Select your location on the map to analyze soil, rainfall, temperature & elevation, then get best crop suggestions.")
+    st.subheader("🌍 Land Suitability Analyzer")
+    st.write("Click on the map to analyze location-based suitability.")
 
+    # Folium Map Logic
     m = folium.Map(location=[20.5937, 78.9629], zoom_start=4)
-    m.add_child(folium.LatLngPopup())  
-
-    map_data = st_folium(m, width=700, height=500)
+    m.add_child(folium.LatLngPopup())
+    map_data = st_folium(m, width=700, height=400)
 
     if map_data and map_data.get("last_clicked"):
         lat = map_data["last_clicked"]["lat"]
         lon = map_data["last_clicked"]["lng"]
-        st.success(f"📍 Selected Location: {lat:.4f}, {lon:.4f}")
-        url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=temperature_2m_max,precipitation_sum&timezone=auto"
-        res = requests.get(url).json()
+        
+        st.success(f"📍 Selected: {lat:.4f}, {lon:.4f}")
 
-        if "daily" in res:
-            temp = sum(res["daily"]["temperature_2m_max"]) / len(res["daily"]["temperature_2m_max"])
-            rain = sum(res["daily"]["precipitation_sum"]) / len(res["daily"]["precipitation_sum"])
-            st.info(f"🌡 Avg Temp: {temp:.1f} °C | 🌧 Avg Rainfall: {rain:.1f} mm")
+        # Class ka instance banakar use karna (OOP approach)
+        analyzer = LandSuitabilityAnalyzer()
+        geo_info = analyzer.fetch_geo_data(lat, lon)
 
-            crop_scores = {
-                "Wheat": 80 if 10 < temp < 25 else 50,
-                "Rice": 85 if temp > 20 and rain > 100 else 40,
-                "Maize": 75 if 18 < temp < 30 else 45,
-                "Cotton": 70 if temp > 25 else 35,
-            }
-
-            st.subheader("🌱 Crop Suitability Ranking")
-            sorted_crops = sorted(crop_scores.items(), key=lambda x: x[1], reverse=True)
-            for crop, score in sorted_crops:
-                st.write(f"**{crop}** — Suitability Score: {score}/100")
-
-            if st.button("Download Report as PDF"):
-                st.success("Report generation feature can be added here (using reportlab).")
+        if geo_info["success"]:
+            temp, rain = geo_info["temp"], geo_info["rain"]
+            st.info(f"🌡 Avg Temp: {temp:.1f}°C | 🌧 Total Rain: {rain:.1f}mm")
+            
+            rankings = analyzer.calculate_suitability(temp, rain)
+            
+            for res in rankings:
+                color = "green" if res["label"] == "High" else "orange" if res["label"] == "Medium" else "red"
+                st.markdown(f"**{res['crop']}**: :{color}[{res['label']} Suitability] ({res['score']}/100)")
         else:
-            st.error("⚠ Could not fetch weather data. Try another location.")
+            st.error("Failed to fetch weather data for this location.")
