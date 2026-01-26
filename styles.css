@@ -1,98 +1,74 @@
-/* Custom CSS with Vibrant Neon Animations */
-body {
-    background-color: #0e1117;
-    color: #e2e8f0;
-}
-
-/* Dynamic Radial Background */
-.stApp {
-    background: radial-gradient(circle at top right, #1a2e21, #0e1117),
-                radial-gradient(circle at bottom left, #051923, #0e1117);
-}
-
-/* 🌟 Neon Animated Title */
-.main-title {
-    font-size: 3.5rem !important;
-    font-weight: 900;
-    background: linear-gradient(90deg, #00C851, #00fbff, #ffee00, #00C851);
-    background-size: 300% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 4s linear infinite;
-    text-shadow: 0 0 20px rgba(0, 200, 81, 0.3);
-}
-
-@keyframes shine {
-    to { background-position: 300% center; }
-}
-
-/* 🌈 Dynamic Colorful Tabs */
+/* 🌈 Ultra-Premium Navigation Tabs (The "Most Best" Look) */
 .stTabs [data-baseweb="tab-list"] {
-    gap: 15px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 15px;
+    gap: 20px !important;
+    padding: 15px 25px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 25px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin-bottom: 35px !important;
+    backdrop-filter: blur(10px);
 }
 
 .stTabs [data-baseweb="tab"] {
-    height: 55px;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 12px !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    padding: 0 20px !important;
-}
-
-/* Har Tab ke liye alag Hover Color */
-.stTabs [data-baseweb="tab"]:hover {
-    border-color: #00fbff !important;
-    box-shadow: 0 0 15px rgba(0, 251, 255, 0.3);
-}
-
-.stTabs [aria-selected="true"] {
-    background: linear-gradient(135deg, #00fbff 0%, #007bff 100%) !important;
-    color: white !important;
-    box-shadow: 0 0 25px rgba(0, 251, 255, 0.5) !important;
-    transform: scale(1.05) translateY(-5px);
-}
-
-/* 💎 Premium Metric Cards */
-div[data-testid="stMetric"] {
-    background: rgba(255, 255, 255, 0.04);
-    padding: 20px !important;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 4px solid #00fbff; /* Colorful Bottom Border */
-}
-
-div[data-testid="stMetricValue"] {
-    color: #00fbff !important;
-    text-shadow: 0 0 10px rgba(0, 251, 255, 0.5);
-}
-
-/* 🚀 Glassmorphism Form with Glow */
-.stForm {
-    background: rgba(10, 25, 41, 0.7) !important;
-    border-radius: 25px !important;
-    padding: 40px !important;
-    border: 1px solid rgba(0, 251, 255, 0.2) !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-}
-
-/* 🔘 Rainbow Buttons */
-.stButton button {
-    background: linear-gradient(45deg, #FF0080, #7928CA) !important; /* Pink-Purple Gradient */
+    height: 50px !important;
+    background: transparent !important;
     border: none !important;
-    color: white !important;
-    font-weight: bold !important;
-    border-radius: 12px !important;
-    padding: 12px 30px !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: #94a3b8 !important;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    padding: 0 30px !important;
 }
 
-.stButton button:hover {
-    background: linear-gradient(45deg, #7928CA, #FF0080) !important;
-    box-shadow: 0 0 20px rgba(255, 0, 128, 0.6) !important;
+/* Hover: Scale and Brighten */
+.stTabs [data-baseweb="tab"]:hover {
+    color: #00fbff !important;
+    transform: scale(1.1) translateY(-2px);
+    text-shadow: 0 0 10px rgba(0, 251, 255, 0.4);
+}
+
+/* Active Tab: Pure Elegance */
+.stTabs [aria-selected="true"] {
+    color: #ffffff !important;
+    background: rgba(0, 251, 255, 0.08) !important;
+    border-radius: 15px !important;
+}
+
+/* ⚡ The Neon Indicator (Custom Underline) */
+.stTabs [aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 15%;
+    width: 70%;
+    height: 4px;
+    background: linear-gradient(90deg, #00fbff, #00C851);
+    border-radius: 20px;
+    box-shadow: 0 0 20px #00fbff, 0 0 40px rgba(0, 251, 255, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; transform: scaleX(0.9); }
+    50% { opacity: 1; transform: scaleX(1); }
+    100% { opacity: 0.6; transform: scaleX(0.9); }
+}
+
+/* Hide default bottom line */
+.stTabs [data-baseweb="tab-border"] {
+    display: none !important;
+}
+
+/* 💎 Metric Card Glow */
+div[data-testid="stMetric"] {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(0, 251, 255, 0.1) !important;
+    border-left: 4px solid #00fbff !important;
+    border-radius: 15px !important;
+    transition: 0.3s;
+}
+
+div[data-testid="stMetric"]:hover {
+    background: rgba(0, 251, 255, 0.05) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }

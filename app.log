@@ -14,3 +14,6 @@
 2026-01-26 18:47:30,052 - modules.crop_advisor - INFO - Prediction successful: Unknown Variety (5) with 0.0849025224469092 confidence
 2026-01-26 18:50:21,580 - modules.crop_mapping - WARNING - Label 5 not found in knowledge base.
 2026-01-26 18:50:21,774 - modules.crop_advisor - INFO - Prediction successful: Unknown Variety (5) with 0.1002360268514893 confidence
+2026-01-26 19:20:51,157 - modules.crop_advisor - INFO - Prediction: Coffee | Confidence: 0.10
+2026-01-26 19:41:10,008 - modules.crop_advisor - INFO - Prediction: Muskmelon | Confidence: 0.09
+2026-01-26 19:41:15,376 - modules.crop_advisor - INFO - Prediction: Muskmelon | Confidence: 0.09

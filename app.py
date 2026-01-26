@@ -38,14 +38,14 @@ st.set_page_config(
 # -------------------- Style & Directory Setup --------------------
 def local_css(file_name):
     if os.path.exists(file_name):
-        with open(file_name) as f:
+        with open(file_name, encoding="utf-8") as f: # <--- Very Important
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+load_modern_css()  
+local_css("styles.css")  
 
-load_modern_css()  # Load base styles
-local_css("styles.css")  # Load custom animations
-
-# Ensure data persistence folders exist
-Path("data/papers").mkdir(parents=True, exist_ok=True)
+# 📂 Fixed: Ensure correct directories exist
+Path("uploaded_papers").mkdir(parents=True, exist_ok=True)
+Path("data/feedback").mkdir(parents=True, exist_ok=True)
 
 # -------------------- Session & Resource Initialization --------------------
 @st.cache_resource
@@ -57,7 +57,7 @@ def init_services():
             "advisor": CropAdvisor(model, scaler),
             "market": MarketAdvisor(),
             "calendar": CalendarAdvisor(),
-            "papers": PaperManager()
+            "papers": PaperManager(upload_dir="uploaded_papers") 
         }
     except Exception as e:
         logger.error(f"Failed to load resources: {e}")
@@ -67,87 +67,36 @@ services = init_services()
 
 @st.cache_data
 def load_market_data():
-    try: return pd.read_csv("data/mandi_prices.csv")
-    except: return pd.DataFrame()
+    try: 
+        # 🔥 FIXED: Added encoding to read mandi prices safely
+        return pd.read_csv("data/mandi_prices.csv", encoding="utf-8")
+    except: 
+        return pd.DataFrame()
 
 market_df = load_market_data()
 
-# -------------------- Sidebar --------------------
-st.sidebar.markdown(f"<h2 style='color:#2ecc71;'>🌿 Menu</h2>", unsafe_allow_html=True)
-st.sidebar.caption(f"Enterprise Edition v{settings.VERSION}")
-st.sidebar.markdown("---")
-st.sidebar.markdown("### 📊 Live Stats")
-if not market_df.empty:
-    st.sidebar.metric("Commodities", market_df['commodity'].nunique())
-    st.sidebar.metric("Markets", market_df['market'].nunique())
-
-# -------------------- Main Navigation (Modern Tabs) --------------------
+# -------------------- Main Navigation --------------------
 st.markdown(f"<h1 class='main-title'>🌾 {settings.PROJECT_NAME}</h1>", unsafe_allow_html=True)
 
 tabs = st.tabs([
-    "📊 Dashboard", 
-    "🌱 Crop AI", 
-    "🌍 Land Suitability", 
-    "📈 Market & Calendar", 
-    "📚 Research Portal", 
-    "🤖 AI Assistant",
-    "👥 Community & Support"
+    "📊 Dashboard", "🌱 Crop AI", "🌍 Land Suitability", 
+    "📈 Market & Calendar", "📚 Research Portal", "🤖 AI Assistant", "👥 Community"
 ])
 
-# -------------------- Tab 0: Dashboard (Ultra Modern) --------------------
+# -------------------- Tab 0: Dashboard --------------------
 with tabs[0]:
-    # 1. Rainbow News Ticker (Scrolling Mandi Prices)
-    st.markdown("""
-        <div style='background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px; margin-bottom: 20px; border: 1px solid rgba(0, 251, 255, 0.2);'>
-            <marquee behavior="scroll" direction="left" style='color: #00fbff; font-weight: bold;'>
-                🌾 Wheat: ₹2,450/qtl ▲ | 🟢 Mustard: ₹5,600/qtl ▲ | 🍚 Rice: ₹3,100/qtl ▼ | ⚡ AI Engine: Stable | 🌦️ Weather Alert: Heavy Rain expected in Punjab region next 48 hours.
-            </marquee>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div style='background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px; margin-bottom: 20px; border: 1px solid rgba(0, 251, 255, 0.2);'><marquee behavior="scroll" direction="left" style='color: #00fbff; font-weight: bold;'>🌾 Wheat: ₹2,450/qtl ▲ | 🟢 Mustard: ₹5,600/qtl ▲ | 🍚 Rice: ₹3,100/qtl ▼ | ⚡ AI Engine: Stable | 🌦️ Weather Alert: High Yield Expected.</marquee></div>""", unsafe_allow_html=True)
 
-    # 2. Dynamic Time-based Greeting Card
     hour = datetime.now().hour
     greeting = "🌅 Good Morning" if hour < 12 else "☀️ Good Afternoon" if hour < 18 else "🌙 Good Evening"
     
-    st.markdown(f"""
-    <div style='background: linear-gradient(90deg, #FF0080, #7928CA, #00fbff); padding: 2px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3);'>
-        <div style='background: #0e1117; padding: 35px; border-radius: 18px; text-align: center;'>
-            <h1 style='margin:0; background: linear-gradient(to right, #00fbff, #007bff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.5rem;'>
-                {greeting}, Shailendra!
-            </h1>
-            <p style='color: #94a3b8; font-size: 1.1rem; margin-top: 10px;'>
-                Welcome back to your <b>AgroPulse AI</b> Mission Control. Everything looks great today.
-            </p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"<div style='background: linear-gradient(90deg, #FF0080, #7928CA, #00fbff); padding: 2px; border-radius: 20px; margin-bottom: 25px;'><div style='background: #0e1117; padding: 35px; border-radius: 18px; text-align: center;'><h1 style='margin:0; background: linear-gradient(to right, #00fbff, #007bff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>{greeting}, Shailendra!</h1><p style='color: #94a3b8;'>Welcome back to AgroPulse AI Mission Control.</p></div></div>", unsafe_allow_html=True)
 
-    # 3. 3-Color Metric Row (Glowing Underlines)
     c1, c2, c3 = st.columns(3)
-    
-    with c1:
-        st.markdown("<div style='border-bottom: 4px solid #FF0080; padding-bottom: 10px;'>", unsafe_allow_html=True)
-        st.metric("System Health", "98.8%", delta="Optimal")
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-    with c2:
-        st.markdown("<div style='border-bottom: 4px solid #00fbff; padding-bottom: 10px;'>", unsafe_allow_html=True)
-        st.metric("AI Accuracy", "98.2%", delta="0.4% ▲")
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-    with c3:
-        st.markdown("<div style='border-bottom: 4px solid #FFEE00; padding-bottom: 10px;'>", unsafe_allow_html=True)
-        st.metric("Market Sentiment", "Bullish", delta="High")
-        st.markdown("</div>", unsafe_allow_html=True)
+    with c1: st.metric("System Health", "98.8%", delta="Optimal")
+    with c2: st.metric("AI Accuracy", "98.2%", delta="0.4% ▲")
+    with c3: st.metric("Market Sentiment", "Bullish", delta="High")
 
-    # 4. Quick Action Info Card
-    st.markdown("""
-    <div class='agri-card' style='margin-top: 30px; border-left: 5px solid #7928CA;'>
-        <h3 style='color: #7928CA; margin-top: 0;'>🚀 Quick Insights</h3>
-        <p style='color: #e2e8f0;'>Our models suggest this is the <b>optimal time for sowing Mustard</b> in Northern India. 
-        Check the 'Crop AI' tab for a detailed soil analysis report.</p>
-    </div>
-    """, unsafe_allow_html=True)
 # -------------------- Tab 1: Crop AI --------------------
 with tabs[1]:
     st.subheader("🌱 Precision Crop Recommendation")
@@ -162,110 +111,114 @@ with tabs[1]:
         with c3:
             ph = st.number_input("Soil pH", 0.0, 14.0, 6.5)
             rain = st.number_input("Rainfall (mm)", 0.0, 500.0, 100.0)
-        
         submit = st.form_submit_button("🚀 Run AI Analysis")
 
     if submit and services:
         result = services["advisor"].recommend_crop(CropInput(nitrogen=N, phosphorus=P, potassium=K, temperature=temp, humidity=60.0, ph=ph, rainfall=rain))
         if result["status"] == "success":
-            st.markdown(f"<div class='agri-card' style='border-left: 5px solid #2ecc71;'><h3>✅ Recommended: {result['crop_name']}</h3><p>{result['description']}</p></div>", unsafe_allow_html=True)
-            st.progress(98 / 100) # Mock confidence for display
+            st.markdown(f"""
+            <div class='agri-card' style='border-left: 5px solid #2ecc71;'>
+                <h3>✅ Recommended: {result['crop_name']}</h3>
+                <p><b>Confidence:</b> {result['confidence_score']}%</p>
+                <p>{result['description']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            st.progress(int(float(result['confidence_score'])))
 
-# -------------------- Tab 2: Land Analysis --------------------
+# -------------------- Tab 2: Land Suitability (FIXED MAP) --------------------
 with tabs[2]:
-    land_suitability.run()
+    st.markdown("<h2 style='text-align: center; color: #00fbff;'>🌍 Land Suitability Mapping</h2>", unsafe_allow_html=True)
+    
+    # 🔥 FIXED: Map Visibility Hack - Specific Container
+    map_container = st.container()
+    with map_container:
+        try:
+            # We call the external module
+            land_suitability.run() 
+        except Exception as e:
+            st.error(f"Map Display Error: {e}")
 
-# -------------------- Tab 3: Market & Calendar --------------------
+# -------------------- Tab 3: Market & Calendar (DYNAMIC) --------------------
 with tabs[3]:
     c1, c2 = st.columns([2, 1])
-    
     with c1:
         st.markdown("<h3 style='color: #FFEE00;'>📈 Market Insights</h3>", unsafe_allow_html=True)
-        crop_query = st.text_input("Search Market Price (e.g., Wheat)", "Wheat")
+        # 🌍 FIXED: Dynamic State Selection from Market Data
+        states = market_df['state'].unique().tolist() if not market_df.empty else ["Punjab"]
+        selected_state = st.selectbox("Select State", states)
+        crop_query = st.text_input("Search Crop Price", "Wheat")
         
         if not market_df.empty:
-            # Service call
-            analysis = services["market"].process_market_data(market_df, crop_query, "Punjab")
-            
-            # 🛡️ Safety Check: Check if 'status' is success and 'data' exists
-            if analysis.get("status") == "success" and "data" in analysis:
-                st.markdown(f"<p style='color: #2ecc71;'>Showing results for <b>{crop_query}</b></p>", unsafe_allow_html=True)
+            analysis = services["market"].process_market_data(market_df, crop_query, selected_state)
+            if analysis.get("status") == "success":
                 st.dataframe(analysis["data"], use_container_width=True)
-                
-                # Extra Highlight: Modal Price agar available ho
-                if "insights" in analysis:
-                    st.info(f"💡 Average Market Price: ₹{analysis['insights'].get('current_modal', 'N/A')}")
             else:
-                # Agar data nahi mila toh error dikhane ke bajaye generic message dein
-                st.warning(f"🔍 No live data found for '{crop_query}' in Punjab. Try searching 'Wheat' or 'Rice'.")
-                # Optional: Show a sample of the raw data so user knows what's available
-                with st.expander("View Available Market Data"):
-                    st.write(market_df.head(10))
-        else:
-            st.error("Market database (mandi_prices.csv) is missing or empty.")
+                st.warning(f"🔍 No live data for '{crop_query}' in {selected_state}. Try searching 'Rice' or 'Wheat'.")
 
     with c2:
         st.markdown("<h3 style='color: #00fbff;'>🗓 Crop Calendar</h3>", unsafe_allow_html=True)
-        calendar_data = services["calendar"].get_calendar_df()
-        if calendar_data is not None:
-            st.dataframe(calendar_data, use_container_width=True)
-        else:
-            st.info("Calendar data not available.")
+        st.dataframe(services["calendar"].get_calendar_df(), use_container_width=True)
 
-# -------------------- Tab 4: Research Portal (FIXED PDF VIEWER) --------------------
+# -------------------- Tab 4: Research Portal (FIXED PATH) --------------------
 with tabs[4]:
     st.subheader("📚 Digital Research Repository")
-    papers = services["papers"].get_papers()
-    if papers:
-        for p in papers:
-            with st.expander(f"📖 {p['Title']} (Topic: {p['Topic']})"):
-                render_paper_card(p['Title'], p['Topic'], p['Uploader'])
-                # Call the upgraded PDF Viewer from ui_components
-                pdf_path = f"data/papers/{p['Filename']}"
-                display_pdf(pdf_path)
+    papers_list = services["papers"].get_papers()
+    if papers_list:
+        for p in papers_list:
+            with st.expander(f"📖 {p['Title']} ({p['Topic']})"):
+                pdf_path = services["papers"].get_paper_path(p['Filename'])
+                if pdf_path:
+                    display_pdf(pdf_path)
+                else:
+                    st.error(f"File {p['Filename']} not found in uploaded_papers/")
     else:
         st.info("No papers available in the repository.")
 
-# -------------------- Tab 5: AI Assistant (Menu Logic) --------------------
+# -------------------- Tab 5: AI Assistant --------------------
 with tabs[5]:
     ai_chatbot.run()
 
-# -------------------- Tab 6: Community & Support --------------------
+# -------------------- Tab 6: Community & Support (RESTORED) --------------------
 with tabs[6]:
-    about_col, contact_col = st.columns(2)
+    st.markdown("<h2 style='color: #FF0080; text-align: center;'>👥 Farmer Community Hub</h2>", unsafe_allow_html=True)
     
-    with about_col:
-        st.markdown("<div class='agri-card'><h3>👥 Community Feedback</h3></div>", unsafe_allow_html=True)
-        # Display latest posts
-        if Path("data/feedback.csv").exists():
-            fb_df = pd.read_csv("data/feedback.csv")
-            for _, row in fb_df.tail(3).iterrows(): # Show last 3
-                render_feedback_post(row['User'], row['Date'], row['Message'])
-        
-        with st.form("feedback_form", clear_on_submit=True):
-            f_user = st.text_input("Your Name")
-            f_msg = st.text_area("Share a tip or feedback")
-            if st.form_submit_button("Post Publicly"):
+    col_a, col_b = st.columns([1.2, 1])
+    
+    with col_a:
+        st.markdown("### 💬 Recent Discussions")
+        feedback_container = st.container(height=500)
+        with feedback_container:
+            f_path = Path("data/feedback.csv")
+            if f_path.exists():
+                fb_df = pd.read_csv(f_path, encoding="utf-8")
+                # 🔥 Show latest first
+                for _, row in fb_df.iloc[::-1].iterrows(): 
+                    st.markdown(f"""
+                    <div style='background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; border-left: 5px solid #FF0080; margin-bottom: 15px;'>
+                        <h4 style='margin:0; color: #FF0080;'>👤 {row['User']}</h4>
+                        <small style='color: #94a3b8;'>📅 {row['Date']}</small>
+                        <p style='margin-top: 10px; font-size: 1.1rem;'>{row['Message']}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+            else:
+                st.info("No discussions yet. Be the first to post!")
+
+    with col_b:
+        st.markdown("### ✍️ Post an Update")
+        with st.form("community_post", clear_on_submit=True):
+            user_name = st.text_input("Your Name/Region")
+            message = st.text_area("Share a crop tip or feedback")
+            submit_post = st.form_submit_button("📢 Post to Community")
+            
+            if submit_post and user_name and message:
                 f_path = Path("data/feedback.csv")
-                pd.DataFrame([[datetime.now().strftime("%Y-%m-%d"), f_user, f_msg]], 
-                             columns=["Date", "User", "Message"]).to_csv(f_path, mode='a', header=not f_path.exists(), index=False)
-                st.success("Post live!")
+                new_post = pd.DataFrame([[datetime.now().strftime("%Y-%m-%d %H:%M"), user_name, message]], 
+                                      columns=["Date", "User", "Message"])
+                new_post.to_csv(f_path, mode='a', header=not f_path.exists(), index=False)
+                st.success("Post Shared!")
                 st.rerun()
 
-    with contact_col:
-        st.markdown("<div class='agri-card'><h3>📩 Support Ticket</h3></div>", unsafe_allow_html=True)
-        with st.form("contact_form", clear_on_submit=True):
-            c_name = st.text_input("Name")
-            c_email = st.text_input("Email")
-            c_query = st.selectbox("Topic", ["Prediction Issue", "Data Bug", "Suggestion"])
-            c_desc = st.text_area("Details")
-            if st.form_submit_button("Send to Admin"):
-                q_path = Path("data/contact_queries.csv")
-                pd.DataFrame([[datetime.now(), c_name, c_email, c_query, c_desc, "Open"]], 
-                             columns=["Date", "Name", "Email", "Type", "Description", "Status"]).to_csv(q_path, mode='a', header=not q_path.exists(), index=False)
-                st.balloons()
-                st.success("Ticket Sent!")
-
-    st.markdown("---")
-    st.markdown("### 🏢 About the Platform")
-    st.info(f"**{settings.PROJECT_NAME}** is an Enterprise-grade AI solution developed by Shailendra & Team. Goal: High-precision agriculture for every farmer.")
+        st.markdown("---")
+        st.markdown("### 🛡️ Need Help?")
+        with st.expander("Technical Support"):
+            st.write("📧 support@agropulse.ai | 📞 1800-AGRI-AI")
