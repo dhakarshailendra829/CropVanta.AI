@@ -3,7 +3,6 @@ from modules.core.logger import get_logger
 
 logger = get_logger(__name__)
 
-# Standard 22-Crop Dataset Knowledge Base
 CROP_KNOWLEDGE_BASE = {
     0: {"name": "Apple", "category": "Fruit", "description": "Needs cool climate and well-drained acidic soil.", "season": "Winter/Spring", "growth_duration": "120-150 days", "ideal_ph": [5.5, 6.5], "market_value": "Premium"},
     1: {"name": "Banana", "category": "Fruit", "description": "Thrives in tropical humid climates with rich loamy soil.", "season": "Year-round", "growth_duration": "300-365 days", "ideal_ph": [6.5, 7.5], "market_value": "Steady Demand"},

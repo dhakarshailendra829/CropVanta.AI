@@ -1,8 +1,7 @@
-/* 🌈 Ultra-Premium Navigation Tabs (The "Most Best" Look) */
 .stTabs [data-baseweb="tab-list"] {
     gap: 20px !important;
     padding: 15px 25px !important;
-    background: rgba(255, 255, 255, 0.03) !important;
+    background: rgba(255, 255, 255, 0) !important;
     border-radius: 25px !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     margin-bottom: 35px !important;
@@ -13,28 +12,25 @@
     height: 50px !important;
     background: transparent !important;
     border: none !important;
-    color: #94a3b8 !important;
+    color: #2e586b !important;
     font-weight: 600 !important;
     font-size: 17px !important;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
     padding: 0 30px !important;
 }
 
-/* Hover: Scale and Brighten */
 .stTabs [data-baseweb="tab"]:hover {
     color: #00fbff !important;
     transform: scale(1.1) translateY(-2px);
-    text-shadow: 0 0 10px rgba(0, 251, 255, 0.4);
+    text-shadow: 0 0 10px rgba(0, 251, 255, 0.81);
 }
 
-/* Active Tab: Pure Elegance */
 .stTabs [aria-selected="true"] {
     color: #ffffff !important;
     background: rgba(0, 251, 255, 0.08) !important;
     border-radius: 15px !important;
 }
 
-/* ⚡ The Neon Indicator (Custom Underline) */
 .stTabs [aria-selected="true"]::after {
     content: "";
     position: absolute;
@@ -42,9 +38,9 @@
     left: 15%;
     width: 70%;
     height: 4px;
-    background: linear-gradient(90deg, #00fbff, #00C851);
+    background: linear-gradient(90deg, #07bbbe, #049e42);
     border-radius: 20px;
-    box-shadow: 0 0 20px #00fbff, 0 0 40px rgba(0, 251, 255, 0.5);
+    box-shadow: 0 0 20px #04a7aa, 0 0 40px rgba(2, 71, 72, 0.5);
     animation: pulse 2s infinite;
 }
 
@@ -54,12 +50,10 @@
     100% { opacity: 0.6; transform: scaleX(0.9); }
 }
 
-/* Hide default bottom line */
 .stTabs [data-baseweb="tab-border"] {
     display: none !important;
 }
 
-/* 💎 Metric Card Glow */
 div[data-testid="stMetric"] {
     background: rgba(255, 255, 255, 0.02) !important;
     border: 1px solid rgba(0, 251, 255, 0.1) !important;
@@ -70,5 +64,5 @@ div[data-testid="stMetric"] {
 
 div[data-testid="stMetric"]:hover {
     background: rgba(0, 251, 255, 0.05) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.596);
 }

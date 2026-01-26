@@ -54,7 +54,6 @@ def display_pdf(file_path: str):
             with open(file_path, "rb") as f:
                 base64_pdf = base64.b64encode(f.read()).decode('utf-8')
             
-            # Embedding PDF in HTML Iframe
             pdf_html = f'''
             <div style="border: 3px solid #00fbff; border-radius: 20px; padding: 10px; background: #1a1a1a; box-shadow: 0 0 30px rgba(0, 251, 255, 0.2);">
                 <iframe src="data:application/pdf;base64,{base64_pdf}" 

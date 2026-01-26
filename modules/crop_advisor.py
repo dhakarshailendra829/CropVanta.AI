@@ -3,7 +3,6 @@ from typing import Dict, Any, Optional
 from modules.core.logger import get_logger
 from modules.core.schemas import CropInput
 
-# Note: We are now handling mapping directly or via a robust dictionary
 logger = get_logger(__name__)
 
 class CropAdvisor:
@@ -15,7 +14,6 @@ class CropAdvisor:
         self.scaler = scaler
         self.version = "2.1.0-Prod"
         
-        # 🌿 Industry Standard Mapping (Common for the 22-crop dataset)
         self.crop_map = {
             20: 'Rice', 11: 'Maize', 3: 'Chickpea', 9: 'Kidneybeans', 18: 'Pigeonpeas',
             13: 'Mothbeans', 14: 'Mungbean', 2: 'Blackgram', 10: 'Lentil', 19: 'Pomegranate',
@@ -29,7 +27,6 @@ class CropAdvisor:
         Converts the Pydantic schema into a scaled NumPy array.
         """
         try:
-            # feature_list must match training order: N, P, K, Temp, Hum, pH, Rain
             feature_list = [
                 data.nitrogen, data.phosphorus, data.potassium, 
                 data.temperature, data.humidity, data.ph, data.rainfall
@@ -45,20 +42,13 @@ class CropAdvisor:
         Predict the most suitable crop and provide rich metadata.
         """
         try:
-            # 1. Transform & Scale
             scaled_features = self._prepare_features(input_data)
             
-            # 2. Prediction (Numerical Label)
             predicted_label = self.model.predict(scaled_features)[0]
-            
-            # 3. Handle Mapping (Fixes the 'Unknown Variety' Issue)
-            # Agar label dictionary mein nahi milta, toh we show the ID
             crop_name = self.crop_map.get(predicted_label, f"Unknown Crop (ID: {predicted_label})")
             
-            # 4. Generate Description Dynamically
             description = self._get_crop_description(crop_name)
 
-            # 5. Confidence Score
             confidence = 0.0
             if hasattr(self.model, "predict_proba"):
                 probabilities = self.model.predict_proba(scaled_features)[0]

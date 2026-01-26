@@ -11,8 +11,7 @@ def check_password():
 
     if not st.session_state["authenticated"]:
         password = st.sidebar.text_input("Admin Password", type="password")
-        # In production, use a hashed secret from .env
-        if password == "admin123": 
+        if password == "shelu#123": 
             st.session_state["authenticated"] = True
             return True
         return False

@@ -8,7 +8,6 @@ from modules.core.logger import get_logger
 
 logger = get_logger(__name__)
 
-# --- Logic Class (Backend) ---
 class LandSuitabilityAnalyzer:
     def __init__(self):
         self.crop_requirements = {
@@ -43,13 +42,10 @@ class LandSuitabilityAnalyzer:
             })
         return sorted(results, key=lambda x: x["score"], reverse=True)
 
-# --- UI Function (Frontend) ---
-# app.py isi function ko call karega
 def run():
     st.subheader("🌍 Land Suitability Analyzer")
     st.write("Click on the map to analyze location-based suitability.")
 
-    # Folium Map Logic
     m = folium.Map(location=[20.5937, 78.9629], zoom_start=4)
     m.add_child(folium.LatLngPopup())
     map_data = st_folium(m, width=700, height=400)
@@ -60,7 +56,6 @@ def run():
         
         st.success(f"📍 Selected: {lat:.4f}, {lon:.4f}")
 
-        # Class ka instance banakar use karna (OOP approach)
         analyzer = LandSuitabilityAnalyzer()
         geo_info = analyzer.fetch_geo_data(lat, lon)
 

@@ -9,7 +9,6 @@ logger = get_logger(__name__)
 
 class CalendarAdvisor:
     def __init__(self):
-        # Professional practice: Store static data in a structured format
         self.calendar_data = [
             {"Crop": "Wheat", "Region": "North India", "Sowing Start": 11, "Sowing End": 12, "Harvest Start": 3, "Harvest End": 4, "Sowing Period": "Nov - Dec", "Harvest Period": "Mar - Apr"},
             {"Crop": "Rice", "Region": "East India", "Sowing Start": 6, "Sowing End": 7, "Harvest Start": 10, "Harvest End": 11, "Sowing Period": "Jun - Jul", "Harvest Period": "Oct - Nov"},
@@ -35,7 +34,6 @@ class CalendarAdvisor:
         Fetches weather data using professional error handling.
         """
         try:
-            # Using Open-Meteo (Free for non-commercial use)
             url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=precipitation_sum&timezone=auto"
             response = requests.get(url, timeout=10)
             response.raise_for_status()

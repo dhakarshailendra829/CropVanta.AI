@@ -16,7 +16,6 @@ class MarketAdvisor:
             df['commodity'] = df['commodity'].str.lower()
             df['date'] = pd.to_datetime(df['date'])
             
-            # Filter Data
             filtered_df = df[df['commodity'] == crop.lower()]
             if state:
                 filtered_df = filtered_df[filtered_df['state'].str.lower() == state.lower()]
@@ -24,11 +23,9 @@ class MarketAdvisor:
             if filtered_df.empty:
                 return {"status": "no_data", "message": f"No market data found for {crop}"}
 
-            # Calculate Insights
             latest_price = filtered_df.sort_values('date').iloc[-1]['modal_price']
             avg_price = filtered_df['modal_price'].mean()
             
-            # Trend Analysis (Simple Version)
             trend = "Stable"
             if latest_price > avg_price * 1.05: trend = "Upward 📈"
             elif latest_price < avg_price * 0.95: trend = "Downward 📉"

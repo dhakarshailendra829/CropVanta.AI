@@ -1,24 +1,21 @@
 import streamlit as st
 
 def run():
-    st.markdown("<h1 style='text-align: center; color: #2ecc71;'>🤖 AgroPulse AI Guide</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #2ecc71;'>CropVanta AI Guide</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #94a3b8;'>How can I assist you today?</p>", unsafe_allow_html=True)
     st.markdown("---")
 
-    # State management for navigation
     if "step" not in st.session_state:
         st.session_state.step = "main"
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
-    # Helper function to reset chat
     def reset_chat():
         st.session_state.step = "main"
         st.rerun()
 
-    # --- MAIN MENU ---
     if st.session_state.step == "main":
-        st.chat_message("assistant").write("Hello! Welcome to AgroPulse Support. Please select a topic to get started:")
+        st.chat_message("assistant").write("Hello! Welcome to CropVanta Support. Please select a topic to get started:")
         
         c1, c2, c3 = st.columns(3)
         if c1.button("🛠️ Platform Issues", use_container_width=True):
@@ -31,7 +28,6 @@ def run():
             st.session_state.step = "market"
             st.rerun()
 
-    # --- LEVEL 1: PLATFORM ISSUES ---
     elif st.session_state.step == "issues":
         st.chat_message("assistant").write("I'm sorry you're facing trouble. What specific issue are you experiencing?")
         
@@ -45,7 +41,6 @@ def run():
         
         if st.button("⬅️ Back to Main Menu"): reset_chat()
 
-    # --- LEVEL 1: CROP GUIDANCE ---
     elif st.session_state.step == "guidance":
         st.chat_message("assistant").write("AI Crop Guidance is my specialty. What would you like to know?")
         
@@ -59,7 +54,6 @@ def run():
 
         if st.button("⬅️ Back to Main Menu"): reset_chat()
 
-    # --- LEVEL 1: MARKET QUERIES ---
     elif st.session_state.step == "market":
         st.chat_message("assistant").write("I can help you understand market trends and prices.")
         
@@ -73,6 +67,5 @@ def run():
 
         if st.button("⬅️ Back to Main Menu"): reset_chat()
 
-    # Footer for dynamic feel
     st.markdown("---")
-    st.caption("AgroPulse Intelligent Support Engine | Version 2.0.0")
+    st.caption("CropVanta Intelligent Support Engine | Version 2.0.0")

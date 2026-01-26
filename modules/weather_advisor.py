@@ -6,8 +6,6 @@ from datetime import datetime
 from geopy.geocoders import Nominatim
 from functools import lru_cache
 
-# ---------------- LOAD RESOURCES ---------------- #
-
 try:
     rf_temp = joblib.load("models/rf_temp.pkl")
 except Exception:
@@ -17,9 +15,6 @@ try:
     weather_df = pd.read_csv("data/weather_data.csv")
 except Exception:
     weather_df = None
-
-
-# ---------------- GEO CODING ---------------- #
 
 @lru_cache(maxsize=50)
 def geocode_location(location_name: str):
@@ -35,9 +30,6 @@ def geocode_location(location_name: str):
     except Exception:
         pass
     return None
-
-
-# ---------------- LIVE WEATHER ---------------- #
 
 def get_live_weather(location_name: str, date: datetime):
     coords = geocode_location(location_name)
@@ -81,9 +73,6 @@ def get_live_weather(location_name: str, date: datetime):
     except Exception:
         return None
 
-
-# ---------------- MODEL FALLBACK ---------------- #
-
 def get_model_weather(location_name: str, date: datetime):
     if rf_temp is None or weather_df is None:
         return None
@@ -119,9 +108,6 @@ def get_model_weather(location_name: str, date: datetime):
 
     except Exception:
         return None
-
-
-# ---------------- PUBLIC API ---------------- #
 
 def get_weather_forecast(location_name: str, date: datetime):
     """

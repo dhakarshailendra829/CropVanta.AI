@@ -45,11 +45,10 @@ st.markdown("""
 
 st.markdown('<div class="about-container">', unsafe_allow_html=True)
 
-# --- SECTION 1: THE VISION ---
 col1, col2 = st.columns([1.2, 1], gap="large")
 
 with col1:
-    st.markdown('<div class="engineer-badge">🚀 Solo-Engineer Initiative</div>', unsafe_allow_html=True)
+    st.markdown('<div class="engineer-badge">Solo-Engineer Initiative</div>', unsafe_allow_html=True)
     st.markdown('<h1 class="about-title">About the Platform</h1>', unsafe_allow_html=True)
     st.markdown("""
     <p class="about-desc">
@@ -69,7 +68,6 @@ with col2:
     else:
         st.markdown('<div style="background: #0f172a; height:320px; border-radius:25px; border:1px solid rgba(0,251,255,0.2); display:flex; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:20px;">[Engineer Vision Image: images/engineer_vision.png]</div>', unsafe_allow_html=True)
 
-# --- SECTION 2: HOW IT WORKS (THE TECH) ---
 st.markdown('<div style="margin-top: 80px;"></div>', unsafe_allow_html=True)
 
 col3, col4 = st.columns([1, 1.2], gap="large")

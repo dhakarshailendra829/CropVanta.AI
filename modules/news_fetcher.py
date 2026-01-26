@@ -9,14 +9,12 @@ logger = get_logger(__name__)
 
 class PaperManager:
     def __init__(self, upload_dir: str = "uploaded_papers", metadata_file: str = "data/research_papers.csv"):
-        # Explicitly setting the path to root-level 'uploaded_papers'
         self.upload_dir = Path(upload_dir)
         self.metadata_file = Path(metadata_file)
         self._init_storage()
 
     def _init_storage(self):
         """Ensures directories and metadata files exist."""
-        # Create folder if it doesn't exist
         if not self.upload_dir.exists():
             self.upload_dir.mkdir(parents=True, exist_ok=True)
             logger.info(f"Created directory: {self.upload_dir}")
@@ -28,13 +26,11 @@ class PaperManager:
     def save_paper(self, uploaded_file, title: str, topic: str, uploader: str) -> bool:
         """Saves file to 'uploaded_papers' and logs metadata."""
         try:
-            # File save path
             file_path = self.upload_dir / uploaded_file.name
             
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
             
-            # Metadata update
             df = pd.read_csv(self.metadata_file)
             new_entry = {
                 "Title": title,

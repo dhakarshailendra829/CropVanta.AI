@@ -5,8 +5,7 @@ from pydantic_settings import BaseSettings
 load_dotenv()
 
 class Settings(BaseSettings):
-    # Project Info
-    PROJECT_NAME: str = "AgroPulse AI"
+    PROJECT_NAME: str = "CropVanta AI "
     VERSION: str = "2.0.0"
     
     # API Keys
