@@ -1,7 +1,7 @@
 <p align="center">
-  <h1>🌱 CropVanta.AI: Advanced Agricultural Intelligence Ecosystem</h1><br/>
+  <h3>🌱 CropVanta.AI: Advanced Agricultural Intelligence Ecosystem</h3><br/>
   <img src="images/Crop.png" width="120" alt="AI Crop Advisor Logo" /><br/>
-  <b>AI‑Driven Crop Recommendation, Market Intelligence & Decision‑Support Platform</b><br/>
+  <h5>AI‑Driven Crop Recommendation, Market Intelligence & Decision‑Support Platform</h5><br/>
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Artificial%20Intelligence-AI-green" />
