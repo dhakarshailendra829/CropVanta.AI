@@ -1,5 +1,5 @@
 <p align="center">
-  <b>🌱 AI Crop & Market Advisor</b><br/>
+  <b>🌱 CropVanta.AI: Advanced Agricultural Intelligence Ecosystem</b><br/>
   <img src="images/Crop.png" width="120" alt="AI Crop Advisor Logo" /><br/>
   <b>AI‑Driven Crop Recommendation, Market Intelligence & Decision‑Support Platform</b><br/>
 </p>
@@ -22,15 +22,10 @@
 </p>
 
 ## Project Vision
-
 Modern agriculture is increasingly **data‑rich but insight‑poor**. Farmers today are surrounded by information — soil data, historical yields, weather forecasts, seasonal calendars, and market prices — yet most decisions are still made using **intuition, fragmented tools, or delayed reports**.
-
 **AI Crop & Market Advisor** was built to bridge this gap.
-
 The vision of this project is to create a **single intelligent dashboard** that combines **machine learning, environmental intelligence, and market analytics** to answer one critical question:
-
 > *Which crop should I grow, when should I grow it, and how can I maximize its market value?*
-
 This system transforms raw agricultural data into **clear, explainable, and actionable recommendations** that can be used by farmers, agri‑consultants, students, and agri‑tech platforms.
 
 ## 🌾 Problem Context
@@ -94,7 +89,7 @@ This bridges the gap between **agronomic feasibility and economic viability**.
 
 ---
 
-### 🌍 Land & Soil Suitability Analysis
+### Land & Soil Suitability Analysis
 
 The system evaluates land capability and soil compatibility to ensure that recommendations are **physically realistic**, not just statistically probable.
 
@@ -123,36 +118,30 @@ To make the system farmer‑friendly and exploratory:
 * Insights are delivered in simple language
 
 This transforms the dashboard from a tool into an **interactive advisor**.
+## Technical Stack
 
+| Layer | Technology | Application |
+| :--- | :--- | :--- |
+| **Language** | **Python 3.11+** | Core logic and backend processing. |
+| **Machine Learning** | **Scikit-learn, Joblib** | Random Forest Classifier for predictive modeling. |
+| **Data Science** | **Pandas, NumPy** | Feature engineering and data manipulation. |
+| **Interface** | **Streamlit** | Custom CSS/HTML injection for Premium Dark-Mode UI. |
+| **Geospatial** | **Folium** | Interactive mapping for land suitability analysis. |
+| **APIs** | **OpenWeatherMap** | Real-time hyperlocal weather data fetching. |
 
-## Architecture & ML Pipeline
+---
 
-```
-Raw Agricultural Data
-        ↓
-Data Cleaning & Feature Engineering
-        ↓
-Label Encoding & Scaling
-        ↓
-ML Model Training (Random Forest / XGBoost)
-        ↓
-Model Evaluation & Validation
-        ↓
-Persisted Model (Joblib)
-        ↓
-Streamlit Dashboard Interface
-        ↓
-User‑Facing Recommendations & Insights
-```
-
-This modular architecture allows **easy extension**, model upgrades, and future real‑time integrations.
+## System Architecture & ML Pipeline
+1. **Input Layer:** Captures Soil Minerals (N, P, K), pH, Temperature, and Rainfall.
+2. **Transformation:** Data is passed through a scaling and encoding pipeline.
+3. **Inference:** The **Random Forest Engine** performs multi-class classification to predict the best crop.
+4. **Market Sync:** Real-time Mandi APIs fetch the latest prices for the recommended crop.
+5. **Output:** A customized, responsive UI renders the insights via Glassmorphic cards.
 
 ---
 
 ## Tech Stack
-
 ### Machine Learning & Data Science
-
 * Python
 * NumPy, Pandas
 * Scikit‑learn
@@ -165,13 +154,11 @@ This modular architecture allows **easy extension**, model upgrades, and future 
 * Seaborn
 
 ### Dashboard & UI
-
 * Streamlit
 * Modular UI components
 * PIL for image rendering
 
 ### External Intelligence
-
 * Weather forecasting services
 * Market price data
 * Agriculture news sources
