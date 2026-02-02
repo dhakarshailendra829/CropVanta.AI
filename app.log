@@ -18,3 +18,4 @@
 2026-01-26 19:41:10,008 - modules.crop_advisor - INFO - Prediction: Muskmelon | Confidence: 0.09
 2026-01-26 19:41:15,376 - modules.crop_advisor - INFO - Prediction: Muskmelon | Confidence: 0.09
 2026-01-26 23:04:14,151 - modules.crop_advisor - INFO - Prediction: Coffee | Confidence: 0.10
+2026-01-27 09:34:39,248 - modules.crop_advisor - INFO - Prediction: Orange | Confidence: 0.14

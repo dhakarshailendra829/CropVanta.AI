@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 from PIL import Image
+from streamlit_autorefresh import st_autorefresh
 
 from modules.core.config import settings
 from modules.core.logger import get_logger
@@ -76,17 +77,79 @@ tabs = st.tabs([
 ])
 
 with tabs[0]:
-    st.markdown("""<div style='background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px; margin-bottom: 20px; border: 1px solid rgba(0, 251, 255, 0.2);'><marquee behavior="scroll" direction="left" style='color: #00fbff; font-weight: bold;'>🌾 Wheat: ₹2,450/qtl ▲ | 🟢 Mustard: ₹5,600/qtl ▲ | 🍚 Rice: ₹3,100/qtl ▼ | ⚡ AI Engine: Stable | 🌦️ Weather Alert: High Yield Expected.</marquee></div>""", unsafe_allow_html=True)
+    st_autorefresh(interval=1000, key="clock_refresh")
 
-    hour = datetime.now().hour
-    greeting = "🌅 Good Morning" if hour < 12 else "☀️ Good Afternoon" if hour < 18 else "🌙 Good Evening"
-    
-    st.markdown(f"<div style='background: linear-gradient(90deg, #FF0080, #7928CA, #00fbff); padding: 2px; border-radius: 20px; margin-bottom: 25px;'><div style='background: #0e1117; padding: 35px; border-radius: 18px; text-align: center;'><h1 style='margin:0; background: linear-gradient(to right, #00fbff, #007bff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>{greeting}, Shailendra!</h1><p style='color: #94a3b8;'>Welcome back to CropVanta AI  Mission Control.</p></div></div>", unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div style='background: rgba(0, 0, 255, 0.05); padding: 10px; border-radius: 10px; margin-bottom: 20px; border: 1px solid rgba(0, 251, 255, 0.2);'>
+            <marquee behavior="scroll" direction="left" style='color: #00fbff; font-weight: bold;'>
+                🌾 Wheat: ₹2,450/qtl ▲ | 🟢 Mustard: ₹5,600/qtl ▲ | 🍚 Rice: ₹3,100/qtl ▼ | ⚡ AI Engine: Stable | 🌦️ Weather Alert: High Yield Expected.
+            </marquee>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    now = datetime.now()
+    hour = now.hour
+
+    if hour < 12:
+        emoji, emoji_color, greeting = "🌅", "#FDB813", "Good Morning"
+    elif hour < 18:
+        emoji, emoji_color, greeting = "☀️", "#FFD700", "Good Afternoon"
+    else:
+        emoji, emoji_color, greeting = "🌙", "#A855F7", "Good Evening"
+
+    st.markdown(
+        f"""
+        <div style='background: linear-gradient(90deg, #FF0080, #7928CA, #00fbff); padding: 2px; border-radius: 20px; margin-bottom: 20px;'>
+            <div style='background: #0e1117; padding: 35px; border-radius: 18px; text-align: center;'>
+                <h1 style='margin:0;'>
+                    <span style="filter: drop-shadow(0 0 6px {emoji_color});">{emoji}</span>
+                    <span style='background: linear-gradient(to right, #00fbff, #007bff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
+                        {greeting}, Shailendra!
+                    </span>
+                </h1>
+                <p style='color: #94a3b8;'>Welcome back to CropVanta AI Mission Control.</p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        f"""
+        <div style="
+            background: #020617;
+            border: 1px solid rgba(0,251,255,0.25);
+            border-radius: 14px;
+            padding: 14px 22px;
+            width: fit-content;
+            margin: auto;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 0 18px rgba(0,251,255,0.15);
+        ">
+            <div style="font-size: 12px; color: #94a3b8; letter-spacing: 1px;">SYSTEM TIME</div>
+            <div style="font-size: 26px; font-weight: 700; color: #00fbff; font-family: 'Courier New', monospace;">
+                {now.strftime("%H:%M:%S")}
+            </div>
+            <div style="font-size: 14px; color: #cbd5f5;">
+                {now.strftime("%A, %d %B %Y")}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     c1, c2, c3 = st.columns(3)
-    with c1: st.metric("System Health", "98.8%", delta="Optimal")
-    with c2: st.metric("AI Accuracy", "98.2%", delta="0.4% ▲")
-    with c3: st.metric("Market Sentiment", "Bullish", delta="High")
+    with c1:
+        st.metric("System Health", "98.8%", delta="Optimal")
+    with c2:
+        st.metric("AI Accuracy", "98.2%", delta="0.4% ▲")
+    with c3:
+        st.metric("Market Sentiment", "Bullish", delta="High")
+
 
 with tabs[1]:
     st.subheader("🌱 Precision Crop Recommendation")

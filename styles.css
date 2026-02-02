@@ -3,7 +3,7 @@
     padding: 15px 25px !important;
     background: rgba(255, 255, 255, 0) !important;
     border-radius: 25px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.055) !important;
     margin-bottom: 35px !important;
     backdrop-filter: blur(10px);
 }
@@ -12,7 +12,7 @@
     height: 50px !important;
     background: transparent !important;
     border: none !important;
-    color: #2e586b !important;
+    color: #0a5e85 !important;
     font-weight: 600 !important;
     font-size: 17px !important;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
@@ -22,12 +22,12 @@
 .stTabs [data-baseweb="tab"]:hover {
     color: #00fbff !important;
     transform: scale(1.1) translateY(-2px);
-    text-shadow: 0 0 10px rgba(0, 251, 255, 0.81);
+    text-shadow: 0 0 10px rgba(5, 188, 192, 0.81);
 }
 
 .stTabs [aria-selected="true"] {
     color: #ffffff !important;
-    background: rgba(0, 251, 255, 0.08) !important;
+    background: rgba(0, 251, 255, 0.051) !important;
     border-radius: 15px !important;
 }
 
@@ -38,9 +38,9 @@
     left: 15%;
     width: 70%;
     height: 4px;
-    background: linear-gradient(90deg, #07bbbe, #049e42);
+    background: linear-gradient(90deg, #07bbbe, #05c312);
     border-radius: 20px;
-    box-shadow: 0 0 20px #04a7aa, 0 0 40px rgba(2, 71, 72, 0.5);
+    box-shadow: 0 0 20px #04b2b5, 0 0 40px rgba(2, 71, 72, 0.5);
     animation: pulse 2s infinite;
 }
 
