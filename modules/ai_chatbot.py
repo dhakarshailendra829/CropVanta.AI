@@ -6,8 +6,7 @@ from modules.ai_researcher import fetch_agri_trends
 def run():
     st.markdown("<h1 style='text-align: center; color: #2ecc71;'>CropVanta AI Research Agent</h1>", unsafe_allow_html=True)
     
-    # Research Query Section
-    st.subheader("🔍 Autonomous Research")
+    st.subheader(" Autonomous Research")
     user_query = st.text_input("Ask about latest crop technology, pests, or fertilizers:")
     
     if st.button("Research on Internet"):
@@ -17,7 +16,6 @@ def run():
             st.write(research_data)
 
     st.markdown("---")
-    # Existing Button Logic... (Baki ka buttons wala code niche as it is rahega)
 
     if "step" not in st.session_state:
         st.session_state.step = "main"
@@ -38,7 +36,7 @@ def run():
         if c2.button("🌱 Crop Guidance", use_container_width=True):
             st.session_state.step = "guidance"
             st.rerun()
-        if c3.button("📊 Market Queries", use_container_width=True):
+        if c3.button(" Market Queries", use_container_width=True):
             st.session_state.step = "market"
             st.rerun()
 
@@ -53,7 +51,7 @@ def run():
         if sc3.button("App is Slow"):
             st.success("**Solution:** We use cached resources to stay fast. Try clearing your browser cache or restarting the app.")
         
-        if st.button("⬅️ Back to Main Menu"): reset_chat()
+        if st.button("⬅ Back to Main Menu"): reset_chat()
 
     elif st.session_state.step == "guidance":
         st.chat_message("assistant").write("AI Crop Guidance is my specialty. What would you like to know?")
@@ -66,7 +64,7 @@ def run():
         if sc3.button("New Crop Requests"):
             st.success("**Solution:** Currently we support 22 crops. New datasets are being trained for the next update (v2.1).")
 
-        if st.button("⬅️ Back to Main Menu"): reset_chat()
+        if st.button("⬅ Back to Main Menu"): reset_chat()
 
     elif st.session_state.step == "market":
         st.chat_message("assistant").write("I can help you understand market trends and prices.")
@@ -79,7 +77,7 @@ def run():
         if sc3.button("Price Forecasting"):
             st.success("**Coming Soon:** Historical trend analysis and price forecasting feature is in the Phase 4 roadmap.")
 
-        if st.button("⬅️ Back to Main Menu"): reset_chat()
+        if st.button("⬅ Back to Main Menu"): reset_chat()
 
     st.markdown("---")
     st.caption("CropVanta Intelligent Support Engine | Version 2.0.0")

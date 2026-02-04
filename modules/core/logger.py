@@ -10,7 +10,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        RotatingFileHandler("logs/app.log", maxBytes=10**6, backupCount=3) # 1MB limit per file
+        RotatingFileHandler("logs/app.log", maxBytes=10**6, backupCount=3) 
     ]
 )
 

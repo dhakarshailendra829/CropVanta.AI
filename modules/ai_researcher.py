@@ -11,15 +11,12 @@ def perform_crop_research(crop_name: str) -> str:
     """
     logger.info(f"Starting autonomous research for: {crop_name}")
     
-    # 1. Search for live data
     raw_data = fetch_agri_trends(crop_name)
     
-    # 2. Format the output so it looks like a professional report
     if "⚠️" in raw_data:
-        return raw_data # Return error message if search failed
+        return raw_data 
     
-    # Formatting the raw search into a clean readable summary
-    summary = f"""
+        summary = f"""
     ### 🔬 Autonomous Research Report: {crop_name.capitalize()}
     
     **Latest Trends (2025-2026):**
@@ -37,7 +34,6 @@ def fetch_agri_trends(query: str):
     """Deep search using DuckDuckGo with Error Handling"""
     try:
         search = DuckDuckGoSearchRun()
-        # Specific query for better results
         enhanced_query = f"modern cultivation of {query} crop yield 2026 research"
         
         results = search.run(enhanced_query)
@@ -50,5 +46,4 @@ def fetch_agri_trends(query: str):
 
     except Exception as e:
         logger.error(f"Search failed for {query}: {str(e)}")
-        # Professional fallback if internet is down or blocked
-        return f"⚠️ **Note:** Real-time web search for {query} is temporarily slow. Our internal 2026 database suggests maintaining optimal NPK levels and checking local moisture."
+        return f" **Note:** Real-time web search for {query} is temporarily slow. Our internal 2026 database suggests maintaining optimal NPK levels and checking local moisture."

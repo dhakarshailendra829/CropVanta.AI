@@ -16,7 +16,6 @@ class MarketAdvisor:
 
             latest_price = filtered_df.iloc[-1]['modal_price']
             
-            # Fetch headlines for Sentiment (Simulation or API call)
             sample_headlines = [f"{crop} prices hitting record highs", f"High demand for {crop} in major markets"]
             sentiment = analyze_market_mood(sample_headlines)
 
@@ -24,7 +23,7 @@ class MarketAdvisor:
                 "status": "success",
                 "insights": {
                     "current_modal": latest_price,
-                    "trend_sentiment": sentiment, # Added Sentiment logic
+                    "trend_sentiment": sentiment, 
                     "volatility": round(filtered_df['modal_price'].std(), 2)
                 }
             }
