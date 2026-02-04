@@ -10,7 +10,6 @@ from modules.core.schemas import WeatherData
 
 logger = get_logger("Weather_Advisor")
 
-# Load ML model
 try:
     rf_temp = joblib.load("models/rf_temp.pkl")
 except Exception as e:
@@ -43,12 +42,11 @@ def get_live_weather(location_name: str, date: datetime):
         
         idx = daily["time"].index(date_str)
         
-        # Pydantic validation
         validated_data = WeatherData(
             city=location_name,
             temp=daily["temperature_2m_max"][idx],
             description="Clear Sky",
-            humidity=60 # Default if API doesn't provide
+            humidity=60 
         )
 
         return {

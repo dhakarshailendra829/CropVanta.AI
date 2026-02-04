@@ -6,8 +6,7 @@ from modules.ai_researcher import fetch_agri_trends
 def run():
     st.markdown("<h1 style='text-align: center; color: #2ecc71;'>CropVanta AI Research Agent</h1>", unsafe_allow_html=True)
     
-    # Research Query Section
-    st.subheader("🔍 Autonomous Research")
+    st.subheader(" Autonomous Research")
     user_query = st.text_input("Ask about latest crop technology, pests, or fertilizers:")
     
     if st.button("Research on Internet"):
@@ -17,7 +16,6 @@ def run():
             st.write(research_data)
 
     st.markdown("---")
-    # Existing Button Logic... (Baki ka buttons wala code niche as it is rahega)
 
     if "step" not in st.session_state:
         st.session_state.step = "main"
@@ -38,7 +36,7 @@ def run():
         if c2.button("🌱 Crop Guidance", use_container_width=True):
             st.session_state.step = "guidance"
             st.rerun()
-        if c3.button("📊 Market Queries", use_container_width=True):
+        if c3.button(" Market Queries", use_container_width=True):
             st.session_state.step = "market"
             st.rerun()
 

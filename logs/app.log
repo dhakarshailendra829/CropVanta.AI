@@ -29,3 +29,4 @@
 2026-02-04 15:33:40,111 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
 2026-02-04 15:33:42,102 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
 2026-02-04 15:51:13,861 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-05 01:13:23,813 - CropVanta_Main - INFO - Resources loaded successfully.

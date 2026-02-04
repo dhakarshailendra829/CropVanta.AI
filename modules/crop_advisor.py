@@ -2,7 +2,6 @@ import numpy as np
 from typing import Dict, Any, Optional
 from modules.core.logger import get_logger
 from modules.core.schemas import CropInput
-# --- NEW: Autonomous Research Import ---
 from modules.ai_researcher import perform_crop_research 
 
 logger = get_logger("Crop_Advisor_Engine")
@@ -11,7 +10,7 @@ class CropAdvisor:
     def __init__(self, model: Any, scaler: Any):
         self.model = model
         self.scaler = scaler
-        self.version = "3.0.0-Autonomous" # Upgraded Version
+        self.version = "3.0.0-Autonomous"
         
         self.crop_map = {
             20: 'Rice', 11: 'Maize', 3: 'Chickpea', 9: 'Kidneybeans', 18: 'Pigeonpeas',
@@ -42,21 +41,18 @@ class CropAdvisor:
             predicted_label = self.model.predict(scaled_features)[0]
             crop_name = self.crop_map.get(predicted_label, "Unknown")
 
-            # --- STEP 1: Calculate Confidence ---
             confidence = 0.0
             if hasattr(self.model, "predict_proba"):
                 probabilities = self.model.predict_proba(scaled_features)[0]
                 confidence = float(np.max(probabilities))
 
-            # --- STEP 2: AUTONOMOUS RESEARCH (The Upgrade) ---
-            # Yeh line DuckDuckGo se live data fetch karegi
             logger.info(f"Triggering Autonomous Research for: {crop_name}")
             research_insights = perform_crop_research(crop_name)
 
             return {
                 "status": "success",
                 "crop_name": crop_name,
-                "description": research_insights, # Ab yahan LIVE data aayega
+                "description": research_insights, 
                 "confidence_score": round(confidence * 100, 2),
                 "model_version": self.version,
                 "metadata": {
