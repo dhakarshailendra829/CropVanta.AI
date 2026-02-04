@@ -8,3 +8,9 @@ requests
 scikit-learn
 beautifulsoup4
 lxml
+pydantic
+pydantic-settings
+langchain-community
+duckduckgo-search
+textblob
+python-dotenv

@@ -170,8 +170,8 @@ This transforms the dashboard from a tool into an **interactive advisor**.
 ### Clone Repository
 
 ```bash
-git clone https://github.com/dhakarshailendra829/AI_Crop_Advisor.git
-cd AI_Crop_Advisor
+git clone https://github.com/dhakarshailendra829/CropVanta.AI.git
+cd CropVanta.AI
 ```
 
 ### Install Dependencies
