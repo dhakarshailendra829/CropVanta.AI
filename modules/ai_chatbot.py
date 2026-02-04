@@ -1,9 +1,23 @@
 import streamlit as st
 
+import streamlit as st
+from modules.ai_researcher import fetch_agri_trends
+
 def run():
-    st.markdown("<h1 style='text-align: center; color: #2ecc71;'>CropVanta AI Guide</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #94a3b8;'>How can I assist you today?</p>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #2ecc71;'>CropVanta AI Research Agent</h1>", unsafe_allow_html=True)
+    
+    # Research Query Section
+    st.subheader("🔍 Autonomous Research")
+    user_query = st.text_input("Ask about latest crop technology, pests, or fertilizers:")
+    
+    if st.button("Research on Internet"):
+        with st.spinner("Fetching live data from Web..."):
+            research_data = fetch_agri_trends(user_query)
+            st.info("Results from Agriculture Databases & Web:")
+            st.write(research_data)
+
     st.markdown("---")
+    # Existing Button Logic... (Baki ka buttons wala code niche as it is rahega)
 
     if "step" not in st.session_state:
         st.session_state.step = "main"

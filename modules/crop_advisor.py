@@ -2,17 +2,16 @@ import numpy as np
 from typing import Dict, Any, Optional
 from modules.core.logger import get_logger
 from modules.core.schemas import CropInput
+# --- NEW: Autonomous Research Import ---
+from modules.ai_researcher import perform_crop_research 
 
-logger = get_logger(__name__)
+logger = get_logger("Crop_Advisor_Engine")
 
 class CropAdvisor:
     def __init__(self, model: Any, scaler: Any):
-        """
-        Initialize with a pre-loaded model and scaler.
-        """
         self.model = model
         self.scaler = scaler
-        self.version = "2.1.0-Prod"
+        self.version = "3.0.0-Autonomous" # Upgraded Version
         
         self.crop_map = {
             20: 'Rice', 11: 'Maize', 3: 'Chickpea', 9: 'Kidneybeans', 18: 'Pigeonpeas',
@@ -23,9 +22,6 @@ class CropAdvisor:
         }
 
     def _prepare_features(self, data: CropInput) -> np.ndarray:
-        """
-        Converts the Pydantic schema into a scaled NumPy array.
-        """
         try:
             feature_list = [
                 data.nitrogen, data.phosphorus, data.potassium, 
@@ -34,57 +30,43 @@ class CropAdvisor:
             features = np.array(feature_list).reshape(1, -1)
             return self.scaler.transform(features)
         except Exception as e:
-            logger.error(f"Feature transformation failed: {e}")
-            raise ValueError("Invalid soil or weather data provided.")
+            logger.error(f"Transformation Error: {e}")
+            raise ValueError("Invalid Input Data")
 
     def recommend_crop(self, input_data: CropInput) -> Dict[str, Any]:
         """
-        Predict the most suitable crop and provide rich metadata.
+        Predicts crop AND performs autonomous web research.
         """
         try:
             scaled_features = self._prepare_features(input_data)
-            
             predicted_label = self.model.predict(scaled_features)[0]
-            crop_name = self.crop_map.get(predicted_label, f"Unknown Crop (ID: {predicted_label})")
-            
-            description = self._get_crop_description(crop_name)
+            crop_name = self.crop_map.get(predicted_label, "Unknown")
 
+            # --- STEP 1: Calculate Confidence ---
             confidence = 0.0
             if hasattr(self.model, "predict_proba"):
                 probabilities = self.model.predict_proba(scaled_features)[0]
                 confidence = float(np.max(probabilities))
 
-            logger.info(f"Prediction: {crop_name} | Confidence: {confidence:.2f}")
+            # --- STEP 2: AUTONOMOUS RESEARCH (The Upgrade) ---
+            # Yeh line DuckDuckGo se live data fetch karegi
+            logger.info(f"Triggering Autonomous Research for: {crop_name}")
+            research_insights = perform_crop_research(crop_name)
 
             return {
                 "status": "success",
                 "crop_name": crop_name,
-                "description": description,
+                "description": research_insights, # Ab yahan LIVE data aayega
                 "confidence_score": round(confidence * 100, 2),
                 "model_version": self.version,
                 "metadata": {
                     "is_reliable": confidence > 0.75,
-                    "engine": type(self.model).__name__,
-                    "label_id": int(predicted_label)
+                    "engine": "RandomForest_Integrated",
+                    "label_id": int(predicted_label),
+                    "research_status": "Complete"
                 }
             }
 
         except Exception as e:
             logger.error(f"Recommendation Error: {str(e)}")
-            return {
-                "status": "error",
-                "message": f"AI Engine Error: {str(e)}"
-            }
-
-    def _get_crop_description(self, crop_name: str) -> str:
-        """
-        Returns a professional description based on the crop.
-        """
-        descriptions = {
-            "Coffee": "Ideal for high-altitude regions with well-drained soil and consistent rainfall.",
-            "Rice": "Requires high humidity and heavy rainfall/irrigation with clayey soil.",
-            "Maize": "Versatile crop requiring moderate temperatures and well-aerated soil.",
-            "Coconut": "Thrives in tropical climates with sandy-loamy soil and high humidity.",
-            "Blackgram": "Short-duration pulse crop ideal for low to moderate rainfall areas."
-        }
-        return descriptions.get(crop_name, "This crop is highly suitable based on your current soil NPK and weather conditions. Consult the 'Crop Calendar' for sowing dates.")
+            return {"status": "error", "message": f"AI Engine Error: {str(e)}"}

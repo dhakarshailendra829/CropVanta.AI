@@ -1,0 +1,31 @@
+--- Log Initialized ---2026-02-04 15:18:02,725 - CropVanta_Main - INFO - ML Models and Scalers loaded successfully.
+2026-02-04 15:18:02,808 - CropVanta_Main - INFO - Market data CSV loaded.
+2026-02-04 15:21:00,767 - CropVanta_Main - INFO - ML Models and Scalers loaded successfully.
+2026-02-04 15:21:00,786 - CropVanta_Main - INFO - Market data CSV loaded.
+2026-02-04 15:26:15,577 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-04 15:28:59,750 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-04 15:29:57,457 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:02,549 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:07,511 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:09,403 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:10,502 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:12,499 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:22,548 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:24,467 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:31,717 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:41,498 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:41,909 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:42,415 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:30:44,470 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:31:17,624 - modules.crop_advisor - INFO - Prediction: Coffee | Confidence: 0.10
+2026-02-04 15:31:27,316 - modules.crop_advisor - INFO - Prediction: Coffee | Confidence: 0.09
+2026-02-04 15:31:29,047 - modules.crop_advisor - INFO - Prediction: Coffee | Confidence: 0.09
+2026-02-04 15:31:43,059 - modules.crop_advisor - INFO - Prediction: Orange | Confidence: 0.09
+2026-02-04 15:31:44,886 - modules.crop_advisor - INFO - Prediction: Orange | Confidence: 0.09
+2026-02-04 15:31:45,798 - modules.crop_advisor - INFO - Prediction: Orange | Confidence: 0.09
+2026-02-04 15:31:48,529 - modules.crop_advisor - INFO - Prediction: Orange | Confidence: 0.09
+2026-02-04 15:33:34,997 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:33:37,174 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:33:40,111 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:33:42,102 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-04 15:51:13,861 - CropVanta_Main - INFO - Resources loaded successfully.
