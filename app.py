@@ -201,7 +201,7 @@ with tabs[3]:
             if analysis.get("status") == "success":
                 st.dataframe(analysis["data"], use_container_width=True)
             else:
-                st.warning(f"🔍 No live data for '{crop_query}' in {selected_state}. Try searching 'Rice' or 'Wheat'.")
+                st.warning(f"No live data for '{crop_query}' in {selected_state}. Try searching 'Rice' or 'Wheat'.")
 
     with c2:
         st.markdown("<h3 style='color: #00fbff;'>🗓 Crop Calendar</h3>", unsafe_allow_html=True)

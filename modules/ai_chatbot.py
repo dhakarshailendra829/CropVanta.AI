@@ -39,7 +39,7 @@ def run():
         if sc3.button("App is Slow"):
             st.success("**Solution:** We use cached resources to stay fast. Try clearing your browser cache or restarting the app.")
         
-        if st.button("⬅️ Back to Main Menu"): reset_chat()
+        if st.button("⬅ Back to Main Menu"): reset_chat()
 
     elif st.session_state.step == "guidance":
         st.chat_message("assistant").write("AI Crop Guidance is my specialty. What would you like to know?")
@@ -52,7 +52,7 @@ def run():
         if sc3.button("New Crop Requests"):
             st.success("**Solution:** Currently we support 22 crops. New datasets are being trained for the next update (v2.1).")
 
-        if st.button("⬅️ Back to Main Menu"): reset_chat()
+        if st.button("⬅ Back to Main Menu"): reset_chat()
 
     elif st.session_state.step == "market":
         st.chat_message("assistant").write("I can help you understand market trends and prices.")
@@ -65,7 +65,7 @@ def run():
         if sc3.button("Price Forecasting"):
             st.success("**Coming Soon:** Historical trend analysis and price forecasting feature is in the Phase 4 roadmap.")
 
-        if st.button("⬅️ Back to Main Menu"): reset_chat()
+        if st.button("⬅ Back to Main Menu"): reset_chat()
 
     st.markdown("---")
     st.caption("CropVanta Intelligent Support Engine | Version 2.0.0")
