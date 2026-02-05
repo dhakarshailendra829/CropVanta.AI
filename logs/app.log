@@ -30,3 +30,14 @@
 2026-02-04 15:33:42,102 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
 2026-02-04 15:51:13,861 - CropVanta_Main - INFO - Resources loaded successfully.
 2026-02-05 01:13:23,813 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-05 11:23:32,482 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-05 11:24:02,780 - Crop_Advisor_Engine - INFO - Triggering Autonomous Research for: Coffee
+2026-02-05 11:24:02,786 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-05 11:24:02,801 - AI_Researcher - ERROR - Search failed for Coffee: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-05 11:24:02,806 - Crop_Advisor_Engine - ERROR - Recommendation Error: cannot access local variable 'summary' where it is not associated with a value
+2026-02-05 11:28:28,119 - AI_Researcher - ERROR - Search failed for : Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-05 11:28:33,707 - AI_Researcher - ERROR - Search failed for : Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-05 11:37:59,210 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-05 11:38:13,515 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-05 11:38:13,521 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-05 11:38:13,525 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
