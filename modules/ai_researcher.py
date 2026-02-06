@@ -9,11 +9,9 @@ def perform_crop_research(crop_name: str) -> str:
     
     raw_data = fetch_agri_trends(crop_name)
     
-    # Check if raw_data is just an error message
-    if "⚠️" in raw_data or "slow" in raw_data:
+    if "*#*" in raw_data or "slow" in raw_data:
         return raw_data 
 
-    # FIXED: Indentation corrected so summary always returns
     summary = f"""
 ### 🔬 Autonomous Research Report: {crop_name.capitalize()}
 
@@ -40,5 +38,4 @@ def fetch_agri_trends(query: str):
         return results
     except Exception as e:
         logger.error(f"Search failed: {str(e)}")
-        # FALLBACK: Detailed offline knowledge
-        return f"⚠️ **Note:** Real-time web search for {query} is temporarily slow. Our internal 2026 database suggests maintaining optimal NPK levels, monitoring soil moisture, and checking for local climate-resilient seed varieties."
+        return f"*#* **Note:** Real-time web search for {query} is temporarily slow. Our internal 2026 database suggests maintaining optimal NPK levels, monitoring soil moisture, and checking for local climate-resilient seed varieties."

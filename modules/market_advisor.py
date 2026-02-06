@@ -11,20 +11,17 @@ class MarketAdvisor:
             if df.empty:
                 return {"status": "error", "message": "Database is empty"}
 
-            # Clean data for better matching
             df['commodity'] = df['commodity'].str.lower().str.strip()
             df['state'] = df['state'].str.lower().str.strip()
             
             search_crop = crop.lower().strip()
             search_state = state.lower().strip() if state else None
 
-            # Smart Filter: State and Crop both
             if search_state:
                 filtered_df = df[(df['commodity'].str.contains(search_crop)) & (df['state'] == search_state)]
             else:
                 filtered_df = df[df['commodity'].str.contains(search_crop)]
 
-            # Fallback: Agar state mein nahi mila, toh pure India ka data dikhao
             if filtered_df.empty:
                 filtered_df = df[df['commodity'].str.contains(search_crop)]
                 logger.warning(f"No data for {crop} in {state}, showing national average.")
@@ -32,7 +29,6 @@ class MarketAdvisor:
             if filtered_df.empty:
                 return {"status": "no_data", "message": f"No data found for {crop}."}
 
-            # Insights Calculation
             latest_price = filtered_df.iloc[-1]['modal_price']
             avg_price = filtered_df['modal_price'].mean()
             
@@ -41,7 +37,7 @@ class MarketAdvisor:
 
             return {
                 "status": "success",
-                "data": filtered_df.tail(10), # Return last 10 records for the graph
+                "data": filtered_df.tail(10), 
                 "insights": {
                     "current_modal": latest_price,
                     "avg_price": round(avg_price, 2),

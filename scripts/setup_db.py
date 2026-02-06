@@ -5,7 +5,7 @@ def initialize_project():
     
     folders = ['models', 'data', 'logs', 'modules', 'core', 'scripts']
     
-    print("🚀 Initializing CropVanta.AI Environment...")
+    print(" Initializing CropVanta.AI Environment...")
     
     for folder in folders:
         if not os.path.exists(folder):

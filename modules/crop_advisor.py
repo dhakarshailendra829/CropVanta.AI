@@ -12,7 +12,6 @@ class CropAdvisor:
         self.scaler = scaler
         self.version = "3.1.0-Stable"
         
-        # Offline Backup Database (Agar Research fail ho jaye)
         self.offline_db = {
             'Rice': "Requires high humidity and heavy rainfall. Best grown in clayey soil.",
             'Maize': "Requires moderate temperatures and well-drained fertile soil.",
@@ -43,7 +42,6 @@ class CropAdvisor:
 
     def recommend_crop(self, input_data: CropInput) -> Dict[str, Any]:
         try:
-            # 1. Prediction (Fastest Part)
             scaled_features = self._prepare_features(input_data)
             predicted_label = self.model.predict(scaled_features)[0]
             crop_name = self.crop_map.get(predicted_label, "Unknown")
@@ -53,14 +51,11 @@ class CropAdvisor:
                 probabilities = self.model.predict_proba(scaled_features)[0]
                 confidence = float(np.max(probabilities))
 
-            # 2. Autonomous Research with Error Protection
             try:
                 logger.info(f"Attempting Research for: {crop_name}")
-                # Humein yahan ensure karna hai ki ye function app ko hang na kare
                 research_insights = perform_crop_research(crop_name)
                 
-                # Agar research empty aayi toh fallback use karein
-                if not research_insights or "⚠️" in research_insights:
+                if not research_insights or "**" in research_insights:
                     research_insights = self.offline_db.get(crop_name, "Highly suitable based on soil NPK levels.")
             except Exception as res_err:
                 logger.warning(f"Research failed, using offline data: {res_err}")

@@ -43,7 +43,6 @@ def local_css(file_name):
 load_modern_css()  
 local_css("styles.css")  
 
-# Ensure Directories exist
 for path in ["uploaded_papers", "data/feedback", "logs"]:
     Path(path).mkdir(parents=True, exist_ok=True)
 
@@ -94,14 +93,14 @@ tabs = st.tabs([
     "📈 Market & Calendar", "📚 Research Portal", "🤖 AI Assistant", "👥 Community"
 ])
 
-# --- TAB 0: DASHBOARD ---
 with tabs[0]:
-    st_autorefresh(interval=10000, key="dashboard_refresh") 
+    st_autorefresh(interval=1000, key="dashboard_clock") 
 
     st.markdown("""<div style='background: rgba(46, 204, 113, 0.1); padding: 10px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #2ecc71;'><marquee behavior="scroll" direction="left" style='color: #2ecc71; font-weight: bold;'>🌾 Rabi Sowing Target Achieved: 102% | 🚜 New Subsidy on Solar Pumps Announced | 📈 Organic Wheat Exports Up by 14% | 🌦️ El Niño impact weakening for 2026 Monsoon.</marquee></div>""", unsafe_allow_html=True)
 
     now = datetime.now()
     hour = now.hour
+    
     if hour < 12:
         emoji, greeting, bg_grad = "🌅", "Good Morning", "linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)"
     elif hour < 18:
@@ -109,22 +108,33 @@ with tabs[0]:
     else:
         emoji, greeting, bg_grad = "🌙", "Good Evening", "linear-gradient(135deg, #2c3e50 0%, #000000 100%)"
     
+    current_time = now.strftime("%H:%M:%S")
+    current_date = now.strftime("%d %b %Y")
+    current_day = now.strftime("%A")
+
     st.markdown(f"""
-        <div style='background: {bg_grad}; padding: 40px; border-radius: 25px; border: 1px solid #334155; text-align: center; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);'>
-            <h1 style='font-size: 3.5rem; margin:0; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);'>
-                {emoji} {greeting}, Shailendra!
-            </h1>
-            <p style='color: #f1f5f9; font-size: 1.3rem; margin-top: 10px; opacity: 0.9;'>CropVanta AI: Mission Control 2026</p>
+        <div style='background: {bg_grad}; padding: 30px; border-radius: 25px; border: 1px solid #334155; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; justify-content: space-between; align-items: center;'>
+            <div style='text-align: left;'>
+                <h1 style='font-size: 3rem; margin:0; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);'>
+                    {emoji} {greeting}, Shailendra!
+                </h1>
+                <p style='color: #f1f5f9; font-size: 1.2rem; margin-top: 5px; opacity: 0.9;'>CropVanta AI: Mission Control 2026</p>
+            </div>
+            <div style='text-align: right; background: rgba(0,0,0,0.2); padding: 15px 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); min-width: 200px;'>
+                <div style='color: #00fbff; font-family: "Courier New", monospace; font-size: 2.2rem; font-weight: bold; line-height: 1;'>{current_time}</div>
+                <div style='color: white; font-size: 1.1rem; margin-top: 5px; font-weight: 500;'>{current_day}</div>
+                <div style='color: #cbd5e1; font-size: 0.9rem;'>{current_date}</div>
+            </div>
         </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("### 📊 National Crop Production Trends")
+    st.markdown("### National Crop Production Trends")
     chart_data = pd.DataFrame({
         'Year': ['2021', '2022', '2023', '2024', '2025', '2026 (Est)'],
         'Rice': [124, 129, 132, 135, 138, 142],
         'Wheat': [109, 107, 110, 112, 115, 118]
     }).set_index('Year')
-    st.area_chart(chart_data, color=["#00fbff", "#2ecc71"])
+    st.area_chart(chart_data, color=["#00ff1a", "#250a9e"])
 
     c1, c2, c3, c4 = st.columns(4)
     with c1: st.metric("Soil Health Index", "8.4/10", "Optimal")
@@ -145,10 +155,13 @@ with tabs[0]:
     with col_quote:
         st.markdown(f"<div style='background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border-left: 10px solid #2ecc71; height: 100%; display: flex; align-items: center;'><h2 style='color: #f8fafc; font-style: italic;'>\"{random.choice(quotes)}\"</h2></div>", unsafe_allow_html=True)
 
-# --- TAB 1: CROP AI ---
 with tabs[1]:
     st.subheader("🌱 Precision Crop Recommendation")
-    if 'last_result' not in st.session_state: st.session_state.last_result = None
+    
+    if 'last_result' not in st.session_state: 
+        st.session_state.last_result = None
+    if 'trigger_balloons' not in st.session_state: 
+        st.session_state.trigger_balloons = False
 
     with st.form("prediction_form"):
         c1, c2, c3 = st.columns(3)
@@ -161,35 +174,42 @@ with tabs[1]:
         with c3:
             ph = st.number_input("Soil pH", 0.0, 14.0, 6.5)
             rain = st.number_input("Rainfall (mm)", 0.0, 500.0, 100.0)
+        
         submit = st.form_submit_button("Run AI Analysis")
 
     if submit and services:
-        with st.spinner("🤖 AI analyzing soil and fetching 2026 research..."):
+        with st.spinner(" AI analyzing soil and fetching 2026 research..."):
             try:
-                v_input = CropInput(nitrogen=N, phosphorus=P, potassium=K, temperature=temp, humidity=60.0, ph=ph, rainfall=rain)
+                v_input = CropInput(nitrogen=N, phosphorus=P, potassium=K, 
+                                   temperature=temp, humidity=60.0, ph=ph, rainfall=rain)
                 st.session_state.last_result = services["advisor"].recommend_crop(v_input)
+                
+                if st.session_state.last_result.get("status") == "success":
+                    st.session_state.trigger_balloons = True
             except Exception as e:
                 st.error(f"Prediction Error: {e}")
 
     if st.session_state.last_result:
         res = st.session_state.last_result
         if res["status"] == "success":
-            st.balloons()
+            
+            if st.session_state.trigger_balloons:
+                st.balloons()
+                st.session_state.trigger_balloons = False 
+
             st.markdown(f"""
                 <div style='background: rgba(46, 204, 113, 0.1); padding: 25px; border-radius: 15px; border: 1px solid #2ecc71;'>
-                    <h2 style='color: #2ecc71;'>✅ Recommended: {res['crop_name']}</h2>
+                    <h2 style='color: #2ecc71;'>Recommended: {res['crop_name']}</h2>
                     <p style='font-size: 1.1rem;'><b>AI Confidence:</b> {res['confidence_score']}%</p>
                     <hr style='border-color: #2ecc71;'>
                     <h4>🔬 2026 Research Insights:</h4>
                     <div style='color: #cbd5e1;'>{res['description']}</div>
                 </div>
             """, unsafe_allow_html=True)
-
-# --- TAB 3: MARKET ---
 with tabs[3]:
     c1, c2 = st.columns([2, 1])
     with c1:
-        st.markdown("### 📈 Market Insights")
+        st.markdown("### Market Insights")
         if not market_df.empty:
             sel_state = st.selectbox("Select State", market_df['state'].unique())
             crop_q = st.text_input("Search Crop Price", "Wheat")
@@ -201,10 +221,9 @@ with tabs[3]:
                 st.warning(f"No data for '{crop_q}' in {sel_state}. Showing generic listings.")
                 st.dataframe(market_df.head(10), use_container_width=True)
     with c2:
-        st.markdown("### 🗓 Crop Calendar")
+        st.markdown("### Crop Calendar")
         if services["calendar"]: st.dataframe(services["calendar"].get_calendar_df(), use_container_width=True)
 
-# --- TAB 6: COMMUNITY ---
 with tabs[6]:
     st.markdown("<h2 style='color: #FF0080; text-align: center;'>👥 Farmer Community Hub</h2>", unsafe_allow_html=True)
     col_a, col_b = st.columns([1.5, 1])

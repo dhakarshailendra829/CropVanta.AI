@@ -1,83 +1,65 @@
 import streamlit as st
+import pandas as pd
+import os
+from datetime import datetime
 
-import streamlit as st
-from modules.ai_researcher import fetch_agri_trends
+class AIChatbot:
+    def __init__(self, kb_path="data/chatbot_kb.csv"):
+        self.kb_path = kb_path
+        self.default_response = " I'm sorry, I couldn't find an answer to that. Would you like to ask about Agriculture, Mandi rates, or Seeds instead?"
+        self.load_kb()
+
+    def load_kb(self):
+        if os.path.exists(self.kb_path):
+            self.kb_df = pd.read_csv(self.kb_path)
+            self.kb_df['keyword'] = self.kb_df['keyword'].str.lower()
+        else:
+            self.kb_df = pd.DataFrame(columns=['keyword', 'answer'])
+
+    def get_response(self, query):
+        query = query.lower().strip()
+        
+        for _, row in self.kb_df.iterrows():
+            keywords = [k.strip() for k in str(row['keyword']).split(',')]
+            if any(k in query for k in keywords):
+                return row['answer']
+        
+        return self.default_response
 
 def run():
-    st.markdown("<h1 style='text-align: center; color: #2ecc71;'>CropVanta AI Research Agent</h1>", unsafe_allow_html=True)
-    
-    st.subheader(" Autonomous Research")
-    user_query = st.text_input("Ask about latest crop technology, pests, or fertilizers:")
-    
-    if st.button("Research on Internet"):
-        with st.spinner("Fetching live data from Web..."):
-            research_data = fetch_agri_trends(user_query)
-            st.info("Results from Agriculture Databases & Web:")
-            st.write(research_data)
+    st.markdown("""
+        <style>
+        .stChatFloatingInputContainer { background-color: #0e1117 !important; }
+        .bot-msg { background: #1e293b; padding: 15px; border-radius: 15px; border-left: 5px solid #00fbff; margin: 10px 0; color: #e2e8f0; }
+        .user-msg { background: #0f172a; padding: 15px; border-radius: 15px; border-right: 5px solid #FF0080; text-align: right; margin: 10px 0; color: #ffffff; }
+        </style>
+    """, unsafe_allow_html=True)
 
-    st.markdown("---")
+    bot = AIChatbot()
 
-    if "step" not in st.session_state:
-        st.session_state.step = "main"
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
+    st.title("CropVanta AI Support")
+    st.caption("Powered by Local Knowledge Base | 2026 Stable")
 
-    def reset_chat():
-        st.session_state.step = "main"
+    if "messages" not in st.session_state:
+        st.session_state.messages = [{"role": "bot", "content": "Namaste! I'm CropVanta AI Assistant . I can help you about soil test, crop recommendation, Crop prices etc."}]
+
+    for msg in st.session_state.messages:
+        div_class = "user-msg" if msg["role"] == "user" else "bot-msg"
+        st.markdown(f"<div class='{div_class}'>{msg['content']}</div>", unsafe_allow_html=True)
+
+    if prompt := st.chat_input("Please Write Your Questions... (e.g., Wheat price, Soil help)"):
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        
+        response = bot.get_response(prompt)
+        st.session_state.messages.append({"role": "bot", "content": response})
+        
         st.rerun()
 
-    if st.session_state.step == "main":
-        st.chat_message("assistant").write("Hello! Welcome to CropVanta Support. Please select a topic to get started:")
-        
-        c1, c2, c3 = st.columns(3)
-        if c1.button("🛠️ Platform Issues", use_container_width=True):
-            st.session_state.step = "issues"
+    with st.sidebar:
+        st.markdown("### 💡 Quick Help")
+        if st.button("🌾 Wheat Cultivation"):
+            st.session_state.messages.append({"role": "user", "content": "Wheat cultivation"})
             st.rerun()
-        if c2.button("🌱 Crop Guidance", use_container_width=True):
-            st.session_state.step = "guidance"
+        if st.button("💰 Current Mandi Rates"):
+            st.session_state.messages.append({"role": "user", "content": "mandi rates"})
             st.rerun()
-        if c3.button(" Market Queries", use_container_width=True):
-            st.session_state.step = "market"
-            st.rerun()
-
-    elif st.session_state.step == "issues":
-        st.chat_message("assistant").write("I'm sorry you're facing trouble. What specific issue are you experiencing?")
-        
-        sc1, sc2, sc3 = st.columns(3)
-        if sc1.button("Login Problems"):
-            st.info("**Solution:** Ensure you are using the correct credentials in the sidebar. Admin access is restricted to authorized users.")
-        if sc2.button("Data Not Loading"):
-            st.warning("**Solution:** Check your internet connection. If you're on a local server, ensure the CSV files in the 'data/' folder are present.")
-        if sc3.button("App is Slow"):
-            st.success("**Solution:** We use cached resources to stay fast. Try clearing your browser cache or restarting the app.")
-        
-        if st.button("⬅ Back to Main Menu"): reset_chat()
-
-    elif st.session_state.step == "guidance":
-        st.chat_message("assistant").write("AI Crop Guidance is my specialty. What would you like to know?")
-        
-        sc1, sc2, sc3 = st.columns(3)
-        if sc1.button("How Prediction Works?"):
-            st.info("**Explanation:** Our Random Forest model analyzes Soil (NPK), pH, and Weather (Temp/Rain) to suggest the best crop for your land.")
-        if sc2.button("Inaccurate Results"):
-            st.warning("**Solution:** Ensure the NPK values are entered correctly from a recent soil test report for 98% accuracy.")
-        if sc3.button("New Crop Requests"):
-            st.success("**Solution:** Currently we support 22 crops. New datasets are being trained for the next update (v2.1).")
-
-        if st.button("⬅ Back to Main Menu"): reset_chat()
-
-    elif st.session_state.step == "market":
-        st.chat_message("assistant").write("I can help you understand market trends and prices.")
-        
-        sc1, sc2, sc3 = st.columns(3)
-        if sc1.button("Mandi Price Delay"):
-            st.info("**Note:** Our Mandi data is updated periodically. For live prices, check the official 'Agmarknet' portal.")
-        if sc2.button("State Not Found"):
-            st.warning("**Solution:** Currently, our dataset focuses on major agricultural states like Punjab, Haryana, and UP.")
-        if sc3.button("Price Forecasting"):
-            st.success("**Coming Soon:** Historical trend analysis and price forecasting feature is in the Phase 4 roadmap.")
-
-        if st.button("⬅ Back to Main Menu"): reset_chat()
-
-    st.markdown("---")
-    st.caption("CropVanta Intelligent Support Engine | Version 2.0.0")
