@@ -110,3 +110,91 @@
 2026-02-06 11:54:11,890 - modules.land_suitability - ERROR - GeoData Error: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)
 2026-02-06 11:54:23,363 - modules.land_suitability - ERROR - GeoData Error: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)
 2026-02-06 11:54:48,077 - modules.land_suitability - ERROR - GeoData Error: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)
+2026-02-06 12:34:06,343 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 12:35:49,091 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 14:42:20,127 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 14:48:08,852 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 14:49:53,166 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 14:49:53,169 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 14:49:53,175 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 15:10:39,368 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 15:13:50,395 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 15:33:01,875 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 15:33:20,419 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 15:33:20,422 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 15:33:20,427 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 15:39:38,051 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 15:55:06,589 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 15:56:53,230 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 15:56:53,232 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 15:56:53,247 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 15:57:58,638 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 15:57:58,639 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 15:57:58,643 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:00:33,298 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:00:33,308 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:00:33,379 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:00:38,933 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:00:38,935 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:00:38,939 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:02:54,949 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:02:54,952 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:02:54,956 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:13:32,909 - Crop_Advisor_Engine - INFO - Attempting Research for: Orange
+2026-02-06 16:13:32,911 - AI_Researcher - INFO - Starting autonomous research for: Orange
+2026-02-06 16:13:32,916 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:17:04,270 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 16:17:35,966 - Crop_Advisor_Engine - INFO - Attempting Research for: Orange
+2026-02-06 16:17:35,969 - AI_Researcher - INFO - Starting autonomous research for: Orange
+2026-02-06 16:17:35,973 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:21:53,245 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 16:22:11,876 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:22:11,879 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:22:11,884 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:28:03,187 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 16:29:59,985 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:29:59,988 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:29:59,999 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:31:04,004 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:31:04,022 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:31:04,030 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:31:49,827 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 16:31:57,227 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:31:57,231 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:31:57,262 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:32:10,720 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:32:10,722 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:32:10,726 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:32:14,723 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:32:14,725 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:32:14,728 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:35:47,437 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:35:47,440 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:35:47,444 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:37:14,110 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:37:14,111 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:37:14,114 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:38:47,628 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:38:47,631 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:38:47,634 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:39:22,493 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:39:22,494 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:39:22,499 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:41:43,604 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:41:43,605 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:41:43,607 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:42:10,498 - Crop_Advisor_Engine - INFO - Attempting Research for: Mango
+2026-02-06 16:42:10,502 - AI_Researcher - INFO - Starting autonomous research for: Mango
+2026-02-06 16:42:10,504 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-06 16:47:12,832 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-06 16:47:26,166 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-06 16:47:26,170 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-06 16:47:26,175 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-07 00:16:20,991 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-07 00:16:40,558 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-07 00:16:40,563 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-07 00:16:40,571 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-07 00:19:37,956 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-07 00:20:00,746 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-07 00:20:00,749 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-07 00:20:00,752 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
