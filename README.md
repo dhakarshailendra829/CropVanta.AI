@@ -254,6 +254,6 @@ This project can be used as a learning reference for:
 ## 👤Author
 
 **Shailendra Dhakad**
-AI • Machine Learning • Data‑Driven Systems
+AI • Machine Learning • Data‑Driven Systems • Software Engineering 
 
 ---
