@@ -64,11 +64,9 @@ def init_services():
 
 services = init_services()
 
-# This function provides the data for your Advanced Tab
 @st.cache_data(ttl=3600)
 def get_advanced_resources():
     try:
-        # Fetching real-time Agriculture data (Solar & Soil)
         url = "https://api.open-meteo.com/v1/forecast?latitude=22.71&longitude=75.85&hourly=shortwave_radiation,soil_moisture_3_to_9cm&daily=et0_fao_evapotranspiration&timezone=auto"
         res = requests.get(url).json()
         return {
@@ -77,9 +75,8 @@ def get_advanced_resources():
             "mst": res['hourly']['soil_moisture_3_to_9cm'][0] * 100
         }
     except:
-        return {"sol": 420, "wat": 4.5, "mst": 35.0} # Backup data if API fails
+        return {"sol": 420, "wat": 4.5, "mst": 35.0} 
 
-# Initialize the data once for the whole app
 resource_data = get_advanced_resources()
 s_sol = resource_data["sol"]
 s_wat = resource_data["wat"]
