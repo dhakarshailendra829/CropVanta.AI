@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
+import requests
 import random
 from datetime import datetime
 from pathlib import Path
@@ -63,7 +64,26 @@ def init_services():
 
 services = init_services()
 
-@st.cache_data
+# This function provides the data for your Advanced Tab
+@st.cache_data(ttl=3600)
+def get_advanced_resources():
+    try:
+        # Fetching real-time Agriculture data (Solar & Soil)
+        url = "https://api.open-meteo.com/v1/forecast?latitude=22.71&longitude=75.85&hourly=shortwave_radiation,soil_moisture_3_to_9cm&daily=et0_fao_evapotranspiration&timezone=auto"
+        res = requests.get(url).json()
+        return {
+            "sol": res['hourly']['shortwave_radiation'][0],
+            "wat": res['daily']['et0_fao_evapotranspiration'][0],
+            "mst": res['hourly']['soil_moisture_3_to_9cm'][0] * 100
+        }
+    except:
+        return {"sol": 420, "wat": 4.5, "mst": 35.0} # Backup data if API fails
+
+# Initialize the data once for the whole app
+resource_data = get_advanced_resources()
+s_sol = resource_data["sol"]
+s_wat = resource_data["wat"]
+s_moist = resource_data["mst"]
 def load_market_data():
     try: 
         df = pd.read_csv("data/mandi_prices.csv", encoding="utf-8")
@@ -160,7 +180,7 @@ st.markdown(f"<h1 style='color: #2ecc71; text-align: center; font-size: 3rem;'>�
 
 tabs = st.tabs([
     T['nav_dashboard'], T['nav_crop_ai'], T['nav_land'], 
-    T['nav_market'], T['nav_research'], T['nav_assistant'], T['nav_community'], T['nav_planner']
+    T['nav_market'], T['nav_research'], T['nav_assistant'], T['nav_community'], T['nav_planner'], "Energy & Water AI"
 ])
 
 with tabs[0]:
@@ -327,7 +347,7 @@ with tabs[3]:
 with tabs[6]:
     st.markdown(f"""
         <div style='background: linear-gradient(90deg, #FF0080, #8B00FF); padding: 15px; border-radius: 15px; margin-bottom: 25px;'>
-            <h2 style='color: white; text-align: center; margin:0;'>👥 {T['nav_community']}</h2>
+            <h2 style='color: white; text-align: center; margin:0;'> {T['nav_community']}</h2>
         </div>
     """, unsafe_allow_html=True)
     
@@ -417,7 +437,7 @@ with tabs[7 if len(tabs)>7 else 1]:
     col_calc, col_viz = st.columns([1, 1.2], gap="large")
 
     with col_calc:
-        st.markdown(f"<h4 style='color: #a855f7;'>💰 {T.get('insight_header', 'Economic Forecast')}</h4>", unsafe_allow_html=True)
+        st.markdown(f"<h4 style='color: #a855f7;'> {T.get('insight_header', 'Economic Forecast')}</h4>", unsafe_allow_html=True)
         with st.container(border=True):
             acres = st.slider("Farm Size (Acres)", 1, 50, 5)
             budget = st.number_input("Input Budget (₹)", value=10000)
@@ -435,7 +455,7 @@ with tabs[7 if len(tabs)>7 else 1]:
             """, unsafe_allow_html=True)
 
     with col_viz:
-        st.markdown(f"<h4 style='color: #6366f1;'>⚠️ {T.get('risk_level', 'Real-time Risk Meter')}</h4>", unsafe_allow_html=True)
+        st.markdown(f"<h4 style='color: #6366f1;'> {T.get('risk_level', 'Real-time Risk Meter')}</h4>", unsafe_allow_html=True)
         
         risk_val = 22 
         st.progress(risk_val/100)
@@ -451,16 +471,63 @@ with tabs[7 if len(tabs)>7 else 1]:
         """, unsafe_allow_html=True)
         
         m1, m2 = st.columns(2)
-        m1.metric("Market Sentiment", "Bullish 📈")
+        m1.metric("Market Sentiment", "Bullish")
         m2.metric("Pest Probability", "Low 🛡️")
 
     st.toast("Pro Planner Insights Updated!", icon="💡")
+with tabs[8]:
+    solar_kwh = (s_sol * 5.5) / 1000 
+    carbon_offset = solar_kwh * 0.85 
+
+    st.markdown(f"""
+        <div style='background: linear-gradient(135deg, #065f46 0%, #064e3b 100%); 
+                    padding: 30px; border-radius: 25px; border-bottom: 5px solid #10b981;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center;'>
+            <h1 style='color: #10b981; margin:0;'>⚡ Eco-Harvest Intelligence</h1>
+            <p style='color: #a7f3d0; opacity: 0.9;'>Carbon Credits | Solar Pumping | Smart Irrigation</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    st.write("##")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Solar Potential", f"{s_sol} W/m²", "Optimal")
+        st.write("☀️ **Status:** High PV Yield")
+    with col2:
+        st.metric("Water Evaporation", f"{s_wat} mm", "Alert", delta_color="inverse")
+        st.write("💧 **Status:** High Soil Stress")
+    with col3:
+        st.metric("Carbon Saved", f"{carbon_offset:.2f} kg", "Green Credit")
+        st.write("🌳 **Status:** Planet Positive")
+
+    st.write("---")
+
+    c_graph, c_advice = st.columns([2, 1])
+    
+    with c_graph:
+        st.subheader("Energy-Water Synergy Graph")
+        
+        synergy_data = pd.DataFrame({
+            'Solar Energy (kWh)': [1.1, 3.8, 8.2, 7.1, 2.5, 0.2],
+            'Water Need (Liters)': [35, 15, 5, 20, 55, 40]
+        }, index=['6am', '9am', '12pm', '3pm', '6pm', '9pm'])
+        st.line_chart(synergy_data, color=["#fbbf24", "#3b82f6"])
+
+    with c_advice:
+        st.subheader("AI Automation")
+        st.toggle("Smart Pump Scheduler", value=True)
+        st.toggle("VPD Stress Alert", value=False)
+        
+        st.info(f"**Financial ROI:** Today's Solar harvest saved you **₹{solar_kwh * 7.2:.2f}** in electricity costs.")
+
+    st.success(f" **Action Plan:** Solar intensity is at {s_sol} W/m². We recommend running the irrigation system between 11:30 AM and 2:00 PM to use 100% free energy.")
 with tabs[2]: land_suitability.run()
 with tabs[4]: 
     papers = services["papers"].get_papers()
     if papers:
         for p in papers:
-            with st.expander(f"📖 {p['Title']}"): display_pdf(services["papers"].get_paper_path(p['Filename']))
+            with st.expander(f" {p['Title']}"): display_pdf(services["papers"].get_paper_path(p['Filename']))
 with tabs[5]: ai_chatbot.run()
 
 st.markdown("---")

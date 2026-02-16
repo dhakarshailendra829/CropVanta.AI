@@ -6,7 +6,7 @@ load_dotenv()
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "CropVanta AI "
-    VERSION: str = "2.0.0"
+    VERSION: str = "2.0.1"
     
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     WEATHER_API_KEY: str = os.getenv("WEATHER_API_KEY", "")
