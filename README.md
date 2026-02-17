@@ -264,12 +264,15 @@ This project can be used as a learning reference for:
 AI • Machine Learning • Data‑Driven Systems • Software Engineering 
 
 ---
+
 <p align="center">
-  <b>CropVanta.AI</b> 🌱 <br/>
-  Intelligent Crop Advisory Platform powered by Machine Learning <br/><br/>
-  © 2024–2026 CropVanta.AI • Version 2.0.1 <br/>
-  Licensed under Apache License 2.0 <br/>
-  Built with Python, Streamlit & Advanced CSS
+  <b>CropVanta.AI</b> 🌾 <br/>
+  Advanced AI & Deep Learning based Agricultural Intelligence System <br/><br/>
+  Version 2.0.1 <br/>
+  Architected & Developed by Shailendra Dhakad <br/>
+  AI Researcher & Patent Inventor & ML Engineer & Software Engineer <br/>
+  Licensed under Apache License 2.0
 </p>
 
 ---
+
