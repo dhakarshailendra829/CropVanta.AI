@@ -62,14 +62,14 @@ The model predicts the **most suitable crop class** for given conditions using:
 Predictions are not shown as raw labels but are **contextualized inside a decision dashboard**.
 
 ---
----
-
-### ⚡ Sustainable Resource & Agrivoltaic Intelligence
+### Sustainable Resource & Agrivoltaic Intelligence
 The system now features a 2026-standard Resource Management module:
 * **Real-time Solar Irradiance:** Monitors solar intensity ($W/m^2$) to calculate the feasibility of Solar Water Pumps.
 * **Evapotranspiration (ET0) Analytics:** Uses FAO-56 standard logic to predict daily water loss from the soil.
 * **Carbon Credit Estimator:** Automatically calculates $CO_2$ offset based on solar energy usage (1 kWh ≈ 0.85kg CO2 saved).
 * **ROI Dashboard:** Converts renewable energy harvest into direct financial savings (₹).
+
+---
 ### Weather‑Aware Decision Logic
 
 Weather data plays a critical role in agriculture. This system integrates **short‑term weather intelligence** to:
