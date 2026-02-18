@@ -205,3 +205,361 @@
 2026-02-16 19:53:42,362 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
 2026-02-16 19:53:42,365 - AI_Researcher - INFO - Starting autonomous research for: Coffee
 2026-02-16 19:53:42,378 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-02-18 23:52:25,176 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-02-19 00:00:18,442 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-02-19 00:00:36,815 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-02-19 00:08:16,153 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-19 00:08:26,601 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-770' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,658 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-775' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,662 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-776' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,665 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-777' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,668 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-778' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,671 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-779' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,676 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-780' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,678 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-781' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,680 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-782' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,683 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-783' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,685 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-784' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,687 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-785' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,691 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-786' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,693 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-789' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,695 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-790' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,697 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-791' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,700 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-794' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,704 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-795' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,708 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-798' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,710 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-799' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,712 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-802' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,716 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-803' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,719 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-804' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,721 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-805' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,723 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-806' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:08:26,725 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-809' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shailendra\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-02-19 00:18:19,101 - CropVanta_Main - INFO - Resources loaded successfully.

@@ -15,3 +15,29 @@ class WeatherData(BaseModel):
     temp: float
     description: str
     humidity: int
+# ---------------------------
+# User Schemas (SaaS Layer)
+# ---------------------------
+
+class UserCreate(BaseModel):
+    full_name: str = Field(..., min_length=2, max_length=120)
+    email: str = Field(..., max_length=150)
+    password: str = Field(..., min_length=6)
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+class UserResponse(BaseModel):
+    id: int
+    full_name: str
+    email: str
+    role: str
+    is_active: bool
+
+    class Config:
+        from_attributes = True

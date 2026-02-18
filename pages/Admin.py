@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import json
 from pathlib import Path
-from modules.core.auth import check_password
 from modules.core.logger import get_logger
 from modules.news_fetcher import PaperManager
 
@@ -25,9 +24,11 @@ def run_admin():
         </style>
     """, unsafe_allow_html=True)
 
-    if not check_password():
-        st.warning("🔒 Restricted Access: Please authenticate via Sidebar.")
+    if "user_role" not in st.session_state or st.session_state["user_role"] != "admin":
+        st.warning("🔒 Admin access required.")
         st.stop()
+
+
 
     st.title("👨‍💻 System Mission Control")
     st.markdown("---")

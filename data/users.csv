@@ -1,0 +1,3 @@
+full_name,email,hashed_password,role
+Shailendra Test,testuser@aicrop.com,"$argon2id$v=19$m=65536,t=3,p=4$IUSIkRLC+F8LgTDGmBMipA$fTELxRMIPDxU/BeDMhrHKolaYkdV+N0+0hBibAG6SE8",user
+Shailendra,Training@gmail.com,"$argon2id$v=19$m=65536,t=3,p=4$oJSScs4ZQ2htLSVkjNHa2w$dZmvdrK6P2JWhxngBZ0GpK4+3qpc7ItvtFrN5AjIEPU",admin

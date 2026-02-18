@@ -10,15 +10,18 @@ from pathlib import Path
 from PIL import Image
 from streamlit_autorefresh import st_autorefresh
 
+# 🔐 NEW AUTH IMPORTS
+from modules.core.user_store import create_user, authenticate_user
+from modules.core.auth import create_access_token
+
 from modules.core.config import settings
 from modules.core.logger import get_logger
 from modules.core.schemas import CropInput
-from modules.core.auth import check_password  
 from modules.ui_components import (
-    load_modern_css, 
-    render_weather_stats, 
-    render_paper_card, 
-    display_pdf, 
+    load_modern_css,
+    render_weather_stats,
+    render_paper_card,
+    display_pdf,
     render_feedback_post
 )
 from modules.crop_advisor import CropAdvisor
@@ -27,13 +30,93 @@ from modules.calandar_advisor import CalendarAdvisor
 from modules.news_fetcher import PaperManager
 from modules import land_suitability, ai_chatbot
 from modules.language_manager import get_translations
+
 logger = get_logger("CropVanta_Main")
+# ------------------ SESSION INIT ------------------
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+if "user_email" not in st.session_state:
+    st.session_state.user_email = None
+if "user_role" not in st.session_state:
+    st.session_state.user_role = None
+
+# ------------------ PAGE CONFIG ------------------
 
 st.set_page_config(
     page_title=f"🌾 {settings.PROJECT_NAME}",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# ------------------ SIDEBAR ------------------
+
+with st.sidebar:
+    st.image("https://cdn-icons-png.flaticon.com/512/2329/2329115.png", width=80)
+
+    st.markdown("## 👤 Account")
+
+    if not st.session_state.authenticated:
+
+        auth_mode = st.radio("Select Option", ["Login", "Signup"])
+
+        if auth_mode == "Signup":
+            full_name = st.text_input("Full Name")
+            email = st.text_input("Email")
+            password = st.text_input("Password", type="password")
+
+            if st.button("Create Account"):
+                success, message = create_user(full_name, email, password)
+                if success:
+                    st.success("Account created. Please login.")
+                else:
+                    st.error(message)
+
+        else:
+            email = st.text_input("Email")
+            password = st.text_input("Password", type="password")
+
+            if st.button("Login"):
+                user = authenticate_user(email, password)
+                if user:
+                    token = create_access_token(
+                        {"sub": user["email"], "role": user["role"]}
+                    )
+                    st.session_state.authenticated = True
+                    st.session_state.user_email = user["email"]
+                    st.session_state.user_role = user["role"]
+                    st.session_state.jwt_token = token
+                    st.rerun()
+                else:
+                    st.error("Invalid credentials")
+
+    else:
+        st.success(f"Logged in as {st.session_state.user_email}")
+
+        if st.button("Logout"):
+            st.session_state.clear()
+            st.rerun()
+
+    # 🔐 ROLE BASED ADMIN PANEL
+    if st.session_state.get("user_role") == "admin":
+        st.markdown("### 🛠 Admin Panel")
+
+        if st.button("Clear Logs"):
+            open("logs/app.log", "w").close()
+            st.success("Logs Cleared")
+
+    st.markdown("---")
+
+    languages = get_translations()
+    sel_lang = st.selectbox("🌐 Language / भाषा", list(languages.keys()))
+    T = languages[sel_lang]
+
+    st.info(f"Version: {settings.VERSION}")
+
+# 🚫 STOP if not logged in
+if not st.session_state.authenticated:
+    st.warning("Please login to access CropVanta.AI SaaS Platform.")
+    st.stop()
 
 def local_css(file_name):
     if os.path.exists(file_name):
@@ -63,6 +146,9 @@ def init_services():
         return None
 
 services = init_services()
+if services is None:
+    st.error("Critical system error. Please check model files.")
+    st.stop()
 
 @st.cache_data(ttl=3600)
 def get_advanced_resources():
@@ -89,47 +175,7 @@ def load_market_data():
         return pd.DataFrame()
 
 market_df = load_market_data()
-
-from modules.language_manager import get_translations
-
 Path("data/community_images").mkdir(parents=True, exist_ok=True)
-
-with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/2329/2329115.png", width=80)
-    
-    languages = get_translations()
-    sel_lang = st.selectbox("🌐 Language / भाषा", list(languages.keys()))
-    T = languages[sel_lang]
-    
-    st.markdown("---")
-    st.markdown(f"### {settings.PROJECT_NAME} Admin")
-    
-    if st.checkbox("🔐 Admin Portal"):
-        if check_password():
-            st.success("Admin Access Granted")
-            
-            st.subheader("🗑️ Moderate Community")
-            f_path = Path("data/feedback.csv")
-            if f_path.exists():
-                adm_df = pd.read_csv(f_path).fillna("")
-                if not adm_df.empty:
-                    post_to_del = st.selectbox("Select Post to Remove", 
-                                             range(len(adm_df)), 
-                                             format_func=lambda x: f"{adm_df.iloc[x]['User']}: {adm_df.iloc[x]['Message'][:20]}...")
-                    if st.button("Delete Post Permanently"):
-                        img_path = adm_df.iloc[post_to_del]['Image']
-                        if img_path and os.path.exists(img_path):
-                            os.remove(img_path)
-                        adm_df.drop(post_to_del).to_csv(f_path, index=False)
-                        st.warning("Post Deleted!")
-                        st.rerun()
-            
-            if st.button("Clear Logs"):
-                open("logs/app.log", "w").close()
-                st.info("Logs cleared.")
-                
-    st.markdown("---")
-    st.info(f"Version: {settings.VERSION}")
 
 st.markdown("""
     <style>
@@ -342,87 +388,170 @@ with tabs[3]:
         st.markdown("### Crop Calendar")
         if services["calendar"]: st.dataframe(services["calendar"].get_calendar_df(), use_container_width=True)
 with tabs[6]:
+
     st.markdown(f"""
         <div style='background: linear-gradient(90deg, #FF0080, #8B00FF); padding: 15px; border-radius: 15px; margin-bottom: 25px;'>
             <h2 style='color: white; text-align: center; margin:0;'> {T['nav_community']}</h2>
         </div>
     """, unsafe_allow_html=True)
-    
+
     f_path = Path("data/feedback.csv")
     img_folder = Path("data/community_images")
-    img_folder.mkdir(parents=True, exist_ok=True) 
+    img_folder.mkdir(parents=True, exist_ok=True)
 
+    # Ensure CSV exists
     if not f_path.exists():
-        pd.DataFrame(columns=["User", "Message", "Image", "Date"]).to_csv(f_path, index=False)
+        pd.DataFrame(
+            columns=["User", "Message", "Image", "Date"]
+        ).to_csv(f_path, index=False)
 
     col_feed, col_post = st.columns([1.6, 1], gap="large")
 
+    # ==========================
+    # ✍️ POST SECTION
+    # ==========================
     with col_post:
-        st.markdown(f"<h3 style='color: #FF0080;'>✍️ {T['post_btn']}</h3>", unsafe_allow_html=True)
+        st.markdown(
+            f"<h3 style='color: #FF0080;'>✍️ {T['post_btn']}</h3>",
+            unsafe_allow_html=True
+        )
+
         with st.form("community_post", clear_on_submit=True):
-            u_name = st.text_input("Name/Region", placeholder="e.g. Shailendra (UP)")
+
             u_msg = st.text_area("What's on your mind?")
-            u_img = st.file_uploader("Add Photo", type=['jpg', 'png', 'jpeg'])
-            
+            u_img = st.file_uploader(
+                "Add Photo",
+                type=['jpg', 'png', 'jpeg']
+            )
+
             if st.form_submit_button("Post to Community"):
-                if u_name and u_msg:
+
+                if u_msg.strip():
+
                     img_path = ""
+
                     if u_img:
-                        img_filename = f"{datetime.now().strftime('%Y%m%d_%H%M%S')}_{u_img.name}"
+                        img_filename = (
+                            f"{datetime.now().strftime('%Y%m%d_%H%M%S')}_{u_img.name}"
+                        )
                         img_path = str(img_folder / img_filename)
+
                         with open(img_path, "wb") as f:
                             f.write(u_img.getbuffer())
-                    
-                    new_entry = pd.DataFrame([[u_name, u_msg, img_path, datetime.now().strftime("%Y-%m-%d %H:%M")]], 
-                                            columns=["User", "Message", "Image", "Date"])
-                    
-                    new_entry.to_csv(f_path, mode='a', header=False, index=False)
-                    st.success("Posted!")
-                    st.rerun()
-                else:
-                    st.error("Fill all fields!")
 
+                    new_entry = pd.DataFrame([[
+                        st.session_state.user_email,
+                        u_msg.strip(),
+                        img_path,
+                        datetime.now().strftime("%Y-%m-%d %H:%M")
+                    ]], columns=["User", "Message", "Image", "Date"])
+
+                    new_entry.to_csv(
+                        f_path,
+                        mode='a',
+                        header=False,
+                        index=False
+                    )
+
+                    st.success("Posted successfully!")
+                    st.rerun()
+
+                else:
+                    st.error("Message cannot be empty.")
+
+    # ==========================
+    # 💬 FEED SECTION
+    # ==========================
     with col_feed:
-        st.markdown("<h3 style='color: #8B00FF;'>💬 Recent Discussions</h3>", unsafe_allow_html=True)
-        
+
+        st.markdown(
+            "<h3 style='color: #8B00FF;'>💬 Recent Discussions</h3>",
+            unsafe_allow_html=True
+        )
+
         try:
             fb_df = pd.read_csv(f_path)
+
             if fb_df.empty:
                 st.info("No posts yet. Start the conversation!")
+
             else:
                 fb_df = fb_df.fillna("").iloc[::-1]
 
                 for index, row in fb_df.iterrows():
+
                     with st.container(border=True):
+
                         c_text, c_img = st.columns([3, 1])
-                        
+
+                        # Post Content
                         with c_text:
                             st.markdown(f"""
-                                <span style='color: #FF0080; font-weight: bold;'>👤 {row['User']}</span>
-                                <p style='color: #e2e8f0; margin-top:5px;'>{row['Message']}</p>
-                                <small style='color: #8b949e;'>📅 {row['Date']}</small>
+                                <span style='color: #FF0080; font-weight: bold;'>
+                                    👤 {row['User']}
+                                </span>
+                                <p style='color: #e2e8f0; margin-top:5px;'>
+                                    {row['Message']}
+                                </p>
+                                <small style='color: #8b949e;'>
+                                    📅 {row['Date']}
+                                </small>
                             """, unsafe_allow_html=True)
-                        
+
+                        # Post Image
                         with c_img:
                             if row['Image'] and os.path.exists(str(row['Image'])):
-                                st.image(row['Image'], use_container_width=True)
+                                st.image(
+                                    row['Image'],
+                                    use_container_width=True
+                                )
                             else:
-                                st.markdown("<div style='height: 60px; background: #1c2128; border-radius: 10px; border: 1px dashed #334155;'></div>", unsafe_allow_html=True)
+                                st.markdown("""
+                                    <div style='height: 60px;
+                                                background: #1c2128;
+                                                border-radius: 10px;
+                                                border: 1px dashed #334155;'>
+                                    </div>
+                                """, unsafe_allow_html=True)
 
-                        if st.button("🗑️ Delete", key=f"del_{index}"):
-                            if row['Image'] and os.path.exists(str(row['Image'])):
-                                try: os.remove(row['Image'])
-                                except: pass
-                            
-                            actual_df = pd.read_csv(f_path)
-                            actual_df = actual_df.drop(index)
-                            actual_df.to_csv(f_path, index=False)
-                            st.rerun()
-                            
-        except Exception as e:
-            st.warning("Refreshing feed structure...")
-            pd.DataFrame(columns=["User", "Message", "Image", "Date"]).to_csv(f_path, index=False)
+                        # ==========================
+                        # 🔐 ROLE-BASED DELETE
+                        # ==========================
+
+                        can_delete = (
+                            st.session_state.user_role == "admin"
+                            or row["User"] == st.session_state.user_email
+                        )
+
+                        if can_delete:
+                            if st.button("🗑️ Delete", key=f"del_{index}"):
+
+                                # Remove image if exists
+                                if row['Image'] and os.path.exists(str(row['Image'])):
+                                    try:
+                                        os.remove(row['Image'])
+                                    except:
+                                        pass
+
+                                actual_df = pd.read_csv(f_path)
+
+                                # Safe drop
+                                actual_df = actual_df.drop(
+                                    actual_df.index[index]
+                                )
+
+                                actual_df.to_csv(f_path, index=False)
+
+                                st.success("Post deleted.")
+                                st.rerun()
+
+        except Exception:
+            st.warning("Resetting community feed structure...")
+            pd.DataFrame(
+                columns=["User", "Message", "Image", "Date"]
+            ).to_csv(f_path, index=False)
             st.rerun()
+
 with tabs[7 if len(tabs)>7 else 1]: 
     st.markdown(f"""
         <div style='background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); padding: 25px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(168,85,247,0.3);'>
