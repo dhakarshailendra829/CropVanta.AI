@@ -15,9 +15,6 @@ class WeatherData(BaseModel):
     temp: float
     description: str
     humidity: int
-# ---------------------------
-# User Schemas (SaaS Layer)
-# ---------------------------
 
 class UserCreate(BaseModel):
     full_name: str = Field(..., min_length=2, max_length=120)

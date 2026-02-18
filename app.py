@@ -10,7 +10,6 @@ from pathlib import Path
 from PIL import Image
 from streamlit_autorefresh import st_autorefresh
 
-# 🔐 NEW AUTH IMPORTS
 from modules.core.user_store import create_user, authenticate_user
 from modules.core.auth import create_access_token
 
@@ -41,20 +40,16 @@ if "user_email" not in st.session_state:
 if "user_role" not in st.session_state:
     st.session_state.user_role = None
 
-# ------------------ PAGE CONFIG ------------------
-
 st.set_page_config(
     page_title=f"🌾 {settings.PROJECT_NAME}",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# ------------------ SIDEBAR ------------------
-
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/2329/2329115.png", width=80)
 
-    st.markdown("## 👤 Account")
+    st.markdown("## Account")
 
     if not st.session_state.authenticated:
 
@@ -97,7 +92,6 @@ with st.sidebar:
             st.session_state.clear()
             st.rerun()
 
-    # 🔐 ROLE BASED ADMIN PANEL
     if st.session_state.get("user_role") == "admin":
         st.markdown("### 🛠 Admin Panel")
 
@@ -108,12 +102,11 @@ with st.sidebar:
     st.markdown("---")
 
     languages = get_translations()
-    sel_lang = st.selectbox("🌐 Language / भाषा", list(languages.keys()))
+    sel_lang = st.selectbox("Language / भाषा", list(languages.keys()))
     T = languages[sel_lang]
 
     st.info(f"Version: {settings.VERSION}")
 
-# 🚫 STOP if not logged in
 if not st.session_state.authenticated:
     st.warning("Please login to access CropVanta.AI SaaS Platform.")
     st.stop()
@@ -316,7 +309,7 @@ with tabs[1]:
             submit = st.form_submit_button(T['analysis_btn'])
 
     if submit and services:
-        with st.spinner("🧬 AI Analysis in progress..."):
+        with st.spinner("AI Analysis in progress..."):
             try:
                 v_input = CropInput(
                     nitrogen=N,
@@ -360,11 +353,11 @@ with tabs[1]:
             c1, c2 = st.columns(2)
 
             with c1:
-                st.markdown("### 🧪 AI Insights")
+                st.markdown("### AI Insights")
                 st.write(res.get('description','No details available.'))
 
             with c2:
-                st.markdown("### 🛡️ Smart Farmer Advice")
+                st.markdown("### Smart Farmer Advice")
                 st.write(f"• Optimal pH detected: {ph}")
                 st.write(f"• Recommended Fertilizer: Based on N={N}")
                 st.write(f"• Watering schedule: Based on {rain}mm rain")
@@ -399,7 +392,6 @@ with tabs[6]:
     img_folder = Path("data/community_images")
     img_folder.mkdir(parents=True, exist_ok=True)
 
-    # Ensure CSV exists
     if not f_path.exists():
         pd.DataFrame(
             columns=["User", "Message", "Image", "Date"]
@@ -407,12 +399,9 @@ with tabs[6]:
 
     col_feed, col_post = st.columns([1.6, 1], gap="large")
 
-    # ==========================
-    # ✍️ POST SECTION
-    # ==========================
     with col_post:
         st.markdown(
-            f"<h3 style='color: #FF0080;'>✍️ {T['post_btn']}</h3>",
+            f"<h3 style='color: #FF0080;'> {T['post_btn']}</h3>",
             unsafe_allow_html=True
         )
 
@@ -459,13 +448,10 @@ with tabs[6]:
                 else:
                     st.error("Message cannot be empty.")
 
-    # ==========================
-    # 💬 FEED SECTION
-    # ==========================
     with col_feed:
 
         st.markdown(
-            "<h3 style='color: #8B00FF;'>💬 Recent Discussions</h3>",
+            "<h3 style='color: #8B00FF;'>Recent Discussions</h3>",
             unsafe_allow_html=True
         )
 
@@ -488,13 +474,13 @@ with tabs[6]:
                         with c_text:
                             st.markdown(f"""
                                 <span style='color: #FF0080; font-weight: bold;'>
-                                    👤 {row['User']}
+                                    {row['User']}
                                 </span>
                                 <p style='color: #e2e8f0; margin-top:5px;'>
                                     {row['Message']}
                                 </p>
                                 <small style='color: #8b949e;'>
-                                    📅 {row['Date']}
+                                    {row['Date']}
                                 </small>
                             """, unsafe_allow_html=True)
 
@@ -514,19 +500,14 @@ with tabs[6]:
                                     </div>
                                 """, unsafe_allow_html=True)
 
-                        # ==========================
-                        # 🔐 ROLE-BASED DELETE
-                        # ==========================
-
                         can_delete = (
                             st.session_state.user_role == "admin"
                             or row["User"] == st.session_state.user_email
                         )
 
                         if can_delete:
-                            if st.button("🗑️ Delete", key=f"del_{index}"):
+                            if st.button("Delete", key=f"del_{index}"):
 
-                                # Remove image if exists
                                 if row['Image'] and os.path.exists(str(row['Image'])):
                                     try:
                                         os.remove(row['Image'])
@@ -534,8 +515,6 @@ with tabs[6]:
                                         pass
 
                                 actual_df = pd.read_csv(f_path)
-
-                                # Safe drop
                                 actual_df = actual_df.drop(
                                     actual_df.index[index]
                                 )
@@ -589,7 +568,7 @@ with tabs[7 if len(tabs)>7 else 1]:
         
         st.markdown(f"""
             <div style='background: #161b22; padding: 20px; border-radius: 15px; border-left: 5px solid #6366f1; margin-top: 15px;'>
-                <p style='color: white; margin:0;'><b>💡 AI Smart Tip:</b></p>
+                <p style='color: white; margin:0;'><b>AI Smart Tip:</b></p>
                 <p style='color: #8b949e; font-size: 0.9rem;'>
                     Mandi prices for {target_crop} are trending upwards. Consider using hermetic storage to sell in late Q3 for a 15% higher profit margin.
                 </p>
@@ -598,7 +577,7 @@ with tabs[7 if len(tabs)>7 else 1]:
         
         m1, m2 = st.columns(2)
         m1.metric("Market Sentiment", "Bullish")
-        m2.metric("Pest Probability", "Low 🛡️")
+        m2.metric("Pest Probability", "Low")
 
     st.toast("Pro Planner Insights Updated!", icon="💡")
 with tabs[8]:
@@ -609,7 +588,7 @@ with tabs[8]:
         <div style='background: linear-gradient(135deg, #065f46 0%, #064e3b 100%); 
                     padding: 30px; border-radius: 25px; border-bottom: 5px solid #10b981;
                     box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center;'>
-            <h1 style='color: #10b981; margin:0;'>⚡ Eco-Harvest Intelligence</h1>
+            <h1 style='color: #10b981; margin:0;'>Eco-Harvest Intelligence</h1>
             <p style='color: #a7f3d0; opacity: 0.9;'>Carbon Credits | Solar Pumping | Smart Irrigation</p>
         </div>
     """, unsafe_allow_html=True)
@@ -619,13 +598,13 @@ with tabs[8]:
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Solar Potential", f"{s_sol} W/m²", "Optimal")
-        st.write("☀️ **Status:** High PV Yield")
+        st.write("**Status:** High PV Yield")
     with col2:
         st.metric("Water Evaporation", f"{s_wat} mm", "Alert", delta_color="inverse")
-        st.write("💧 **Status:** High Soil Stress")
+        st.write("**Status:** High Soil Stress")
     with col3:
         st.metric("Carbon Saved", f"{carbon_offset:.2f} kg", "Green Credit")
-        st.write("🌳 **Status:** Planet Positive")
+        st.write("**Status:** Planet Positive")
 
     st.write("---")
 

@@ -25,12 +25,12 @@ def run_admin():
     """, unsafe_allow_html=True)
 
     if "user_role" not in st.session_state or st.session_state["user_role"] != "admin":
-        st.warning("🔒 Admin access required.")
+        st.warning("Admin access required.")
         st.stop()
 
 
 
-    st.title("👨‍💻 System Mission Control")
+    st.title("System Mission Control")
     st.markdown("---")
 
     pm = PaperManager()
@@ -57,7 +57,7 @@ def run_admin():
         st.markdown(f"<div class='admin-card' style='border-left-color:#e74c3c;'><p class='metric-text'>New Queries</p><p class='metric-val'>{msg_count}</p></div>", unsafe_allow_html=True)
 
     tab_feedback, tab_papers, tab_system = st.tabs([
-        "📩 User Feedback & Queries", "📚 Paper Management", "⚙️ System Engine"
+        "User Feedback & Queries", "Paper Management", "System Engine"
     ])
 
     with tab_feedback:

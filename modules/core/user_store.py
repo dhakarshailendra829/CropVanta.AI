@@ -15,7 +15,6 @@ def initialize_user_file():
 def create_user(full_name: str, email: str, password: str, role="user"):
     initialize_user_file()
 
-    # Check if user exists
     users = get_all_users()
     for user in users:
         if user["email"] == email:
