@@ -62,7 +62,14 @@ The model predicts the **most suitable crop class** for given conditions using:
 Predictions are not shown as raw labels but are **contextualized inside a decision dashboard**.
 
 ---
+### Sustainable Resource & Agrivoltaic Intelligence
+The system now features a 2026-standard Resource Management module:
+* **Real-time Solar Irradiance:** Monitors solar intensity ($W/m^2$) to calculate the feasibility of Solar Water Pumps.
+* **Evapotranspiration (ET0) Analytics:** Uses FAO-56 standard logic to predict daily water loss from the soil.
+* **Carbon Credit Estimator:** Automatically calculates $CO_2$ offset based on solar energy usage (1 kWh ≈ 0.85kg CO2 saved).
+* **ROI Dashboard:** Converts renewable energy harvest into direct financial savings (₹).
 
+---
 ### Weather‑Aware Decision Logic
 
 Weather data plays a critical role in agriculture. This system integrates **short‑term weather intelligence** to:
@@ -257,3 +264,15 @@ This project can be used as a learning reference for:
 AI • Machine Learning • Data‑Driven Systems • Software Engineering 
 
 ---
+
+<p align="center">
+  <b>CropVanta.AI</b> 🌾 <br/>
+  Advanced AI & Deep Learning based Agricultural Intelligence System <br/><br/>
+  Version 2.0.1 <br/>
+  Architected & Developed by Shailendra Dhakad <br/>
+  AI Researcher & Patent Inventor & ML Engineer & Software Engineer <br/>
+  Licensed under Apache License 2.0
+</p>
+
+---
+
