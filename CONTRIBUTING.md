@@ -221,7 +221,7 @@ Short summary (max 72 characters)
 - Fix hashing reset bug
 - Refactor authentication module
 
-### ❌ Avoid:
+### Avoid:
 
 - update
 - fix
@@ -229,7 +229,7 @@ Short summary (max 72 characters)
 
 ---
 
-## 🔒 Security & Data Policy
+## Security & Data Policy
 
 - Do not upload private datasets
 - Do not commit API keys or `.env` secrets
@@ -242,4 +242,4 @@ If you find a security issue, report it privately to the maintainer.
 
 ---
 
-Thank you for helping improve CropVanta.AI 🌾🚀
+Thank you for helping improve CropVanta.AI 🌾
