@@ -1,10 +1,10 @@
-# Security Policy – CropVanta.AI 🌾🔐
+# Security Policy – CropVanta.AI 🌾
 
 This document outlines the security practices, supported versions, and the process for responsibly reporting vulnerabilities in CropVanta.AI.
 
 ---
 
-## 🔄 Supported Versions
+## Supported Versions
 
 We actively maintain and provide security updates only for the latest stable release.
 
