@@ -1,4 +1,4 @@
-# Contributing to CropVanta.AI 🌾🤖
+# Contributing to CropVanta.AI 
 
 Thank you for your interest in contributing to CropVanta.AI.  
 We welcome improvements in AI models, agricultural analytics, performance optimization, documentation, UI enhancements, and system architecture.
@@ -7,7 +7,7 @@ This document provides a structured overview of how to contribute effectively an
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 - [Project Structure](#project-structure)
 - [Ways to Contribute](#ways-to-contribute)
@@ -23,7 +23,7 @@ This document provides a structured overview of how to contribute effectively an
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 Main directories in this repository:
 
