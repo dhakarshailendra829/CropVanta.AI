@@ -238,8 +238,7 @@ Short summary (max 72 characters)
 - Avoid biased agricultural predictions
 - Do not commit large log files
 
-If you find a security issue, report it privately to the maintainer.
-
+If you discover a security vulnerability, please report it privately to the project maintainer instead of opening a public issue.
 ---
 
 Thank you for helping improve CropVanta.AI 🌾
