@@ -1,4 +1,4 @@
-# Contributing to CropVanta.AI 
+# 🌱 Contributing to CropVanta.AI 
 
 Thank you for your interest in contributing to CropVanta.AI.  
 We welcome improvements in AI models, agricultural analytics, performance optimization, documentation, UI enhancements, and system architecture.
@@ -50,7 +50,7 @@ Key files:
 
 ---
 
-## 🚀 Ways to Contribute
+## Ways to Contribute
 
 You can contribute by:
 
@@ -96,7 +96,7 @@ feature/short-description
 
 ---
 
-## 🤖 Improve Models
+## Improve Models
 
 If contributing to AI/ML models:
 
@@ -110,7 +110,7 @@ If contributing to AI/ML models:
 - Ensure no data leakage
 - Validate proper training/testing splits
 
-🚫 **Do NOT commit trained model weights or large datasets unless explicitly approved.**  
+**Do NOT commit trained model weights or large datasets unless explicitly approved.**  
 Use external storage or model hosting if required.
 
 Model-related work usually involves:
@@ -123,7 +123,7 @@ data/
 
 ---
 
-## 🔄 Update Data Pipelines
+## Update Data Pipelines
 
 If modifying preprocessing or pipeline logic:
 
@@ -143,7 +143,7 @@ data/
 
 ---
 
-## 🐛 Reporting Issues
+## Reporting Issues
 
 When reporting a bug, include:
 
@@ -162,7 +162,7 @@ Before opening a new issue, please check existing issues.
 
 ---
 
-## 🛠 Development Workflow
+## Development Workflow
 
 1. Fork the repository  
 2. Clone your fork  
@@ -184,7 +184,7 @@ git checkout -b feature/short-description
 
 ---
 
-## 📥 Pull Request Guidelines
+## Pull Request Guidelines
 
 When submitting a PR:
 
@@ -196,7 +196,7 @@ When submitting a PR:
 
 ---
 
-## ✅ PR Checklist
+## PR Checklist
 
 - [ ] Code runs successfully
 - [ ] No debug prints
