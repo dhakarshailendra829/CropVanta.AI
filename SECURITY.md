@@ -12,7 +12,7 @@ We actively maintain and provide security updates only for the latest stable rel
 |--------------|-----------|
 | Latest (master branch) v2.0.1| Yes |
 | Previous minor release | Limited |
-| Older releases v2.0.1 | No |
+| Older releases v2.0.0 | No |
 
 ### Versioning Policy
 
