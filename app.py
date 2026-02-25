@@ -45,18 +45,14 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-import base64 
 
-# Function to encode the video (reusable)
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-# Encode your MP4 (assume it's in the root; adjust path if in assets/)
 video_base64 = get_base64_of_bin_file('background.mp4')
 
-# Custom HTML/CSS for video background
 video_html = f"""
 <style>
 /* Video Background Styling for SaaS Polish */
@@ -104,7 +100,6 @@ div[data-testid="stMetric"] {{
 </div>
 """
 
-# Render the background
 st.markdown(video_html, unsafe_allow_html=True)
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/2329/2329115.png", width=80)
