@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 import os
 import requests
-import base64  # Add this import at the top if not already present (near other imports like import streamlit as st)
+import base64  
 import random
 from datetime import datetime
 from pathlib import Path
@@ -32,7 +32,6 @@ from modules import land_suitability, ai_chatbot
 from modules.language_manager import get_translations
 
 logger = get_logger("CropVanta_Main")
-# ------------------ SESSION INIT ------------------
 
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
@@ -46,7 +45,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-import base64  # Add this import at the top if not already present (near other imports like import streamlit as st)
+import base64 
 
 # Function to encode the video (reusable)
 def get_base64_of_bin_file(bin_file):
