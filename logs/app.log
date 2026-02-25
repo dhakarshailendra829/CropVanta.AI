@@ -566,3 +566,7 @@ tornado.websocket.WebSocketClosedError
 2026-02-25 13:43:48,389 - CropVanta_Main - INFO - Resources loaded successfully.
 2026-02-25 14:07:06,233 - CropVanta_Main - INFO - Resources loaded successfully.
 2026-02-25 14:10:20,947 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-25 14:26:57,636 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-25 14:27:32,691 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-02-25 14:27:32,699 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-02-25 14:27:32,714 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.

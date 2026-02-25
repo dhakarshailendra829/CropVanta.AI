@@ -1,13 +1,8 @@
-/* ────────────────────────────────────────────────
-   VIDEO BACKGROUND SUPPORT + GLASSMORPHISM UPGRADE
-   ──────────────────────────────────────────────── */
 
-/* Make main app transparent so video is visible */
 .stApp {
     background: transparent !important;
 }
 
-/* Video container - placed via app.py markdown */
 .video-bg {
     position: fixed !important;
     top: 0 !important;
@@ -15,7 +10,7 @@
     width: 100vw !important;
     height: 100vh !important;
     overflow: hidden !important;
-    z-index: -10 !important;   /* Very deep layer */
+    z-index: -10 !important;   
 }
 
 .video-bg video {
@@ -23,44 +18,37 @@
     min-height: 100% !important;
     width: auto !important;
     height: auto !important;
-    object-fit: cover !important;   /* Crops nicely, no black bars */
-    opacity: 0.18 !important;       /* Subtle — adjust 0.12–0.25 based on video brightness */
+    object-fit: cover !important;   
+    opacity: 0.18 !important;       
     filter: brightness(0.85) contrast(1.05) saturate(1.1) !important;
     pointer-events: none !important;
 }
 
-/* ────────────────────────────────────────────────
-   GLASSMORPHISM FOR ALL MAJOR ELEMENTS
-   ──────────────────────────────────────────────── */
-
-/* Sidebar - stronger glass effect */
 [data-testid="stSidebar"] {
-    background: rgba(10, 15, 25, 0.65) !important;   /* Darker base for contrast */
+    background: rgba(36, 81, 170, 0.65) !important;   
     backdrop-filter: blur(16px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border-right: 1px solid rgba(0, 251, 255, 0.12) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+    border-right: 1px solid rgba(13, 217, 220, 0.827) !important;
+    box-shadow: 0 8px 32px rgba(69, 172, 198, 0.547) !important;
 }
 
-/* Tabs container - glass panel look */
 .stTabs [data-baseweb="tab-list"] {
     gap: 20px !important;
     padding: 15px 25px !important;
-    background: rgba(255, 255, 255, 0.04) !important;   /* Very transparent */
+    background: rgba(55, 7, 133, 0.826) !important;   
     border-radius: 25px !important;
-    border: 1px solid rgba(0, 251, 255, 0.08) !important;
+    border: 1px solid rgba(11, 113, 114, 0.938) !important;
     margin-bottom: 35px !important;
     backdrop-filter: blur(16px) saturate(160%) !important;
     -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Individual tabs */
 .stTabs [data-baseweb="tab"] {
     height: 50px !important;
     background: transparent !important;
     border: none !important;
-    color: #60a5fa !important;          /* Softer cyan for non-selected */
+    color: #4bc6db !important;          
     font-weight: 600 !important;
     font-size: 17px !important;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
@@ -68,20 +56,18 @@
 }
 
 .stTabs [data-baseweb="tab"]:hover {
-    color: #00fbff !important;
+    color: #0896e8 !important;
     transform: scale(1.08) translateY(-2px) !important;
-    text-shadow: 0 0 12px rgba(0, 251, 255, 0.7) !important;
+    text-shadow: 0 0 12px rgba(7, 30, 159, 0.845) !important;
 }
 
-/* Selected tab - stronger highlight */
 .stTabs [aria-selected="true"] {
     color: #ffffff !important;
-    background: rgba(0, 251, 255, 0.09) !important;
+    background: rgba(6, 164, 167, 0.64) !important;
     border-radius: 15px !important;
-    box-shadow: 0 4px 20px rgba(0, 251, 255, 0.25) !important;
+    box-shadow: 0 4px 20px rgb(16, 233, 237) !important;
 }
 
-/* Pulse underline - kept and slightly enhanced */
 .stTabs [aria-selected="true"]::after {
     content: "";
     position: absolute;
@@ -89,9 +75,9 @@
     left: 15%;
     width: 70%;
     height: 4px;
-    background: linear-gradient(90deg, #07bbbe, #05c312);
+    background: linear-gradient(90deg, #ccf903, #04e513f9);
     border-radius: 20px;
-    box-shadow: 0 0 20px #04b2b5, 0 0 40px rgba(2, 71, 72, 0.6);
+    box-shadow: 0 0 20px #63e003, 0 0 40px rgba(226, 115, 4, 0.904);
     animation: pulse 2.2s infinite ease-in-out;
 }
 
@@ -101,16 +87,14 @@
     100% { opacity: 0.55; transform: scaleX(0.88); }
 }
 
-/* Hide default tab border */
 .stTabs [data-baseweb="tab-border"] {
     display: none !important;
 }
 
-/* Metrics - glass cards with cyan accent */
 div[data-testid="stMetric"] {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(0, 251, 255, 0.12) !important;
-    border-left: 5px solid #00fbff !important;
+    background: rgba(98, 183, 1, 0.803) !important;
+    border: 1px solid rgba(12, 156, 158, 0.803) !important;
+    border-left: 5px solid #052ec4 !important;
     border-radius: 16px !important;
     backdrop-filter: blur(14px) saturate(150%) !important;
     -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
@@ -120,12 +104,11 @@ div[data-testid="stMetric"] {
 }
 
 div[data-testid="stMetric"]:hover {
-    background: rgba(0, 251, 255, 0.07) !important;
+    background: rgba(178, 6, 208, 0.842) !important;
     transform: translateY(-4px) !important;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 251, 255, 0.25) !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 20px rgba(3, 180, 183, 0.703) !important;
 }
 
-/* Optional subtle texture overlay (keep or remove) */
 .stApp::after {
     content: "";
     position: fixed;
@@ -139,9 +122,8 @@ div[data-testid="stMetric"]:hover {
     pointer-events: none;
 }
 
-/* Bonus: Make main content area slightly lifted */
 .block-container {
-    background: rgba(0, 0, 0, 0.15) !important;
+    background: rgba(226, 237, 239, 0.151) !important;
     border-radius: 20px !important;
     padding: 2rem !important;
     backdrop-filter: blur(8px) !important;
