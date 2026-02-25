@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 import os
 import requests
+import base64  # Add this import at the top if not already present (near other imports like import streamlit as st)
 import random
 from datetime import datetime
 from pathlib import Path
@@ -45,7 +46,67 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+import base64  # Add this import at the top if not already present (near other imports like import streamlit as st)
 
+# Function to encode the video (reusable)
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+# Encode your MP4 (assume it's in the root; adjust path if in assets/)
+video_base64 = get_base64_of_bin_file('background.mp4')
+
+# Custom HTML/CSS for video background
+video_html = f"""
+<style>
+/* Video Background Styling for SaaS Polish */
+.stApp {{
+    background: none !important;  /* Override any default background */
+}}
+.video-bg {{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -2;  /* Deep behind all content, including sidebar and tabs */
+}}
+.video-bg video {{
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;  /* Full cover without distortion */
+    opacity: 0.15;  /* Low opacity for subtle green farms glow; text remains readable on dark theme */
+    filter: brightness(0.8) contrast(1.1);  /* Enhance for professional eco-look */
+}}
+/* Ensure sidebar and content overlay nicely */
+[data-testid="stSidebar"] {{
+    background-color: rgba(14, 17, 23, 0.85);  /* Semi-transparent for video bleed-through */
+    backdrop-filter: blur(10px);  /* Glassmorphic enhancement */
+}}
+/* Tabs and metrics polish for SaaS feel */
+.stTabs [data-baseweb="tab-list"] {{
+    background: rgba(28, 33, 40, 0.7);  /* Transparent over video */
+    backdrop-filter: blur(8px);
+}}
+div[data-testid="stMetric"] {{
+    background: rgba(28, 33, 40, 0.85);  /* Glassy over video */
+    backdrop-filter: blur(12px);
+}}
+</style>
+<div class="video-bg">
+    <video autoplay loop muted playsinline>
+        <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+"""
+
+# Render the background
+st.markdown(video_html, unsafe_allow_html=True)
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/2329/2329115.png", width=80)
 

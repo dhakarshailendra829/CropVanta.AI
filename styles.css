@@ -1,18 +1,66 @@
+/* ────────────────────────────────────────────────
+   VIDEO BACKGROUND SUPPORT + GLASSMORPHISM UPGRADE
+   ──────────────────────────────────────────────── */
+
+/* Make main app transparent so video is visible */
+.stApp {
+    background: transparent !important;
+}
+
+/* Video container - placed via app.py markdown */
+.video-bg {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    z-index: -10 !important;   /* Very deep layer */
+}
+
+.video-bg video {
+    min-width: 100% !important;
+    min-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: cover !important;   /* Crops nicely, no black bars */
+    opacity: 0.18 !important;       /* Subtle — adjust 0.12–0.25 based on video brightness */
+    filter: brightness(0.85) contrast(1.05) saturate(1.1) !important;
+    pointer-events: none !important;
+}
+
+/* ────────────────────────────────────────────────
+   GLASSMORPHISM FOR ALL MAJOR ELEMENTS
+   ──────────────────────────────────────────────── */
+
+/* Sidebar - stronger glass effect */
+[data-testid="stSidebar"] {
+    background: rgba(10, 15, 25, 0.65) !important;   /* Darker base for contrast */
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border-right: 1px solid rgba(0, 251, 255, 0.12) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Tabs container - glass panel look */
 .stTabs [data-baseweb="tab-list"] {
     gap: 20px !important;
     padding: 15px 25px !important;
-    background: rgba(255, 255, 255, 0) !important;
+    background: rgba(255, 255, 255, 0.04) !important;   /* Very transparent */
     border-radius: 25px !important;
-    border: 1px solid rgba(255, 255, 255, 0.055) !important;
+    border: 1px solid rgba(0, 251, 255, 0.08) !important;
     margin-bottom: 35px !important;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
 }
 
+/* Individual tabs */
 .stTabs [data-baseweb="tab"] {
     height: 50px !important;
     background: transparent !important;
     border: none !important;
-    color: #0a5e85 !important;
+    color: #60a5fa !important;          /* Softer cyan for non-selected */
     font-weight: 600 !important;
     font-size: 17px !important;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
@@ -21,59 +69,82 @@
 
 .stTabs [data-baseweb="tab"]:hover {
     color: #00fbff !important;
-    transform: scale(1.1) translateY(-2px);
-    text-shadow: 0 0 10px rgba(5, 188, 192, 0.81);
+    transform: scale(1.08) translateY(-2px) !important;
+    text-shadow: 0 0 12px rgba(0, 251, 255, 0.7) !important;
 }
 
+/* Selected tab - stronger highlight */
 .stTabs [aria-selected="true"] {
     color: #ffffff !important;
-    background: rgba(0, 251, 255, 0.051) !important;
+    background: rgba(0, 251, 255, 0.09) !important;
     border-radius: 15px !important;
+    box-shadow: 0 4px 20px rgba(0, 251, 255, 0.25) !important;
 }
 
+/* Pulse underline - kept and slightly enhanced */
 .stTabs [aria-selected="true"]::after {
     content: "";
     position: absolute;
-    bottom: -2px;
+    bottom: -4px;
     left: 15%;
     width: 70%;
     height: 4px;
     background: linear-gradient(90deg, #07bbbe, #05c312);
     border-radius: 20px;
-    box-shadow: 0 0 20px #04b2b5, 0 0 40px rgba(2, 71, 72, 0.5);
-    animation: pulse 2s infinite;
+    box-shadow: 0 0 20px #04b2b5, 0 0 40px rgba(2, 71, 72, 0.6);
+    animation: pulse 2.2s infinite ease-in-out;
 }
 
 @keyframes pulse {
-    0% { opacity: 0.6; transform: scaleX(0.9); }
-    50% { opacity: 1; transform: scaleX(1); }
-    100% { opacity: 0.6; transform: scaleX(0.9); }
+    0%   { opacity: 0.55; transform: scaleX(0.88); }
+    50%  { opacity: 1;    transform: scaleX(1.02); }
+    100% { opacity: 0.55; transform: scaleX(0.88); }
 }
 
+/* Hide default tab border */
 .stTabs [data-baseweb="tab-border"] {
     display: none !important;
 }
 
+/* Metrics - glass cards with cyan accent */
 div[data-testid="stMetric"] {
-    background: rgba(255, 255, 255, 0.02) !important;
-    border: 1px solid rgba(0, 251, 255, 0.1) !important;
-    border-left: 4px solid #00fbff !important;
-    border-radius: 15px !important;
-    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(0, 251, 255, 0.12) !important;
+    border-left: 5px solid #00fbff !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(14px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    transition: all 0.3s ease !important;
+    padding: 16px !important;
 }
 
 div[data-testid="stMetric"]:hover {
-    background: rgba(0, 251, 255, 0.05) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.596);
+    background: rgba(0, 251, 255, 0.07) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 251, 255, 0.25) !important;
 }
+
+/* Optional subtle texture overlay (keep or remove) */
 .stApp::after {
     content: "";
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 150px;
+    height: 180px;
     background: url('https://www.transparenttextures.com/patterns/natural-paper.png');
-    opacity: 0.05;
+    opacity: 0.04;
     background-repeat: repeat-x;
-    z-index: -1;
+    z-index: -5;
+    pointer-events: none;
+}
+
+/* Bonus: Make main content area slightly lifted */
+.block-container {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-radius: 20px !important;
+    padding: 2rem !important;
+    backdrop-filter: blur(8px) !important;
+    margin: 1rem auto !important;
+    max-width: 1400px !important;
 }

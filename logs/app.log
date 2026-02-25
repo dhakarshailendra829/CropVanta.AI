@@ -563,3 +563,6 @@ Traceback (most recent call last):
     raise WebSocketClosedError()
 tornado.websocket.WebSocketClosedError
 2026-02-19 00:18:19,101 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-25 13:43:48,389 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-25 14:07:06,233 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-02-25 14:10:20,947 - CropVanta_Main - INFO - Resources loaded successfully.
