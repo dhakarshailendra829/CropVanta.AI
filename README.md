@@ -44,7 +44,7 @@ This project addresses these issues by providing an **end‑to‑end AI decision
 
 ---
 
-## System Capabilities (What Makes This Project Strong)
+## System Capabilities 
 
 ### Intelligent Crop Recommendation Engine
 At the core of the system lies a **supervised machine learning pipeline** trained on agricultural datasets containing:
@@ -227,7 +227,7 @@ This makes it suitable as a prototype or foundation for scalable agri-AI solutio
 
 This project can be used as a learning reference for:
 * Applied machine learning in agriculture
-* End-to-end ML system design (data → model → UI)
+* End-to-end ML system design 
 * Translating predictions into actionable insights
 
 ---
@@ -261,7 +261,7 @@ This project can be used as a learning reference for:
 ## 👤Author
 
 **Shailendra Dhakad**
-AI • Machine Learning • Backend Developer • Software Engineering 
+Artificial Intelligence • Machine Learning • Backend Developer • Software Engineering 
 
 ---
 
