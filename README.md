@@ -254,7 +254,7 @@ This project can be used as a learning reference for:
 * Crop yield prediction models
 * Satellite & remote sensing integration
 * Multi‑language dashboard support
-* Mobile‑optimized UI
+* User Friendly Interface
 * Real‑time commodity exchange feeds
 
 
