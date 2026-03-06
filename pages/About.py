@@ -64,7 +64,7 @@ with col1:
 
 with col2:
     if os.path.exists("images/engineer_vision.png"):
-        st.image("images/engineer_vision.png", use_container_width=True)
+        st.image("images/engineer_vision.png", width=500)
     else:
         st.markdown('<div style="background: #0f172a; height:320px; border-radius:25px; border:1px solid rgba(0,251,255,0.2); display:flex; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:20px;">[Engineer Vision Image: images/engineer_vision.png]</div>', unsafe_allow_html=True)
 
@@ -74,7 +74,7 @@ col3, col4 = st.columns([1, 1.2], gap="large")
 
 with col3:
     if os.path.exists("images/platform_logic.png"):
-        st.image("images/platform_logic.png", use_container_width=True)
+        st.image("images/platform_logic.png", width=500)
     else:
         st.markdown('<div style="background: #0f172a; height:320px; border-radius:25px; border:1px solid rgba(79, 172, 254, 0.2); display:flex; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:20px;">[Platform Workflow Image: images/platform_logic.png]</div>', unsafe_allow_html=True)
 
