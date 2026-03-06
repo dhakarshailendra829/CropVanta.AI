@@ -8,7 +8,6 @@ from modules.core.logger import get_logger
 
 logger = get_logger(__name__)
 
-
 class LandSuitabilityAnalyzer:
 
     def __init__(self):
@@ -25,10 +24,6 @@ class LandSuitabilityAnalyzer:
         self.headers = {
             "User-Agent": "CropVanta/1.0"
         }
-
-    # -----------------------------
-    # API 1 : OPEN METEO
-    # -----------------------------
 
     def fetch_open_meteo(self, lat, lon):
 
@@ -70,10 +65,6 @@ class LandSuitabilityAnalyzer:
             logger.error(f"Open Meteo API failed: {e}")
             return None
 
-    # -----------------------------
-    # API 2 : NASA POWER
-    # -----------------------------
-
     def fetch_nasa_power(self, lat, lon):
 
         try:
@@ -113,10 +104,6 @@ class LandSuitabilityAnalyzer:
             logger.error(f"NASA API failed: {e}")
             return None
 
-    # -----------------------------
-    # MASTER WEATHER FETCH
-    # -----------------------------
-
     def fetch_geo_data(self, lat, lon):
 
         try:
@@ -155,10 +142,6 @@ class LandSuitabilityAnalyzer:
                 "success": True
             }
 
-    # -----------------------------
-    # SUITABILITY SCORE
-    # -----------------------------
-
     def calculate_suitability(self, temp, rain):
 
         results = []
@@ -181,16 +164,11 @@ class LandSuitabilityAnalyzer:
 
         return sorted(results, key=lambda x: x["score"], reverse=True)
 
-
-# -----------------------------
-# STREAMLIT UI
-# -----------------------------
-
 def run():
 
     try:
 
-        st.subheader("🌍 Land Suitability Analyzer")
+        st.subheader("Land Suitability Analyzer")
 
         st.write("Click on map to analyze crop suitability.")
 
@@ -205,7 +183,7 @@ def run():
             lat = map_data["last_clicked"]["lat"]
             lon = map_data["last_clicked"]["lng"]
 
-            st.success(f"📍 Selected Location: {lat:.4f}, {lon:.4f}")
+            st.success(f"Selected Location: {lat:.4f}, {lon:.4f}")
 
             analyzer = LandSuitabilityAnalyzer()
 
@@ -242,5 +220,5 @@ def run():
         logger.critical(f"UI Critical Error: {e}")
 
         st.error(
-            "⚠️ Critical system error. Please check model files or configuration."
+            "Critical system error. Please check model files or configuration."
         )
