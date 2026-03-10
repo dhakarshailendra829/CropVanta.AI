@@ -525,7 +525,6 @@ with tabs[6]:
 
                         c_text, c_img = st.columns([3, 1])
 
-                        # Post Content
                         with c_text:
                             st.markdown(f"""
                                 <span style='color: #FF0080; font-weight: bold;'>
@@ -539,7 +538,6 @@ with tabs[6]:
                                 </small>
                             """, unsafe_allow_html=True)
 
-                        # Post Image
                         with c_img:
                             if row['Image'] and os.path.exists(str(row['Image'])):
                                 st.image(
