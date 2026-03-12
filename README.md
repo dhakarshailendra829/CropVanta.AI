@@ -256,7 +256,11 @@ This project can be used as a learning reference for:
 * Multi‑language dashboard support
 * User Friendly Interface
 * Real‑time commodity exchange feeds
-
+---
+## 📄 License
+Apache License 2.0
+© 2026 Shailendra Dhakad
+---
 
 ## 👤Author
 
