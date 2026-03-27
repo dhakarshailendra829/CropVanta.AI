@@ -11,7 +11,6 @@ from modules.core.schemas import WeatherData
 
 logger = get_logger("Weather_Advisor")
 
-# Load ML model with fallback - solid backend handling
 try:
     rf_temp = joblib.load("models/rf_temp.pkl")
     logger.info("Temperature model loaded successfully")
@@ -19,13 +18,11 @@ except Exception as e:
     logger.error(f"Model load failed: {e}. Using API fallback.")
     rf_temp = None
 
-# Global geolocator with rate limiting and timeout for direct access stability
 geolocator = Nominatim(user_agent="cropvanta_ai", timeout=10)
 geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
 
 @lru_cache(maxsize=50)
 def geocode_location(location_name: str):
-    """Improved geocoding with better error handling and caching."""
     try:
         location = geocode(location_name)
         if location:
@@ -36,7 +33,6 @@ def geocode_location(location_name: str):
     return None
 
 def get_live_weather(location_name: str, target_date: datetime = None):
-    """Fully upgraded weather fetch: fixes temperature lookup, adds model integration, robust error handling."""
     if target_date is None:
         target_date = datetime.now()
 
@@ -46,7 +42,6 @@ def get_live_weather(location_name: str, target_date: datetime = None):
         return None
 
     lat, lon = coords
-    # Forecast starts from today (00:00 local), covers ~7 days
     api_url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,relative_humidity_2m_mean&timezone=Asia/Kolkata&forecast_days=7"
 
     try:
@@ -69,13 +64,11 @@ def get_live_weather(location_name: str, target_date: datetime = None):
         precip = daily.get("precipitation_sum", [0])[idx]
         humidity = daily.get("relative_humidity_2m_mean", [60])[idx]
 
-        # Integrate ML model for temperature improvement if available
         final_temp = max_temp
         confidence = 0.95
         source = "Live API (Open-Meteo)"
         if rf_temp is not None:
             try:
-                # Prepare features for model (example: use min_temp, precip, humidity - adjust based on training features)
                 features = np.array([[min_temp, precip, humidity]]).reshape(1, -1)
                 ml_pred = rf_temp.predict(features)[0]
                 final_temp = (max_temp + ml_pred) / 2  # Blend for improvement
