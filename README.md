@@ -77,6 +77,7 @@ Weather data plays a critical role in agriculture. This system integrates **shor
 * Adjust crop suitability signals
 * Highlight climate risks
 * Improve planning reliability
+* Show weather conditions of tommorow
 
 The dashboard surfaces weather information in a **human‑readable, actionable format** instead of raw forecasts.
 
@@ -256,7 +257,12 @@ This project can be used as a learning reference for:
 * Multi‑language dashboard support
 * User Friendly Interface
 * Real‑time commodity exchange feeds
+---
+## License
 
+Apache License 2.0
+© 2026 Shailendra Dhakad
+---
 
 ## 👤Author
 
