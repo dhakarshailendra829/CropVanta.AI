@@ -27,3 +27,5 @@ duckduckgo-search
 python-jose[cryptography]
 passlib[bcrypt]
 bcrypt
+streamlit-folium
+folium
