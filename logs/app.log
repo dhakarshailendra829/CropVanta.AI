@@ -581,3 +581,8 @@ tornado.websocket.WebSocketClosedError
 2026-03-27 22:46:04,627 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
 2026-03-27 22:46:04,633 - AI_Researcher - INFO - Starting autonomous research for: Coffee
 2026-03-27 22:46:04,658 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-04-03 00:30:00,487 - CropVanta_Main - ERROR - Failed to load resources: No module named 'numpy._core'
+2026-04-03 00:37:08,614 - CropVanta_Main - INFO - Resources loaded successfully.
+2026-04-03 00:38:23,636 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
+2026-04-03 00:38:23,645 - AI_Researcher - INFO - Starting autonomous research for: Coffee
+2026-04-03 00:38:23,666 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
