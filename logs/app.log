@@ -586,3 +586,4 @@ tornado.websocket.WebSocketClosedError
 2026-04-03 00:38:23,636 - Crop_Advisor_Engine - INFO - Attempting Research for: Coffee
 2026-04-03 00:38:23,645 - AI_Researcher - INFO - Starting autonomous research for: Coffee
 2026-04-03 00:38:23,666 - AI_Researcher - ERROR - Search failed: Could not import ddgs python package. Please install it with `pip install -U ddgs`.
+2026-04-10 11:56:16,767 - CropVanta_Main - ERROR - Failed to load resources: [Errno 2] No such file or directory: 'models/crop_model.pkl'
