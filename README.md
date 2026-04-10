@@ -1,5 +1,5 @@
 <p align="center">
-  <b>🌱 CropVanta.AI: Advanced Agricultural Intelligence Ecosystem</b><br/>
+  <b>🌱 CropVanta.AI: Advanced Agricultural Intelligence Ecosystem System</b><br/>
   <img src="images/Crop.png" width="120" alt="AI Crop Advisor Logo" /><br/>
   <b>AI‑Driven Crop Recommendation, Market Intelligence & Decision‑Support Platform</b><br/>
 </p>
@@ -281,4 +281,4 @@ Artificial Intelligence • Machine Learning • Backend Developer • Software 
 </p>
 
 ---
-
+# Note:- This Project is under improvement 
