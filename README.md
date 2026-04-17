@@ -88,7 +88,6 @@ The dashboard surfaces weather information in a **human‑readable, actionable f
 Beyond growing the right crop, profitability depends on **market timing and pricing**.
 
 The Market Advisor module:
-
 * Fetches crop market prices
 * Associates recommendations with economic context
 * Helps users align crop selection with revenue potential
