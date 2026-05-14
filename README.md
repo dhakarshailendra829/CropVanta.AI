@@ -275,9 +275,9 @@ Artificial Intelligence • Machine Learning • Backend Developer • Software 
   Advanced AI & Deep Learning based Agricultural Intelligence System <br/><br/>
   Version 2.0.1 <br/>
   Architected & Developed by Shailendra Dhakad <br/>
-  AI Researcher & Patent Inventor & ML Engineer & Software Engineer <br/>
+  AI Researcher & Machine Learning Engineer & Software Engineer <br/>
   Licensed under Apache License 2.0
 </p>
 
 ---
-# Note:- This Project is under improvement 
+# Note:- This Project is under improvements and upgraded soon.
