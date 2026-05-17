@@ -4,7 +4,7 @@ This document outlines the security practices, supported versions, and the proce
 
 ---
 
-##Supported Versions
+## Supported Versions
 
 We actively maintain and provide security updates only for the latest stable release.
 
@@ -66,7 +66,7 @@ Please provide:
 - Steps to reproduce the issue
 - Potential impact
 - Affected version/branch
-- Any suggested mitigation (if available)
+- Any suggested mitigation 
 
 ---
 
