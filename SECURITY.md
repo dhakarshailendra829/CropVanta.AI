@@ -4,7 +4,7 @@ This document outlines the security practices, supported versions, and the proce
 
 ---
 
-## Supported Versions
+##Supported Versions
 
 We actively maintain and provide security updates only for the latest stable release.
 
