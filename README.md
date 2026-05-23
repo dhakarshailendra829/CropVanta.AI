@@ -256,6 +256,7 @@ This project can be used as a learning reference for:
 * Multi‑language dashboard support
 * User Friendly Interface
 * Real‑time commodity exchange feeds
+* Added helpline to support farmers
 ---
 ## License
 
