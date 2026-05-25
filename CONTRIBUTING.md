@@ -1,6 +1,6 @@
 # 🌱 Contributing to CropVanta.AI 
 
-Thank you for your interest in contributing to CropVanta.AI.  
+Thanks for your interest in contributing to CropVanta.AI.  
 We welcome improvements in AI models, agricultural analytics, performance optimization, documentation, UI enhancements, and system architecture.
 
 This document provides a structured overview of how to contribute effectively and professionally.
@@ -212,7 +212,7 @@ Use professional and meaningful commit messages.
 
 ### Format:
 
-Short summary (max 72 characters)
+Short summary 
 
 ### Good Examples:
 
@@ -241,4 +241,4 @@ Short summary (max 72 characters)
 If you discover a security vulnerability, please report it privately to the project maintainer instead of opening a public issue.
 ---
 
-Thank you for helping improve CropVanta.AI 🌾
+Thanks for helping improve CropVanta.AI 🌾
