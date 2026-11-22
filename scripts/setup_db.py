@@ -1,24 +1,20 @@
+"""Create local folders and initialize MySQL tables when configured."""
 import os
-import sys
+from pathlib import Path
+from dotenv import load_dotenv
 
-def initialize_project():
-    
-    folders = ['models', 'data', 'logs', 'modules', 'core', 'scripts']
-    
-    print(" Initializing CropVanta.AI Environment...")
-    
-    for folder in folders:
-        if not os.path.exists(folder):
-            os.makedirs(folder)
-            print(f" Created folder: {folder}")
-        else:
-            print(f" Folder already exists: {folder}")
+ROOT = Path(__file__).resolve().parents[1]
 
-    log_file = "logs/app.log"
-    if not os.path.exists(log_file):
-        with open(log_file, "w") as f:
-            f.write("--- Log Initialized ---")
-        print(f"Created file: {log_file}")
+def main() -> None:
+    load_dotenv(ROOT / ".env")
+    for folder in ("models", "data", "logs", "uploaded_papers"):
+        (ROOT / folder).mkdir(parents=True, exist_ok=True)
+    if os.getenv("DATABASE_URL", "").strip():
+        from modules.core.database import initialize_database
+        initialize_database()
+        print("MySQL connection successful; users table created/verified.")
+    else:
+        print("DATABASE_URL not set. MySQL skipped; CSV fallback remains active.")
 
 if __name__ == "__main__":
-    initialize_project()
+    main()

@@ -1,5 +1,5 @@
 <p align="center">
-  <b>🌱 CropVanta.AI: Advanced Agricultural Intelligence Ecosystem</b><br/>
+  <b>🌱 CropVanta.AI: Advanced Agricultural Intelligence Ecosystem System</b><br/>
   <img src="images/Crop.png" width="120" alt="AI Crop Advisor Logo" /><br/>
   <b>AI‑Driven Crop Recommendation, Market Intelligence & Decision‑Support Platform</b><br/>
 </p>
@@ -77,6 +77,7 @@ Weather data plays a critical role in agriculture. This system integrates **shor
 * Adjust crop suitability signals
 * Highlight climate risks
 * Improve planning reliability
+* Show weather conditions of tommorow
 
 The dashboard surfaces weather information in a **human‑readable, actionable format** instead of raw forecasts.
 
@@ -87,7 +88,6 @@ The dashboard surfaces weather information in a **human‑readable, actionable f
 Beyond growing the right crop, profitability depends on **market timing and pricing**.
 
 The Market Advisor module:
-
 * Fetches crop market prices
 * Associates recommendations with economic context
 * Helps users align crop selection with revenue potential
@@ -195,6 +195,25 @@ streamlit run app.py
 
 ---
 
+
+## MySQL Persistence and Redis Caching
+
+CropVanta supports optional infrastructure integrations:
+
+- **MySQL + SQLAlchemy:** when `DATABASE_URL` is configured, user registration and authentication records are stored in the `users` table. The CSV user store remains a local fallback when `DATABASE_URL` is unset.
+- **Redis:** when `REDIS_URL` is configured and reachable, successful crop recommendations are cached for 3,600 seconds. Cache keys include the model version and all seven input features. If Redis is unavailable, prediction continues without the cache.
+
+### Configure locally
+
+1. Copy `.env.example` to `.env` and fill in credentials.
+2. Create a MySQL database named `cropvanta` (or update the database name in `DATABASE_URL`).
+3. Install dependencies with `pip install -r requirements.txt`.
+4. Start Redis and MySQL.
+5. Run `python scripts/setup_db.py` to create the `users` table.
+6. Start the application with `streamlit run app.py`.
+
+The application does not bundle or automatically host MySQL or Redis; these services must be provided separately.
+
 ## Who This Project Is For
 
 ### Farmers & Agricultural Decision-Makers
@@ -256,6 +275,7 @@ This project can be used as a learning reference for:
 * Multi‑language dashboard support
 * User Friendly Interface
 * Real‑time commodity exchange feeds
+* Added helpline to support farmers
 ---
 ## License
 
@@ -275,9 +295,72 @@ Artificial Intelligence • Machine Learning • Backend Developer • Software 
   Advanced AI & Deep Learning based Agricultural Intelligence System <br/><br/>
   Version 2.0.1 <br/>
   Architected & Developed by Shailendra Dhakad <br/>
-  AI Researcher & Patent Inventor & ML Engineer & Software Engineer <br/>
+  AI Researcher & Machine Learning Engineer & Software Engineer <br/>
   Licensed under Apache License 2.0
 </p>
 
 ---
+# Note:- This Project is under improvements and upgraded soon.
 
+## Interview-ready backend extensions (local development)
+
+This branch adds an optional FastAPI inference/authentication service, SQLAlchemy-backed MySQL user persistence, and Redis cache-aside caching for crop recommendations. The Streamlit dashboard remains the user interface. These services are real code integrations, but they are only active when the corresponding services and environment variables are configured.
+
+### Windows PowerShell setup
+
+```powershell
+# 1. Create and activate a Python environment
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+# 2. Install dependencies
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+# 3. Create local environment configuration
+Copy-Item .env.example .env
+# Edit .env and set unique MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD and SECRET_KEY values
+
+# 4. Start MySQL and Redis (Docker Desktop must be running)
+docker compose up -d mysql redis
+
+# 5. Create MySQL tables
+python scripts/setup_db.py
+
+# 6. Start the FastAPI service (Terminal 1)
+uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload
+
+# 7. Start the Streamlit dashboard (Terminal 2)
+streamlit run app.py
+```
+
+FastAPI interactive docs: http://127.0.0.1:8000/docs
+Health check: http://127.0.0.1:8000/health
+
+### Model training and evaluation
+
+```powershell
+python Modelcode.py
+```
+
+The training script compares a Random Forest + Gradient Boosting soft-voting ensemble on a stratified held-out test split. It fits the scaler only on the training split, reports accuracy and macro-F1, and writes candidate files under `artifacts/ensemble_candidate/`. It does not overwrite the app's current model unless `PROMOTE_MODEL=1` is set and measured accuracy reaches `MIN_ACCURACY` (default 70%).
+
+**Dataset validation warning:** the repository's included `data/crop_recommendation.csv` currently has 500 rows across 22 classes, while the checked-in model metadata describes 2,200 training rows. A test run on the included CSV produced very low held-out accuracy (about 4%) for the new ensemble. Do not claim 92% or promote this candidate using this CSV. Restore the original verified training dataset, check its provenance and label quality, then rerun evaluation before making an accuracy claim.
+
+### Verify integrations
+
+```powershell
+# MySQL/Redis containers
+docker compose ps
+
+# Redis responds with PONG
+docker exec cropvanta-redis redis-cli ping
+
+# MySQL container health
+docker exec cropvanta-mysql mysqladmin ping -h 127.0.0.1 -p
+
+# API health
+Invoke-RestMethod http://127.0.0.1:8000/health
+```
+
+For a real end-to-end latency claim, benchmark the `/predict` API over repeated requests with Redis both cold and warm, and report p50/p95 including network, authentication, cache and inference overhead. Model-only inference time is not end-to-end API latency.

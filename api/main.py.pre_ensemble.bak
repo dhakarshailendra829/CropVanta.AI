@@ -1,0 +1,72 @@
+"""FastAPI inference/authentication service for CropVanta.AI."""
+from pathlib import Path
+
+import joblib
+from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+
+from modules.core.auth import create_access_token, decode_access_token
+from modules.core.schemas import CropInput, TokenResponse
+from modules.core.user_store import authenticate_user
+from modules.crop_advisor import CropAdvisor
+
+ROOT = Path(__file__).resolve().parents[1]
+MODEL_PATH = ROOT / "models" / "crop_model.pkl"
+SCALER_PATH = ROOT / "models" / "scaler.pkl"
+
+app = FastAPI(
+    title="CropVanta.AI Inference API",
+    version="1.0.0",
+    description="Crop recommendation inference with JWT bearer authentication.",
+)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
+advisor: CropAdvisor | None = None
+
+
+@app.on_event("startup")
+def load_model() -> None:
+    global advisor
+    if not MODEL_PATH.exists() or not SCALER_PATH.exists():
+        raise RuntimeError("Model artifacts missing. Check models/crop_model.pkl and models/scaler.pkl")
+    model = joblib.load(MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)
+    advisor = CropAdvisor(model, scaler)
+
+
+def require_user(token: str = Depends(oauth2_scheme)) -> dict:
+    payload = decode_access_token(token)
+    if not payload or not payload.get("sub"):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired access token",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return payload
+
+
+@app.get("/health")
+def health() -> dict:
+    return {"status": "ok", "model_loaded": advisor is not None}
+
+
+@app.post("/auth/token", response_model=TokenResponse)
+def issue_token(form: OAuth2PasswordRequestForm = Depends()) -> TokenResponse:
+    user = authenticate_user(form.username, form.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    token = create_access_token({"sub": user["email"], "role": user.get("role", "user")})
+    return TokenResponse(access_token=token)
+
+
+@app.post("/predict")
+def predict(payload: CropInput, current_user: dict = Depends(require_user)) -> dict:
+    if advisor is None:
+        raise HTTPException(status_code=503, detail="Prediction model is not loaded")
+    result = advisor.recommend_crop(payload)
+    if result.get("status") == "error":
+        raise HTTPException(status_code=500, detail=result.get("message", "Prediction failed"))
+    return result

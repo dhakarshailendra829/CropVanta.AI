@@ -66,7 +66,7 @@ Please provide:
 - Steps to reproduce the issue
 - Potential impact
 - Affected version/branch
-- Any suggested mitigation (if available)
+- Any suggested mitigation 
 
 ---
 

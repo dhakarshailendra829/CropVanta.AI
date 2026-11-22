@@ -1,122 +1,128 @@
+"""Train and evaluate a Random Forest + Gradient Boosting soft-voting ensemble.
+
+IMPORTANT: The supplied repository CSV contains only 500 rows. The training
+script evaluates on a held-out stratified test split and will NOT overwrite
+production model files unless the measured accuracy reaches MIN_ACCURACY.
+Set PROMOTE_MODEL=1 only after verifying the dataset and metrics.
+"""
+from __future__ import annotations
+
+import json
 import os
-import warnings
-warnings.filterwarnings("ignore")
+from datetime import datetime, timezone
+from pathlib import Path
+
+import joblib
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime, timedelta
-from sklearn.model_selection import train_test_split, RandomizedSearchCV, cross_val_score
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, top_k_accuracy_score
-import joblib
-import json
-try:
-    import xgboost as xgb
-    XGBOOST_AVAILABLE = True
-except Exception:
-    XGBOOST_AVAILABLE = False
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier, VotingClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-CROP_CSV = os.path.join(DATA_DIR, "crop_recommendation.csv")
-WEATHER_CSV = os.path.join(DATA_DIR, "weather_data.csv")
-MANDI_CSV = os.path.join(DATA_DIR, "mandi_prices.csv")
+ROOT = Path(__file__).resolve().parent
+DATA_PATH = ROOT / "data" / "crop_recommendation.csv"
+MODEL_DIR = ROOT / "models"
+EXPERIMENT_DIR = ROOT / "artifacts" / "ensemble_candidate"
+FEATURES = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
+MIN_ACCURACY = float(os.getenv("MIN_ACCURACY", "0.70"))
 
-OUTPUT_MODEL = "crop_model.pkl"
-OUTPUT_SCALER = "scaler.pkl"
 
-print("Loading datasets...")
-crop_df = pd.read_csv(CROP_CSV)
-print(f"crop_recommendation.csv: {crop_df.shape}")
+def main() -> None:
+    if not DATA_PATH.exists():
+        raise FileNotFoundError(f"Dataset not found: {DATA_PATH}")
 
-weather_df = pd.read_csv(WEATHER_CSV) if os.path.exists(WEATHER_CSV) else None
-mandi_df = pd.read_csv(MANDI_CSV) if os.path.exists(MANDI_CSV) else None
+    df = pd.read_csv(DATA_PATH)
+    required = FEATURES + ["label"]
+    missing = [column for column in required if column not in df.columns]
+    if missing:
+        raise ValueError(f"Dataset is missing required columns: {missing}")
+    if len(df) < 100:
+        raise ValueError("At least 100 labelled rows are required for this evaluation.")
 
-crop_descriptions = {
-    "Wheat": "Wheat is a cereal grain grown worldwide. Requires well-drained soil and moderate rainfall. Harvest in 3-4 months. Ideal for temperate climates.",
-    "Rice": "Rice is a staple crop grown in waterlogged fields. Needs high rainfall and warm temperatures. Rich in carbohydrates and calories.",
-    "Maize": "Maize is a versatile crop for food and fodder. Grows in fertile, well-drained soil. Requires moderate temperature and rainfall.",
-    "Sugarcane": "Sugarcane is a tropical crop for sugar production. Needs long sunlight and abundant water. Harvested after 10-12 months.",
-    "Cotton": "Cotton is grown in warm climates with moderate rainfall. Used for textile industry. Requires fertile, well-drained soil.",
-    "Tomato": "Tomato is a widely cultivated vegetable. Requires warm climate, fertile soil, and regular watering. Harvest in 2-3 months.",
-    "Potato": "Potato is a tuber crop grown in cool climates. Needs well-drained soil and moderate rainfall. Harvest in 3-4 months.",
-    "Onion": "Onion is a bulb vegetable grown in well-drained soil. Requires moderate temperature and sunlight. Harvest in 3-4 months.",
-    "Chili": "Chili is a spicy vegetable grown in warm climates. Requires fertile soil, regular watering, and sunlight. Harvest in 3-4 months.",
-    "Brinjal": "Brinjal (Eggplant) grows in warm regions. Needs fertile soil and regular irrigation. Harvest in 3-5 months for best yield.",
-    "Carrot": "Carrot is a root vegetable grown in cool climates. Requires loose, sandy soil and moderate rainfall. Harvest in 2-3 months.",
-    "Cabbage": "Cabbage is a leafy vegetable requiring cool weather. Needs fertile soil and regular watering. Harvest in 3-4 months.",
-    "Cauliflower": "Cauliflower is a cool-season vegetable. Requires well-drained soil and moderate rainfall. Harvest in 3-4 months.",
-    "Peas": "Peas are grown in cool climates and require well-drained soil. Rich in protein and nutrients. Harvest in 2-3 months.",
-    "Soybean": "Soybean is a legume crop grown in warm climates. Requires fertile soil and moderate rainfall. Harvest in 4-5 months.",
-    "Millet": "Millet is a drought-resistant cereal grown in dry regions. Requires minimal water and grows fast. Harvest in 3-4 months."
-}
+    X = df[FEATURES].apply(pd.to_numeric, errors="coerce")
+    y_text = df["label"].astype(str).str.strip().str.lower()
+    medians = X.median()
+    X = X.fillna(medians)
+    if X.isna().any().any():
+        raise ValueError("One or more feature columns contain no usable numeric values.")
 
-print("Preparing features and labels...")
+    label_encoder = LabelEncoder()
+    y = label_encoder.fit_transform(y_text)
+    counts = pd.Series(y_text).value_counts()
+    if counts.min() < 2:
+        raise ValueError("Every crop class must have at least two rows for stratified splitting.")
 
-expected_features = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
-X = crop_df[expected_features].copy()
-y = crop_df['label'].astype(str).copy()
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.20, random_state=42, stratify=y
+    )
 
-X = X.fillna(X.median())
+    # Fit preprocessing ONLY on training data to avoid test-set leakage.
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
 
-le = LabelEncoder()
-y_enc = le.fit_transform(y)
+    rf = RandomForestClassifier(
+        n_estimators=300, max_features="sqrt", min_samples_leaf=1,
+        class_weight="balanced", random_state=42, n_jobs=-1
+    )
+    gb = GradientBoostingClassifier(
+        n_estimators=150, learning_rate=0.05, max_depth=2,
+        min_samples_leaf=2, random_state=42
+    )
+    ensemble = VotingClassifier(
+        estimators=[("random_forest", rf), ("gradient_boosting", gb)],
+        voting="soft", weights=[2, 1]
+    )
+    print("Training Random Forest + Gradient Boosting soft-voting ensemble...")
+    ensemble.fit(X_train_scaled, y_train)
+    predictions = ensemble.predict(X_test_scaled)
+    accuracy = float(accuracy_score(y_test, predictions))
+    macro_f1 = float(f1_score(y_test, predictions, average="macro", zero_division=0))
 
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-joblib.dump(scaler, OUTPUT_SCALER)
-print(f"Scaler saved to {OUTPUT_SCALER}")
+    print(f"Rows: {len(df)} | Features: {len(FEATURES)} | Crop classes: {len(label_encoder.classes_)}")
+    print(f"Held-out test accuracy: {accuracy:.4f} ({accuracy * 100:.2f}%)")
+    print(f"Held-out macro F1: {macro_f1:.4f}")
+    print("Classification report:")
+    print(classification_report(
+        y_test, predictions, labels=np.arange(len(label_encoder.classes_)),
+        target_names=label_encoder.classes_, zero_division=0
+    ))
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled, y_enc, test_size=0.2, random_state=42, stratify=y_enc)
+    EXPERIMENT_DIR.mkdir(parents=True, exist_ok=True)
+    joblib.dump(ensemble, EXPERIMENT_DIR / "crop_ensemble_candidate.pkl")
+    joblib.dump(scaler, EXPERIMENT_DIR / "scaler_candidate.pkl")
+    joblib.dump(label_encoder, EXPERIMENT_DIR / "label_encoder.pkl")
+    metadata = {
+        "algorithm": "Soft Voting: RandomForestClassifier + GradientBoostingClassifier",
+        "features": FEATURES,
+        "classes": label_encoder.classes_.tolist(),
+        "rows": int(len(df)),
+        "test_size": 0.2,
+        "random_state": 42,
+        "accuracy": accuracy,
+        "macro_f1": macro_f1,
+        "confusion_matrix": confusion_matrix(y_test, predictions).tolist(),
+        "trained_at_utc": datetime.now(timezone.utc).isoformat(),
+        "scaler_fit_on_training_split_only": True,
+    }
+    (EXPERIMENT_DIR / "metrics.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    print(f"Candidate artifacts saved to: {EXPERIMENT_DIR}")
 
-print("Training Random Forest...")
-rf = RandomForestClassifier(random_state=42, n_jobs=-1)
-param_dist = {
-    "n_estimators": [100, 200, 300, 500],
-    "max_depth": [None, 6, 10, 20, 30],
-    "min_samples_split": [2, 5, 10],
-    "min_samples_leaf": [1, 2, 4],
-    "bootstrap": [True, False]
-}
+    promote = os.getenv("PROMOTE_MODEL", "0").strip() == "1"
+    if promote and accuracy >= MIN_ACCURACY:
+        MODEL_DIR.mkdir(parents=True, exist_ok=True)
+        joblib.dump(ensemble, MODEL_DIR / "crop_model.pkl")
+        joblib.dump(scaler, MODEL_DIR / "scaler.pkl")
+        (MODEL_DIR / "model_metadata.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+        print("PROMOTED: ensemble model and scaler written to models/.")
+    else:
+        print("NOT PROMOTED: production model files were left unchanged.")
+        if accuracy < MIN_ACCURACY:
+            print(f"Accuracy {accuracy:.2%} is below MIN_ACCURACY={MIN_ACCURACY:.0%}.")
+        if not promote:
+            print("To promote after reviewing metrics: set PROMOTE_MODEL=1 and rerun.")
 
-rs = RandomizedSearchCV(rf, param_distributions=param_dist, n_iter=30,
-                        scoring='accuracy', cv=4, verbose=1, random_state=42, n_jobs=-1)
-rs.fit(X_train, y_train)
 
-best_rf = rs.best_estimator_
-joblib.dump(best_rf, OUTPUT_MODEL)
-print(f"Random Forest model saved to {OUTPUT_MODEL}")
-
-y_pred = best_rf.predict(X_test)
-print("Test Accuracy:", accuracy_score(y_test, y_pred))
-print(classification_report(y_test, y_pred, target_names=le.classes_))
-
-cm = confusion_matrix(y_test, y_pred)
-plt.figure(figsize=(10,8))
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=le.classes_, yticklabels=le.classes_)
-plt.title("Confusion Matrix")
-plt.tight_layout()
-plt.savefig("confusion_matrix.png")
-plt.close()
-
-def predict_crop(input_dict):
-    
-    x = np.array([input_dict[f] for f in expected_features]).reshape(1, -1)
-    x_scaled = scaler.transform(x)
-    pred_idx = best_rf.predict(x_scaled)[0]
-    pred_label = le.inverse_transform([pred_idx])[0]
-    
-    top3 = []
-    if hasattr(best_rf, "predict_proba"):
-        probs = best_rf.predict_proba(x_scaled)[0]
-        top_idx = np.argsort(probs)[::-1][:3]
-        top3 = [(le.inverse_transform([i])[0], float(probs[i])) for i in top_idx]
-        
-    desc = crop_descriptions.get(pred_label, "No description available.")
-    return {"crop": pred_label, "description": desc, "top3": top3}
-
-median_input = X.median().to_dict()
-demo = predict_crop(median_input)
-print("\nDemo prediction with median values:")
-print(demo)
+if __name__ == "__main__":
+    main()
